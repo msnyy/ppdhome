@@ -1,0 +1,97 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+export default function Medical() {
+    const [openImage, setOpenImage] = useState(null);
+    return (
+        <div>
+            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4">
+                <p className="xl:text-5xl md:text-3xl text-xl font-semibold text-center text-shadow-lg">
+                    บ้านพระประแดง ร่วมกับมิตรไมตรีคลินิก และโรงพยาบาลบางจาก
+                </p>
+                <p className="xl:text-5xl md:text-3xl text-xl lg:mt-5 mt-2 font-semibold text-center text-shadow-lg">
+                    จัดกิจกรรมฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่ให้กับผู้ใช้บริการ
+                </p>
+
+                <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
+                    <p>
+                        อังคารที่ 22 กรกฎาคม พ.ศ. 2568
+                    </p>
+                    <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
+                        สถานคุ้มครองและพัฒนาคนพิการพระประแดงจังหวัดสมุทรปราการ นำโดยว่าที่ร้อยตรีณัทกร ธงสอาด ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
+                        
+                    </p>
+                    <p>
+                         พร้อมด้วยข้าราชการและเจ้าหน้าที่ โดยกลุ่มงานพยาบาล ร่วมกับมิตรไมตรีคลินิก และโรงพยาบาล บ้างจาก 
+                         จัดกิจกรรมฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่ให้กับผู้ใช้บริการ เพื่อเป็นการเสริมสร้างภูมิคุ้มกันโรค ลดความเสี่ยงในการเจ็บป่วย 
+                         และลดการแพร่กระจายของเชื้อไข้หวัดใหญ่ในกลุ่มบุคคลเปราะบาง โดยได้รับความร่วมมือจากบุคลากรทางการแพทย์ของหน่วยงานภายนอก 
+                         ในการให้บริการฉีดวัคซีนอย่างถูกต้อง ปลอดภัย และเป็นไปตามมาตรฐาน ด้านสาธารณสุข 
+                         ซึ่งในครั้งนี้มีผู้ใช้บริการเข้ารับการฉีดวัคซีนจำนวนทั้งสิ้น 400 คน ณ สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
+                    </p>
+                </div>
+                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                    <Image src="/pic/medical146/medical146_1.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_1.JPG")}
+                    ></Image>
+
+                    <Image src="/pic/medical146/medical146_2.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_2.JPG")}
+                    ></Image>
+
+                    <Image src="/pic/medical146/medical146_3.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_3.JPG")}
+                    ></Image>
+
+                    <Image src="/pic/medical146/medical146_4.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_4.JPG")}
+                    ></Image>
+
+                    <Image src="/pic/medical146/medical146_5.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_5.JPG")}
+                    ></Image>
+                    <Image src="/pic/medical146/medical146_6.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        width={250} height={100}
+                        onClick={() => setOpenImage("/pic/medical146/medical146_6.JPG")}
+                    ></Image>
+                </div>
+
+                {openImage && (
+                    <div
+                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 "
+                        onClick={() => setOpenImage(null)}
+                    >
+                        <div
+                            className="relative max-w-4xl w-full mx-4 animate-fadein"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button onClick={() => setOpenImage(null)} className="absolute -top-10 right-0 text-white text-3xl" >
+                                ✕
+                            </button>
+                            <Image
+                                src={openImage}
+                                alt="ภาพขยาย"
+                                width={1200}
+                                height={800}
+                                className="rounded-lg object-contain w-full h-auto"
+                            />
+                        </div>
+                    </div>
+                )}
+
+            </section>
+        </div>
+    );
+}

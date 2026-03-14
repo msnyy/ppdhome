@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "PpdHome@1234"
+      MSSQL_MEMORY_LIMIT_MB: 384
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  web:
+    build: .
+    restart: always
+    depends_on:
+      - sqlserver
+    environment:
+      NODE_ENV: production
+      DB_HOST: sqlserver
+      DB_USER: sa
+      DB_PASSWORD: PpdHome@1234
+
+volumes:
+  mssql_data:

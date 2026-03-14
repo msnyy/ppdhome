@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/app/*"],
+      "@user/*": ["./src/app/ppdhome/user/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@components/*": ["./src/app/ppdhome/components/*"]
     }
   }
 }
