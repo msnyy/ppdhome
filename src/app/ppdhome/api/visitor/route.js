@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getPool } from "@lib/db";
-
+export const dynamic = "force-dynamic";
 // ✅ GET = แค่ดึงข้อมูล
 export async function GET() {
   const pool = await getPool();
