@@ -1,3 +1,4 @@
+# install deps
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -6,14 +7,24 @@ RUN npm install
 # build
 FROM node:20-alpine AS builder
 WORKDIR /app
+
+# get ENV from Railway
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
+
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+
 RUN npm run build
 
 # production
 FROM node:20-alpine AS runner
 WORKDIR /app
-ENV NODE_ENV=local
+
+ENV NODE_ENV=production
 
 COPY --from=builder /app ./
 
