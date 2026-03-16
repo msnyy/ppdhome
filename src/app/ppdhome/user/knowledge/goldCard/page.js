@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function GoldCard(){
     return(
@@ -6,7 +7,7 @@ export default function GoldCard(){
             <p className="lg:text-5xl md:text-4xl text-xl text-center font-semibold md:mb-10 mb-4 text-shadow-lg">
                 สิทธิบัตรทอง
             </p>
-            <Image src="/pic/knowledge/goldCard.jpg" alt="รูปสิทธิบัตรทอง" width={1400} height={100}></Image>
+            <Image src={getSupabaseImage("pic/knowledge/goldCard.jpg")} alt="รูปสิทธิบัตรทอง" width={1400} height={100}></Image>
         </section>
     );
 }

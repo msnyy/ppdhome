@@ -1,6 +1,5 @@
 import sql from "mssql";
-import path from "path";
-import { mkdir, writeFile } from "fs/promises";
+import { supabase } from "@lib/supabase";
 import { getPool } from "@lib/db";
 
 export const runtime = "nodejs";
@@ -103,21 +102,27 @@ export async function POST(request) {
         const files = formData.getAll("images");
         let imagePaths = [];
 
-        // upload รูป
-        if (files.length > 0) {
-            const uploadDir = path.join(
-                process.cwd(),
-                "public/uploads/products"
-            );
-            await mkdir(uploadDir, { recursive: true });
+        // upload รูปไป Supabase
+for (const file of files) {
 
-            for (const file of files) {
-                const buffer = Buffer.from(await file.arrayBuffer());
-                const fileName = `${Date.now()}-${file.name}`;
-                await writeFile(path.join(uploadDir, fileName), buffer);
-                imagePaths.push(`/uploads/products/${fileName}`);
-            }
-        }
+    if (!file.name) continue;
+
+    const fileName = `${Date.now()}-${file.name}`;
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    const { error } = await supabase.storage
+        .from("ppdhome-pic")
+        .upload(`products/${fileName}`, buffer, {
+            contentType: file.type
+        });
+
+    if (error) throw error;
+
+    const url =
+        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
+
+    imagePaths.push(url);
+}
 
         const pool = await getPool();
         const reqSql = pool.request();
@@ -198,6 +203,41 @@ export async function DELETE(request) {
         }
 
         const pool = await getPool();
+
+        /* 1️⃣ หา image ก่อน */
+
+        const result = await pool
+            .request()
+            .input("id", sql.Int, id)
+            .query(`
+        SELECT image
+        FROM dbo.products
+        WHERE id = @id
+      `);
+
+        const imageStr = result.recordset[0]?.image;
+
+        /* 2️⃣ ลบรูปใน Supabase */
+
+        if (imageStr) {
+
+            const images = imageStr.split(",");
+
+            const paths = images.map((url) =>
+                url.split("/storage/v1/object/public/ppdhome-pic/")[1]
+            ).filter(Boolean);
+
+            if (paths.length > 0) {
+
+                await supabase.storage
+                    .from("ppdhome-pic")
+                    .remove(paths);
+
+            }
+        }
+
+        /* 3️⃣ ลบสินค้า */
+
         await pool
             .request()
             .input("id", sql.Int, id)
@@ -207,8 +247,10 @@ export async function DELETE(request) {
       `);
 
         return Response.json({ message: "ลบสินค้าสำเร็จ" });
+
     } catch (error) {
         console.error("DELETE PRODUCT ERROR 👉", error);
+
         return Response.json({ error: error.message }, { status: 500 });
     }
 }

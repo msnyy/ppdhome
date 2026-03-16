@@ -114,7 +114,7 @@ export default function Header() {
 
                             {desktopAboutOpen && (
                                 <div
-                                    className="absolute left-0 w-52 rounded-md font-light bg-pink-200 shadow-lg z-90"
+                                    className="absolute left-0 w-52 rounded-md font-light bg-pink-200 shadow-lg z-100000"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <Link

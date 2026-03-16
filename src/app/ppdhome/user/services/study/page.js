@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function ActivityPhysical() {
     const [openImage, setOpenImage] = useState(null);
@@ -28,50 +29,50 @@ export default function ActivityPhysical() {
                 </div>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/study/study1.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study1.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study1.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study1.JPG"))}>
                     </Image>
-                    <Image src="/pic/study/study2.jpg" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study2.jpg")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study2.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study2.jpg"))}>
                     </Image>
-                    <Image src="/pic/study/study3.jpg" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study3.jpg")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study3.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study3.jpg"))}>
                     </Image>
-                    <Image src="/pic/study/study4.jpg" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study4.jpg")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study4.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study4.jpg"))}>
                     </Image>
-                    <Image src="/pic/study/study5.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study5.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study5.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study5.JPG"))}>
                     </Image>
-                    <Image src="/pic/study/study6.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study6.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study6.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study6.JPG"))}>
                     </Image>
-                    <Image src="/pic/study/study7.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study7.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study7.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study7.JPG"))}>
                     </Image>
-                    <Image src="/pic/study/study8.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study8.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study8.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study8.JPG"))}>
                     </Image>
-                    <Image src="/pic/study/study9.JPG" alt="การศึกษา"
+                    <Image src={getSupabaseImage("pic/study/study9.JPG")} alt="การศึกษา"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/study/study9.JPG")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/study/study9.JPG"))}>
                     </Image>
                 </div>
 

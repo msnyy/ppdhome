@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { getSupabaseImage } from "@lib/image";
 
 export default function AboutMission() {
     const [openImage, setOpenImage] = useState(null);
@@ -245,20 +246,20 @@ export default function AboutMission() {
                 <p className="font-semibold text-shadow-lg">ขั้นตอนการบริการออกบัตรประจำตัวคนพิการ</p>
                 <div className="flex gap-8">
                 <Image
-                    src="/pic/personIDCard/pic1.png"
+                    src={getSupabaseImage("pic/personIDCard/pic1.png")}
                     alt="ขั้นตอนการบริการออกบัตรประจำตัวคนพิการ"
                     width={600}
                     height={200}
                     className="lg:w-[500px] md:w-[400px] w-[300px] h-auto mt-4"
-                    onClick={() => setOpenImage("/pic/personIDCard/pic1.png")}
+                    onClick={() => setOpenImage(getSupabaseImage("pic/personIDCard/pic1.png"))}
                 />
                 <Image
-                    src="/pic/personIDCard/service-bkk2024.jpg"
+                    src={getSupabaseImage("pic/personIDCard/service-bkk2024.jpg")}
                     alt="ขั้นตอนการบริการออกบัตรประจำตัวคนพิการ"
                     width={600}
                     height={200}
                     className="lg:w-[1000px] md:w-[700px] w-[500px] h-auto mt-4"
-                    onClick={() => setOpenImage("/pic/personIDCard/service-bkk2024.jpg")}
+                    onClick={() => setOpenImage(getSupabaseImage("pic/personIDCard/service-bkk2024.jpg"))}
                 />
             </div></div>
 

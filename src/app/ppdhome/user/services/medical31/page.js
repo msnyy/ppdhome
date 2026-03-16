@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function Medical() {
     const [openImage, setOpenImage] = useState(null);
@@ -30,59 +31,59 @@ export default function Medical() {
                     </p>
                 </div>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/medical31/medical31_1.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_1.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_1.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_1.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical31/medical31_2.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_2.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_2.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_2.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical31/medical31_3.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_3.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_3.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_3.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical31/medical31_4.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_4.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_4.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_4.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical31/medical31_5.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_5.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_5.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_5.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical31/medical31_6.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_6.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_6.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_6.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical31/medical31_7.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_7.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_7.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_7.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical31/medical31_8.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_8.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_8.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_8.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical31/medical31_9.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_9.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_9.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_9.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical31/medical31_10.jpg" alt="รูปกิจกรรมพบแพทย์ในบ้าน"
+                    <Image src={getSupabaseImage("pic/medical31/medical31_10.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical31/medical31_10.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_10.JPG"))}
                     ></Image>
                 </div>
 

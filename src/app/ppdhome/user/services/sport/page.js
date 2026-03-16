@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function ActivityPrint() {
     const [openImage, setOpenImage] = useState(null);
@@ -27,59 +28,59 @@ export default function ActivityPrint() {
                     </p>
                 </div>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/sport/sport1.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport1.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport1.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport1.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/sport/sport2.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport2.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport2.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport2.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/sport/sport3.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport3.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport3.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport3.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/sport/sport4.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport4.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport4.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport4.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/sport/sport5.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport5.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport5.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport5.jpg"))}
                     ></Image>
-                    <Image src="/pic/sport/sport6.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport6.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport6.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport6.jpg"))}
                     ></Image>
-                    <Image src="/pic/sport/sport7.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport7.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport7.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport7.jpg"))}
                     ></Image>
-                    <Image src="/pic/sport/sport8.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport8.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport8.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport8.jpg"))}
                     ></Image>
-                    <Image src="/pic/sport/sport9.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport9.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport9.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport9.jpg"))}
                     ></Image>
-                    <Image src="/pic/sport/sport10.jpg" alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
+                    <Image src={getSupabaseImage("pic/sport/sport10.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/sport/sport10.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport10.jpg"))}
                     ></Image>
                 </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function Medical() {
     const [openImage, setOpenImage] = useState(null);
@@ -31,44 +32,44 @@ export default function Medical() {
                     </p>
                 </div>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/medical204/medical204_1.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_1.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105 "
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_1.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_1.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical204/medical204_2.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_2.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_2.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_2.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical204/medical204_3.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_3.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_3.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_3.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical204/medical204_4.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_4.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_4.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_4.JPG"))}
                     ></Image>
 
-                    <Image src="/pic/medical204/medical204_5.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_5.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_5.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_5.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical204/medical204_6.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_6.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_6.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_6.JPG"))}
                     ></Image>
-                    <Image src="/pic/medical204/medical204_7.jpg" alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
+                    <Image src={getSupabaseImage("pic/medical204/medical204_7.JPG")} alt="รูปวางแผนจัดการและควบคุมโรคติดต่อ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical204/medical204_7.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical204/medical204_7.JPG"))}
                     ></Image>
                 </div>
 

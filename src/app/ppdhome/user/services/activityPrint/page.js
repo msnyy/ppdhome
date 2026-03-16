@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function ActivityPrint() {
     const [openImage, setOpenImage] = useState(null);
@@ -29,64 +30,64 @@ export default function ActivityPrint() {
                     </p>
                 </div>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/ActPrint/print1.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print1.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print1.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print1.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/ActPrint/print2.jpeg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print2.jpeg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print2.jpeg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print2.jpeg"))}
                     ></Image>
 
-                    <Image src="/pic/ActPrint/print3.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print3.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print3.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print3.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/ActPrint/print4.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print4.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print4.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print4.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/ActPrint/print5.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print5.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print5.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print5.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print6.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print6.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print6.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print6.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print7.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print7.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print7.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print7.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print8.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print8.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print8.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print8.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print9.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print9.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print9.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print9.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print10.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print10.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print10.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print10.jpg"))}
                     ></Image>
-                    <Image src="/pic/ActPrint/print11.jpg" alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
+                    <Image src={getSupabaseImage("pic/ActPrint/print11.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/ActPrint/print11.jpg")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/ActPrint/print11.jpg"))}
                     ></Image>
                 </div>
 

@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -6,6 +7,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/20/solid";
+
 
 /* ---------- utils ---------- */
 const cx = (...classes) => classes.filter(Boolean).join(" ");
@@ -44,6 +46,27 @@ export default function PostsAdmin() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const handleDelete = async (id) => {
+
+    if (!confirm("ต้องการลบข้อมูลนี้หรือไม่")) return;
+
+    try {
+
+      const res = await fetch(`/ppdhome/api/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("delete error");
+
+      // reload list
+      setItems(items.filter((it) => it.id !== id));
+
+    } catch (err) {
+      console.error(err);
+      alert("ลบไม่สำเร็จ");
+    }
+  };
 
   const pageSize = 10;
 
@@ -222,15 +245,21 @@ export default function PostsAdmin() {
                   className="block py-4 hover:bg-pink-50 px-2 border-b border-gray-300"
                 >
 
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-start">
 
                     <div>
-                      {subtitle && (
+                      
                         <div className="flex items-center gap-2 flex-wrap">
 
                           <p className="text-lg">
-                            {title} {subtitle}
+                            {title} 
                           </p>
+                          
+                          {subtitle && (
+                          <span className="text-lg">
+                           {subtitle}
+                          </span>
+                        )}
 
                           {newsNew && (
                             <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
@@ -239,11 +268,7 @@ export default function PostsAdmin() {
                           )}
 
                         </div>
-                      )}
-
-                      <p className="text-lg">
-
-                      </p>
+                      
 
 
                       {header_date && (
@@ -254,9 +279,23 @@ export default function PostsAdmin() {
 
                     </div>
 
-                    <p className="text-sm text-gray-500">
-                      {formatThaiDate(content_date)}
-                    </p>
+                    <div className="flex gap-2">
+
+                      <p className="text-sm text-gray-500">
+                        {formatThaiDate(content_date)}
+                      </p>
+
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleDelete(id);
+                        }}
+                        className="bg-red-500 rounded-xl p-2 text-white hover:text-red-700 text-sm"
+                      >
+                        ลบ
+                      </button>
+
+                    </div>
 
                   </div>
 

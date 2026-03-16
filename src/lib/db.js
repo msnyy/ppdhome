@@ -1,11 +1,11 @@
 import sql from "mssql";
 
 const dbConfig = {
-  user: "sa",
-  password: "PpdHome@1234",
-  server: "sqlserver",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  server: process.env.DB_HOST,
   port: 1433,
-  database: "ppdHome_db",
+  database: process.env.DB_NAME,
   options: {
     encrypt: false,
     trustServerCertificate: true,

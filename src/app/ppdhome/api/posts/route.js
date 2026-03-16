@@ -1,6 +1,5 @@
 import sql from "mssql";
-import path from "path";
-import { mkdir, writeFile } from "fs/promises";
+import { supabase } from "@lib/supabase";
 import { getPool } from "@lib/db";
 
 export const runtime = "nodejs";
@@ -66,6 +65,7 @@ FROM posts
 /* ===================== POST : CREATE POST ===================== */
 export async function POST(request) {
   try {
+
     const formData = await request.formData();
 
     const title = formData.get("title");
@@ -79,47 +79,56 @@ export async function POST(request) {
       ? content_date.replace("T", " ")
       : null;
 
-    const uploadDir = path.join(
-      process.cwd(),
-      "public/uploads/posts"
-    );
-
-    await mkdir(uploadDir, { recursive: true });
-
     /* ---------- upload pdf ---------- */
+
     const pdf = formData.get("pdf");
     let pdfPath = null;
 
     if (pdf && pdf.name) {
+
+      const safeName = pdf.name
+        .replace(/\s+/g, "-")
+        .replace(/[^\w.-]/g, "");
+
+      const fileName = `${Date.now()}-${safeName}`;
       const buffer = Buffer.from(await pdf.arrayBuffer());
-      const fileName = `${Date.now()}-${pdf.name}`;
 
-      await writeFile(
-        path.join(uploadDir, fileName),
-        buffer
-      );
+      const { error } = await supabase.storage
+        .from("ppdhome-pic")
+        .upload(`posts/pdf/${fileName}`, buffer, {
+          contentType: pdf.type
+        });
 
-      pdfPath = `/uploads/posts/${fileName}`;
+      if (error) throw error;
+
+      pdfPath =
+        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/posts/pdf/${fileName}`;
     }
 
     /* ---------- upload images ---------- */
+
     const images = formData.getAll("images");
     let imagePaths = [];
 
-    if (images.length > 0) {
-      for (const file of images) {
-        if (!file.name) continue;
+    for (const file of images) {
 
-        const buffer = Buffer.from(await file.arrayBuffer());
-        const fileName = `${Date.now()}-${file.name}`;
+      if (!file.name) continue;
 
-        await writeFile(
-          path.join(uploadDir, fileName),
-          buffer
-        );
+      const fileName = `${Date.now()}-${file.name}`;
+      const buffer = Buffer.from(await file.arrayBuffer());
 
-        imagePaths.push(`/uploads/posts/${fileName}`);
-      }
+      const { error } = await supabase.storage
+        .from("ppdhome-pic")
+        .upload(`posts/images/${fileName}`, buffer, {
+          contentType: file.type
+        });
+
+      if (error) throw error;
+
+      const url =
+        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/posts/images/${fileName}`;
+
+      imagePaths.push(url);
     }
 
     const pool = await getPool();
@@ -162,6 +171,7 @@ export async function POST(request) {
     );
 
   } catch (error) {
+
     console.error("POST POSTS ERROR 👉", error);
 
     return Response.json(

@@ -1,6 +1,8 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { getSupabaseImage } from "@lib/image";
 import { useState, useEffect, useRef } from "react";
 import HomeLatestNews from "@components/HomeLatestNews";
 import CookieConsent from "@components/CookieConsent";
@@ -159,7 +161,7 @@ export default function HomePage() {
             <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-120">
               <div className="relative overflow-hidden xl:mt-5 md:mt-8 mt-4 xl:h-[550px] xl:w-[550px] md:h-[260px] md:w-[260px] h-[200px] w-[280px]">
                 <Image
-                  src="/pic/pp.jpg"
+                  src={getSupabaseImage("pic/pp.jpg")}
                   alt="รูปสถาบัน"
                   fill
                   sizes="(max-width: 768px) 100vw, 550px"
@@ -200,7 +202,7 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.7 }}>
             <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-110 xl:gap-10">
               <div className="relative overflow-hidden md:hidden xl:h-[500px] xl:w-[430px] md:h-[250px] md:w-[300px] h-[200px] w-[280px] mt-5 xl:ms-0">
-                <Image src="/pic/product.JPG"
+                <Image src={getSupabaseImage("pic/product.JPG")}
                   fill
                   alt="รูปผลิตภัณฑ์ฝีมือคนพิการ"
                   sizes="(max-width: 768px) 100vw, 550px"
@@ -223,7 +225,7 @@ export default function HomePage() {
 
               </div>
               <div className="relative overflow-hidden hidden md:block xl:h-[500px] xl:w-[430px] h-[250px] w-[300px] mt-5 md:mb-4 lg:mb-0">
-                <Image src="/pic/product.JPG" fill alt="รูปผลิตภัณฑ์ฝีมือคนพิการ" className="object-cover xl:rounded-b-full xl:rounded-none rounded-full" />
+                <Image src={getSupabaseImage("pic/product.JPG")} fill alt="รูปผลิตภัณฑ์ฝีมือคนพิการ" className="object-cover xl:rounded-b-full xl:rounded-none rounded-full" />
               </div>
             </div>
           </motion.div>
@@ -238,7 +240,7 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.7 }}>
             <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-110">
               <div className="relative overflow-visible z-20 xl:-mt-20 md:mt-10 mt-4 xl:h-[500px] xl:w-[430px] md:h-[260px] md:w-[300px] h-[200px] w-[280px]">
-                <Image src="/pic/medical158/medical158_5.jpg"
+                <Image src={getSupabaseImage("pic/medical158/medical158_5.jpg")}
                   fill
                   alt="รูปออกกำลังกาย"
                   sizes="(max-width: 768px) 100vw, 550px"
@@ -268,17 +270,11 @@ export default function HomePage() {
           <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-center">
             กิจกรรมอาชีวบำบัด ตะกร้าสานพลาสติก
           </p>
-
-          <video
-            ref={videoRef}
-            muted              // ต้องมีเพื่อ auto play
-            controls           // ให้กดหยุด / เล่น / เปิดเสียงได้
-            playsInline
-            preload="metadata"
-            className="w-full aspect-video rounded-2xl shadow-xl object-cover xl:mt-6 md:mt-4 mt-2"
-          >
-            <source src="/video/คลิปสานตะกร้า.mov" type="video/mp4" />
-          </video>
+          <iframe className="w-full aspect-video rounded-2xl shadow-xl object-cover xl:mt-6 md:mt-4 mt-2"
+            width="560"
+            src="https://www.youtube.com/embed/Fg9xnAyiizQ"
+            allowFullScreen
+          ></iframe>
         </div>
 
         <section className="relative flex flex-col z-10 xl:pb-20 md:pb-8 lg:mt-10 mt-2 w-full bg-transparent">
@@ -367,7 +363,7 @@ export default function HomePage() {
 
               <div className="relative bg-white md:w-[50%] w-[60%] md:rounded-[40px] rounded-xl md:px-10 px-4 md:pt-10 pt-4 pb-8 flex flex-col items-center z-10 shadow-md">
                 <Image
-                  src="/pic/parent.jpeg"
+                  src={getSupabaseImage("pic/parent.jpeg")}
                   alt="รูปผู้ปกครองสถานคุ้มครอง"
                   width={260}
                   height={300}
@@ -378,7 +374,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-<CookieConsent />
+        <CookieConsent />
 
       </main>
     </div>

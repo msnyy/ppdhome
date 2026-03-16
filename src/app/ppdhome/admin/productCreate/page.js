@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 export default function CreateProductPage() {
   const router = useRouter();
+  const [errors, setErrors] = useState({});
 
   /* ===== state ===== */
   const [form, setForm] = useState({
@@ -33,6 +34,29 @@ export default function CreateProductPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "กรุณากรอกชื่อสินค้า";
+    }
+
+    if (!form.price) {
+      newErrors.price = "กรุณากรอกราคา";
+    }
+
+    if (!form.size.trim()) {
+      newErrors.size = "กรุณากรอกขนาดสินค้า";
+    }
+
+    if (files.length === 0) {
+      newErrors.images = "กรุณาเพิ่มรูปสินค้าอย่างน้อย 1 รูป";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
     setLoading(true);
 
     const formData = new FormData();
@@ -42,7 +66,6 @@ export default function CreateProductPage() {
     formData.append("price", form.price);
     formData.append("size", form.size);
     formData.append("is_featured", form.is_featured ? 1 : 0);
-
 
     files.forEach((file) => {
       formData.append("images", file);
@@ -76,10 +99,13 @@ export default function CreateProductPage() {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="ชื่อสินค้า"
-              className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
-              required
+              className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${errors.name ? "border-red-500" : ""
+                }`}
             />
+
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+            )}
           </div>
 
           {/* ประเภทสินค้า */}
@@ -100,32 +126,34 @@ export default function CreateProductPage() {
           <div>
             <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-3">ราคา</h2>
             <input
-              name="price"
-              type="number"
-              min="0"
-              step="0.1"
-              value={form.price}
-              onChange={(e) => {
-                const value = e.target.value;
+  name="price"
+  type="number"
+  value={form.price}
+  onChange={handleChange}
+  className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${
+    errors.price ? "border-red-500" : ""
+  }`}
+/>
 
-                // กันค่าติดลบจากการพิมพ์เอง
-                if (Number(value) < 0) return;
-
-                setForm((prev) => ({ ...prev, price: value }));
-              }}
-              className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
-            />
+{errors.price && (
+  <p className="text-red-500 text-sm mt-1">{errors.price}</p>
+)}
           </div>
 
           <div>
             <h2 className="lg:text-2xl md:text-xl text-lg md:mt-0 mt-4 font-bold mb-3">ขนาด</h2>
             <input
-              name="size"
-              value={form.size}
-              onChange={handleChange}
-              placeholder="เช่น 14 x 23 x 40 ซม."
-              className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
-            />
+  name="size"
+  value={form.size}
+  onChange={handleChange}
+  className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${
+    errors.size ? "border-red-500" : ""
+  }`}
+/>
+
+{errors.size && (
+  <p className="text-red-500 text-sm mt-1">{errors.size}</p>
+)}
           </div>
         </div>
 
@@ -179,6 +207,9 @@ export default function CreateProductPage() {
               />
               <span className="text-5xl font-light">+</span>
             </label>
+            {errors.images && (
+  <p className="text-red-500 text-sm mb-2">{errors.images}</p>
+)}
           </div>
         </div>
 

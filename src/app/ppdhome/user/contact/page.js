@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 export default function Contact() {
     return (
         <section className="bg-pink-100 xl:mx-20 md:mx-9 mx-4 rounded-xl lg:mt-10 md:mt-4 mt-2">

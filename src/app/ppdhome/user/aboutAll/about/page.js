@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function AboutInto() {
   return (
@@ -11,7 +12,7 @@ export default function AboutInto() {
           </div>
 
           <div className="lg:hidden flex justify-center">
-              <Image className="rounded-xl md:w-[500px] md:h-[300px] w-[250px] h-[150px]" src="/pic/ppdhome.JPG" alt="d" width={500} height={200}></Image>
+              <Image className="rounded-xl md:w-[500px] md:h-[300px] w-[250px] h-[150px]" src={getSupabaseImage("pic/pp.jpg")} alt="สถานคุ้มครอง" width={500} height={200}></Image>
             </div>
 
           <div className="flex justify-between px-6 pb-10 space-y-2 md:text-lg text-xs md:mx-12 mx-4 mt-8">
@@ -37,8 +38,8 @@ export default function AboutInto() {
               <li>พ.ศ. 2549: เปลี่ยนชื่อเป็น “สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ”</li>
               </ul>
             </div>
-            <div className="hidden lg:block xl:ms-80">
-              <Image src="/pic/ppdhome.JPG" alt="d" width={400} height={200}></Image>
+            <div className="hidden lg:block w-[800px] xl:ms-50">
+              <Image src={getSupabaseImage("pic/pp.jpg")} alt="สถานคุ้มครอง" width={400} height={200}></Image>
             </div>
           </div>
         </section>

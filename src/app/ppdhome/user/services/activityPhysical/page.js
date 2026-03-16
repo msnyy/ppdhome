@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function ActivityPhysical() {
     const [openImage, setOpenImage] = useState(null);
@@ -13,40 +14,40 @@ export default function ActivityPhysical() {
                 </p>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/physical/physical1.jpg" alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical1.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical1.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical1.jpg"))}>
                     </Image>
-                    <Image src="/pic/physical/physical2.jpg" alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical2.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical2.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical2.jpg"))}>
                     </Image>
-                    <Image src="/pic/physical/physical3.jpg" alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical3.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical3.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical3.jpg"))}>
                     </Image>
-                    <Image src="/pic/physical/physical4.1.jpg" alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical4.1.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical4.1jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical4.1jpg"))}>
                     </Image>
-                    <Image src="/pic/physical/physical5.1.jpg"
-                    alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical5.1.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical5.1.jpg")}></Image>
-                    <Image src="/pic/physical/physical6.jpg" alt="รูปกายภาพบำบัด"
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical5.1.jpg"))}>
+                        </Image>
+                    <Image src={getSupabaseImage("pic/physical/physical6.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical6.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical6.jpg"))}>
                     </Image>
-                    <Image src="/pic/physical/physical7.1.jpg" alt="รูปกายภาพบำบัด"
+                    <Image src={getSupabaseImage("pic/physical/physical7.1.jpg")} alt="รูปกายภาพบำบัด"
                     className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/physical/physical7.1.jpg")}>
+                        onClick={() => setOpenImage(getSupabaseImage("pic/physical/physical7.1.jpg"))}>
                     </Image>
                 </div>
 

@@ -1,14 +1,19 @@
 FROM node:20-alpine
 
+# สร้างโฟลเดอร์แอป
 WORKDIR /app
 
+# copy package
 COPY package*.json ./
+
+# install dependencies
 RUN npm install
 
+# copy source code
 COPY . .
 
-RUN npm run build
-
+# expose port
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# run dev (สำหรับ dev)
+CMD ["npm", "run", "dev"]

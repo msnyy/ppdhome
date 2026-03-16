@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 
 export default function Medical() {
     const [openImage, setOpenImage] = useState(null);
@@ -32,39 +33,39 @@ export default function Medical() {
                     </p>
                 </div>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
-                    <Image src="/pic/medical146/medical146_1.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_1.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_1.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_1.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/medical146/medical146_2.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_2.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_2.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_2.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/medical146/medical146_3.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_3.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_3.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_3.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/medical146/medical146_4.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_4.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_4.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_4.jpg"))}
                     ></Image>
 
-                    <Image src="/pic/medical146/medical146_5.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_5.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_5.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_5.jpg"))}
                     ></Image>
-                    <Image src="/pic/medical146/medical146_6.jpg" alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
+                    <Image src={getSupabaseImage("pic/medical146/medical146_6.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
-                        onClick={() => setOpenImage("/pic/medical146/medical146_6.JPG")}
+                        onClick={() => setOpenImage(getSupabaseImage("pic/medical146/medical146_6.jpg"))}
                     ></Image>
                 </div>
 
