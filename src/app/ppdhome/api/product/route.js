@@ -119,7 +119,7 @@ for (const file of files) {
     if (error) throw error;
 
     const url =
-        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
 
     imagePaths.push(url);
 }
