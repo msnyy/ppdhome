@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { getSupabaseImage } from "@lib/image";
-
+export const dynamic = "force-dynamic";
 export default function AboutMission() {
     const [openImage, setOpenImage] = useState(null);
     return (

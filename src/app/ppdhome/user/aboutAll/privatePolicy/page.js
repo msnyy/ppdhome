@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function Header() {
     return (
         <div className="flex flex-col min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4">

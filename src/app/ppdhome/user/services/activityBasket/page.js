@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
-
+export const dynamic = "force-dynamic";
 export default function ActivityBasket() {
     const [openImage, setOpenImage] = useState(null);
     return (

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
+export const dynamic = "force-dynamic";
 
 export default function AboutBoard() {
     return (

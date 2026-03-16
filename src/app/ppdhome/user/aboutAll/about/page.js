@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
-
+export const dynamic = "force-dynamic";
 export default function AboutInto() {
   return (
     <div className="flex min-h-screen font-sans lg:mt-0 md:mt-4">

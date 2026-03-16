@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
-
+export const dynamic = "force-dynamic";
 export default function Manual(){
     return(
         <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4">
