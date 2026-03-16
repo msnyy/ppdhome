@@ -128,7 +128,7 @@ export async function POST(request) {
       if (error) throw error;
 
       const url =
-        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/posts/images/${fileName}`;
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/posts/images/${fileName}`;
 
       imagePaths.push(url);
     }

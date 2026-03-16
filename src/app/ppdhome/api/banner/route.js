@@ -192,7 +192,7 @@ export async function PUT(request) {
       if (error) throw error;
 
       imageUrl =
-        `${process.env.SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/banner/${fileName}`;
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/banner/${fileName}`;
     }
 
     /* update database */
