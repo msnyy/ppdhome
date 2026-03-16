@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import sql from "mssql";
 import { getPool } from "@lib/db";
 import { supabase } from "@lib/supabase";

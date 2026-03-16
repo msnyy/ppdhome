@@ -1,9 +1,11 @@
+export const dynamic = "force-dynamic";
+
 import sql from "mssql";
 import { supabase } from "@lib/supabase";
 import { getPool } from "@lib/db";
 
 export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+
 
 /* ===================== GET : POSTS ===================== */
 export async function GET(req) {
