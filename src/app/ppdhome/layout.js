@@ -4,6 +4,7 @@ import Header from "@/ppdhome/components/header";
 import Footer from "@/ppdhome/components/footer";
 import Background from "./components/background";
 import { getPool } from "@lib/db";
+export const dynamic = "force-dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
