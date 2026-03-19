@@ -103,26 +103,32 @@ export async function POST(request) {
         let imagePaths = [];
 
         // upload รูปไป Supabase
-for (const file of files) {
+        for (const file of files) {
 
-    if (!file.name) continue;
+            if (!file.name) continue;
 
-    const fileName = `${Date.now()}-${file.name}`;
-    const buffer = Buffer.from(await file.arrayBuffer());
+            const fileExt = file.name.split('.').pop();
+            const safeName = file.name
+                .replace(/\s+/g, '-')        // space → -
+                .replace(/[^\w.-]/g, '');    // เอาไทย/อักขระพิเศษออก
 
-    const { error } = await supabase.storage
-        .from("ppdhome-pic")
-        .upload(`products/${fileName}`, buffer, {
-            contentType: file.type
-        });
+            const fileName = `${Date.now()}-${safeName || "image"}.${fileExt}`;
 
-    if (error) throw error;
+            const buffer = Buffer.from(await file.arrayBuffer());
 
-    const url =
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
+            const { error } = await supabase.storage
+                .from("ppdhome-pic")
+                .upload(`products/${fileName}`, buffer, {
+                    contentType: file.type
+                });
 
-    imagePaths.push(url);
-}
+            if (error) throw error;
+
+            const url =
+                `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
+
+            imagePaths.push(url);
+        }
 
         const pool = await getPool();
         const reqSql = pool.request();
