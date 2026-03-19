@@ -83,7 +83,7 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className="hidden xl:flex items-center mt-4 mb-6 px-6 lg:px-20">
+            <div className="hidden lg:flex items-center mt-4 mb-6 px-6 lg:px-20">
                 <nav className="flex-1 flex">
                     <div className="flex justify-center items-center gap-8 lg:gap-12 bg-pink-200 w-full rounded-xl py-4 shadow-md">
                         <div className="relative" onMouseEnter={() => setDesktopAboutOpen(true)} onMouseLeave={() => setDesktopAboutOpen(false)}>
@@ -235,14 +235,14 @@ export default function Header() {
                                                 e.stopPropagation();
                                                 setServiceRehabOpen((v) => !v);
                                             }}
-                                            className="flex items-center gap-2 px-4 py-2 text-lg hover:text-pink-700"
+                                            className="flex items-center justify-between w-full gap-2 px-4 py-2 text-lg hover:text-pink-700"
                                         >
                                             การฟื้นฟูสมรรถภาพ
                                             <span className="text-xl leading-none">›</span>
                                         </button>
 
                                         {serviceRehabOpen && (
-                                            <div className="absolute left-full top-0 w-60 rounded-md bg-pink-200 shadow-lg overflow-hidden"
+                                            <div className="absolute left-full top-0 w-66 rounded-md bg-pink-200 shadow-lg overflow-hidden"
                                                 onClick={(e) => e.stopPropagation()}>
                                                 <Link href="/ppdhome/user/services/sport" className="block px-4 py-2 text-lg hover:text-pink-700">
                                                     การฟื้นฟูสมรรถภาพทางกีฬา

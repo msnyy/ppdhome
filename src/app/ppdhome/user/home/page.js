@@ -164,7 +164,7 @@ export default function HomePage() {
                   src={getSupabaseImage("pic/pp.jpg")}
                   alt="รูปสถาบัน"
                   fill
-                  sizes="(max-width: 768px) 100vw, 550px"
+                  sizes="(max-width: 800px) 100vw, 550px"
                   priority
                   quality={75}
                   className="object-cover xl:rounded-b-full xl:rounded-none md:rounded-full rounded-xl"

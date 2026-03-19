@@ -14,56 +14,95 @@ export default function ActivityBasket() {
                 </p>
 
                 <div className="md:mt-10 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 md:gap-4 gap-4 flex justify-between">
-                    <Image src={getSupabaseImage("pic/Basket/basket1.jpg")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket1.jpg"))}
-                    ></Image>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket1.jpg")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket1.jpg"))}
+                        />
+                    </div>
 
-                    <Image src={getSupabaseImage("pic/Basket/basket2.jpg")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket2.jpg"))}
-                    ></Image>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket2.jpg")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket2.jpg"))}
+                        />
+                    </div>
 
-                    <Image src={getSupabaseImage("pic/Basket/basket3.jpeg")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket3.jpeg"))}
-                    ></Image>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket3.jpeg")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket3.jpeg"))}
+                        />
+                    </div>
 
-                    <Image src={getSupabaseImage("pic/Basket/basket4.jpeg")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket4.jpeg"))}
-                    ></Image>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket4.jpeg")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket4.jpeg"))}
+                        />
+                    </div>
 
-                    <Image src={getSupabaseImage("pic/Basket/basket5.jpeg")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket5.jpeg"))}
-                    ></Image>
-                
-                    <Image src={getSupabaseImage("pic/Basket/basket6.PNG")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket6.PNG"))}
-                    ></Image>
-                    <Image src={getSupabaseImage("pic/Basket/basket7.PNG")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket7.PNG"))}
-                    ></Image>
-                    <Image src={getSupabaseImage("pic/Basket/basket8.JPG")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket8.JPG"))}
-                    ></Image>
-                    <Image src={getSupabaseImage("pic/Basket/basket9.JPG")} alt="รูปกิจกรรมสานตะกร้า"
-                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
-                        width={250} height={100}
-                        onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket9.JPG"))}
-                    ></Image>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket5.jpeg")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket5.jpeg"))}
+                        />
+                    </div>
+
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket6.PNG")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket6.PNG"))}
+                        />
+                    </div>
+
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket7.PNG")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket7.PNG"))}
+                        />
+                    </div>
+
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket8.JPG")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket8.JPG"))}
+                        />
+                    </div>
+
+                    <div className="relative aspect-[4/3] w-full overflow-hidden">
+                        <Image
+                            src={getSupabaseImage("pic/Basket/basket9.JPG")}
+                            alt="รูปกิจกรรมสานตะกร้า"
+                            fill
+                            className="object-cover transition duration-300 hover:scale-105"
+                            onClick={() => setOpenImage(getSupabaseImage("pic/Basket/basket9.JPG"))}
+                        />
+                    </div>
                 </div>
 
                 {openImage && (
