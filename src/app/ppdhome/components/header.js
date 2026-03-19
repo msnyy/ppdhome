@@ -40,7 +40,7 @@ export default function Header() {
 
 
     return (
-        <header className="inset-x-0 top-0 xl:w-full z-50 text-black z-100">
+        <header className="inset-x-0 top-0 xl:w-full z-50 text-black z-1000">
             <div className="flex justify-between items-center px-4 pt-4">
                 <div className="flex items-center px-2 md:px-5 ms-2 md:ms-2">
                     <Link href="/ppdhome/user/home" className="flex items-center gap-3">
