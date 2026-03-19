@@ -102,7 +102,7 @@ export default function Product() {
 
     return (
         <div>
-            <section className="w-full py-10 relative z-[10000]">
+            <section className="w-full py-10 relative z-[10000] text-black">
                 <div className="relative xl:mx-20 md:mx-9 mx-4">
                     <h2 className="xl:text-5xl md:text-3xl text-xl font-bold mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
                     <button

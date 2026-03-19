@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 export default function AboutBoard() {
     return (
-        <div className="flex bg-white justify-center lg:mx-20 md:mx-9 mx-4 lg:my-10 my-4 md:py-10 py-4 rounded-xl">
+        <div className="flex bg-white justify-center lg:mx-20 md:mx-9 mx-4 lg:my-10 my-4 md:py-10 py-4 rounded-xl text-black">
             <div className="flex flex-col">
                 <p className="font-semibold text-center xl:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg">โครงสร้างผู้บริหาร</p>
             <div className="flex flex-col items-center lg:mt-10 mt-4">

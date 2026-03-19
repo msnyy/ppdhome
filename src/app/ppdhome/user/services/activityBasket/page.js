@@ -8,7 +8,7 @@ export default function ActivityBasket() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
-            <section className="lg:mx-20 md:mx-10 mx-5 lg:mt-15 md:mt-10">
+            <section className="lg:mx-20 md:mx-10 mx-5 lg:mt-15 md:mt-10 text-black">
                 <p className="lg:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg text-center">
                     กิจกรรมสานตะกร้า
                 </p>

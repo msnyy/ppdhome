@@ -197,7 +197,7 @@ export default function NewsAndPublic() {
                   key={id}
                   href={href}
                   target={pdf_file ? "_blank" : undefined}
-                  className="block py-4 px-2 rounded-lg hover:bg-pink-50 transition"
+                  className="block py-4 px-2 rounded-lg hover:bg-pink-50 transition text-black"
                 >
                   <div className="flex justify-between">
 

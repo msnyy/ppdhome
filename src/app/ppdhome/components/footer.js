@@ -36,7 +36,7 @@ export default function Footer() {
 
     return (
         <footer>
-            <section className="bg-pink-100 p-8 md:px-12 xl:m-10 md:m-8 m-4 xl:mx-20 rounded-3xl">
+            <section className="bg-pink-100 p-8 md:px-12 xl:m-10 md:m-8 m-4 xl:mx-20 rounded-3xl text-black">
                 <div>
                     <Link href="./home" className="flex items-center gap-3">
                         <Image src="/pic/logo.png" alt="ตราสถาบัน" width={700} height={200} />

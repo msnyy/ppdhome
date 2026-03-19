@@ -23,7 +23,7 @@ export default function CookieConsent() {
         <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg border-t border-gray-400 z-[9999]">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 p-4">
 
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700 text-black">
                     เว็บไซต์ของเราใช้คุกกี้เพื่อพัฒนาประสิทธิภาพ และประสบการณ์ที่ดีในการใช้เว็บไซต์ของคุณ คุณสามารถศึกษารายละเอียดได้ที่
                     <a href="/ppdhome/user/aboutAll/privatePolicy" >
                     <span className="text-sm text-pink-700"> นโยบายความเป็นส่วนตัว</span>

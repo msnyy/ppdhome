@@ -27,7 +27,7 @@ export default function AllCreate() {
 
 
     return (
-        <section className="min-h-screen flex items-center justify-center lg:gap-20 md:gap-10 gap-4 lg:w-full md:w-[760px] w-[360]">
+        <section className="min-h-screen flex items-center justify-center lg:gap-20 md:gap-10 gap-4 lg:w-full md:w-[760px] w-[360] text-black">
             <button
                 onClick={toggleTheme}
                 className="absolute top-6 right-6 px-4 py-2 bg-gray-200 rounded-lg shadow md:text-base text-sm"

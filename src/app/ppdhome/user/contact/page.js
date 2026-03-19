@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 export default function Contact() {
     return (
-        <section className="bg-pink-100 xl:mx-20 md:mx-9 mx-4 rounded-xl lg:mt-10 md:mt-4 mt-2">
+        <section className="bg-pink-100 xl:mx-20 md:mx-9 mx-4 rounded-xl lg:mt-10 md:mt-4 mt-2 text-black">
             <div className="lg:p-10 md:p-6 p-4">
                 <p className="text-center xl:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg">
                     ช่องทางการติดต่อ

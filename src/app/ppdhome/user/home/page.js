@@ -78,7 +78,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4">
+    <div className="flex min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black">
       <main className="relative flex min-h-screen w-full flex-col sm:items-start bg-cover ">
 
         <section className="relative w-full xl:mb-10 mb-4 mt-2 lg:px-30">

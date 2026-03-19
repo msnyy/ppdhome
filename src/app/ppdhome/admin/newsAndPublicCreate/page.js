@@ -243,7 +243,7 @@ export default function PostsAdmin() {
                   key={id}
                   href={href}
                   target={pdf_file ? "_blank" : undefined}
-                  className="block py-4 hover:bg-pink-50 px-2 border-b border-gray-300"
+                  className="block py-4 hover:bg-pink-50 px-2 border-b border-gray-300 text-black"
                 >
 
                   <div className="flex justify-between items-start">

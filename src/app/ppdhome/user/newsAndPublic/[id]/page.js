@@ -63,7 +63,7 @@ export default function PostDetail() {
 
     return (
 
-        <section className="lg:mx-20 md:mx-9 mx-5 bg-pink-100 rounded-xl lg:p-10 md:p-6 p-4">
+        <section className="lg:mx-20 md:mx-9 mx-5 bg-pink-100 rounded-xl lg:p-10 md:p-6 p-4 text-black">
 
             <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl font-semibold text-center text-shadow-lg">
                 {data.title}

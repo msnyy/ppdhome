@@ -115,7 +115,7 @@ export default function AdminPostDetail() {
 
   return (
 
-    <div className="lg:mx-20 md:mx-9 mx-5 lg:mt-16 mt-4">
+    <div className="lg:mx-20 md:mx-9 mx-5 lg:mt-16 mt-4 text-black">
 
       <section className="bg-pink-100 rounded-xl lg:p-10 md:p-6 p-4">
 

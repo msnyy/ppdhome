@@ -136,7 +136,7 @@ export default function BannerAdmin() {
   };
 
   return (
-    <section className="lg:mx-40 md:mx-20 mx-8 mb-8">
+    <section className="lg:mx-40 md:mx-20 mx-8 mb-8 text-black">
       <Link href="/ppdhome/admin/allCreate">
         <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6 mt-4">
           back

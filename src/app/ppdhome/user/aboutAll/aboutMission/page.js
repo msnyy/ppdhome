@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 export default function AboutMission(){
     return(
-        <div className="lg:mx-20 md:mx-12 mx-5 lg:my-16 md:my-10 my-4">
+        <div className="lg:mx-20 md:mx-12 mx-5 lg:my-16 md:my-10 my-4 text-black">
             <div>
                 <p className="text-center lg:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg">ภารกิจและหน้าที่รับผิดชอบ</p>
             </div>

@@ -112,7 +112,7 @@ export default function Product() {
 
   return (
     <div>
-      <section className="w-full pb-10 relative z-[10001]">
+      <section className="w-full pb-10 relative z-[10001] text-black">
 
         <div className="xl:mx-20 md:mx-9 mx-4">
           <div>
