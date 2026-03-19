@@ -267,7 +267,7 @@ export default function HomePage() {
         </section>
 
         <div className="w-full max-w-4xl mx-auto xl:mt-16 md:mt-8 mt-4">
-          <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-center">
+          <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-center text-shadow-lg">
             กิจกรรมอาชีวบำบัด ตะกร้าสานพลาสติก
           </p>
           <iframe className="w-full aspect-video rounded-2xl shadow-xl object-cover xl:mt-6 md:mt-4 mt-2"

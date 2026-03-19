@@ -44,7 +44,7 @@ export default function HomeLatestNews() {
 
         <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-16 mt-8 lg:mb-18 mb-8">
 
-            <h2 className="text-3xl font-semibold mb-8">
+            <h2 className="text-3xl font-semibold mb-8 text-shadow-lg">
                 ข่าวล่าสุด
             </h2>
 
