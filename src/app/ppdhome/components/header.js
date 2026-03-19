@@ -114,10 +114,11 @@ export default function Header() {
 
                             {desktopAboutOpen && (
                                 <div
-                                    className="absolute left-0 w-52 rounded-md font-light bg-pink-200 shadow-lg z-100000"
+                                    className="absolute flex justify-between left-0 w-108 rounded-md font-light bg-pink-200 shadow-lg"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    <Link
+                                    <div>
+                                        <Link
                                         href="/ppdhome/user/aboutAll/about"
                                         className="block px-4 py-2 text-lg hover:text-pink-700"
                                     >
@@ -129,7 +130,17 @@ export default function Header() {
                                     >
                                         โครงสร้างผู้บริหาร
                                     </Link>
+
                                     <Link
+                                        href="/ppdhome/user/aboutAll/privatePolicy"
+                                        className="block px-4 py-2 text-lg hover:text-pink-700"
+                                    >
+                                        พรบ. คุ้มครองข้อมูลส่วนบุคคล
+                                    </Link>
+                                    </div>
+                                    <div className="border-l h-20 mt-3"></div>
+                                    <div className="">
+                                        <Link
                                         href="/ppdhome/user/aboutAll/aboutOrganiz"
                                         className="block px-4 py-2 text-lg hover:text-pink-700"
                                     >
@@ -141,12 +152,8 @@ export default function Header() {
                                     >
                                         ภารกิจหลักองค์กร
                                     </Link>
-                                    <Link
-                                        href="/ppdhome/user/aboutAll/privatePolicy"
-                                        className="block px-4 py-2 text-lg hover:text-pink-700"
-                                    >
-                                        พรบ. คุ้มครองข้อมูลส่วนบุคคล
-                                    </Link>
+                                    </div>
+                                    
                                 </div>
                             )}
                         </div>
