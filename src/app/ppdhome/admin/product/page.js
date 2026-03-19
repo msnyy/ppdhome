@@ -111,7 +111,7 @@ export default function Product() {
   }
 
   return (
-    <div>
+    <div className="text-black">
       <section className="w-full pb-10 relative z-[10001] text-black">
 
         <div className="xl:mx-20 md:mx-9 mx-4">
@@ -125,7 +125,7 @@ export default function Product() {
             </Link>
           </div>
 
-          <h2 className="xl:text-5xl md:text-3xl text-xl font-bold mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
+          <h2 className="xl:text-5xl md:text-3xl text-xl font-bold mb-6 text-shadow-lg text-black">สินค้าแนะนำ</h2>
 
           <Swiper
             modules={[Autoplay, Navigation]}

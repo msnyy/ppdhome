@@ -14,41 +14,61 @@ export async function GET(req) {
 
     const page = Number(searchParams.get("page") || 1);
     const pageSize = Number(searchParams.get("pageSize") || 10);
-    const category = Number(searchParams.get("category") || 1);
+    const categoryParam = searchParams.get("category");
+    const category = categoryParam ? Number(categoryParam) : null;
 
     const offset = (page - 1) * pageSize;
 
     const pool = await getPool();
 
-    const totalResult = await pool
-      .request()
-      .input("category", sql.Int, category)
-      .query(`
-        SELECT COUNT(*) AS total
-        FROM posts
-        WHERE category = @category
-      `);
+    let totalQuery = `
+  SELECT COUNT(*) AS total
+  FROM posts
+`;
 
-    const result = await pool
-      .request()
-      .input("category", sql.Int, category)
-      .input("offset", sql.Int, offset)
-      .input("pageSize", sql.Int, pageSize)
-      .query(`
-        SELECT
-  id,
-  title,
-  subtitle,
-  header_date,
-  content_date,
-  pdf_file,
-  image
-FROM posts
-        WHERE category = @category
-        ORDER BY content_date DESC, id DESC
-        OFFSET @offset ROWS
-        FETCH NEXT @pageSize ROWS ONLY
-      `);
+    if (category !== null) {
+      totalQuery += ` WHERE category = @category`;
+    }
+
+    const totalReq = pool.request();
+
+    if (category !== null) {
+      totalReq.input("category", sql.Int, category);
+    }
+
+    const totalResult = await totalReq.query(totalQuery);
+
+    let dataQuery = `
+  SELECT
+    id,
+    title,
+    subtitle,
+    header_date,
+    content_date,
+    pdf_file,
+    image
+  FROM posts
+`;
+
+if (category !== null) {
+  dataQuery += ` WHERE category = @category`;
+}
+
+dataQuery += `
+  ORDER BY content_date DESC, id DESC
+  OFFSET @offset ROWS
+  FETCH NEXT @pageSize ROWS ONLY
+`;
+
+const dataReq = pool.request()
+  .input("offset", sql.Int, offset)
+  .input("pageSize", sql.Int, pageSize);
+
+if (category !== null) {
+  dataReq.input("category", sql.Int, category);
+}
+
+const result = await dataReq.query(dataQuery);
 
     return Response.json({
       items: result.recordset,
