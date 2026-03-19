@@ -133,7 +133,7 @@ export default function HomePage() {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
             }}
-            className="banner-swiper h-[120px] md:h-[350px] lg:h-[420px] overflow-visible"
+            className="banner-swiper h-[120px] md:h-[350px] lg:h-[420px] overflow-visible z-0"
           >
             {banners.map((banner) => (
               <SwiperSlide key={banner.id}>

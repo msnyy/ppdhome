@@ -114,7 +114,7 @@ export default function Header() {
 
                             {desktopAboutOpen && (
                                 <div
-                                    className="absolute flex justify-between left-0 w-108 rounded-md font-light bg-pink-200 shadow-lg"
+                                    className="absolute flex justify-between left-0 w-108 rounded-md font-light bg-pink-200 shadow-lg z-100"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <div>
