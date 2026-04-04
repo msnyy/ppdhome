@@ -95,7 +95,15 @@ export default function Header() {
 
             <div className="hidden lg:flex items-center px-6 lg:px-20">
                 <nav className="flex-1 flex">
-                    <div className="flex justify-center items-center gap-8 lg:gap-12 w-full rounded-xl py-4">
+                    <div className="flex justify-center items-center gap-6 lg:gap-12 w-full rounded-xl py-4">
+                        <div className="relative">
+                            <Link href="/ppdhome/user/newsAndPublic" className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
+                                <button className="inline-flex items-center gap-2 font-light text-black hover:text-pink-700">
+                                    หน้าหลัก
+                                </button>
+                            </Link>
+                        </div>
+
                         <div className="relative" onMouseEnter={() => setDesktopAboutOpen(true)} onMouseLeave={() => setDesktopAboutOpen(false)}>
                             <button
                                 onClick={(e) => {
@@ -169,8 +177,8 @@ export default function Header() {
 
 
                         <div className="relative">
-                            <Link href="/ppdhome/user/newsAndPublic" className="flex items-center gap-2 px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
-                                <button className="inline-flex items-center gap-2 text-lg font-light text-black hover:text-pink-700">
+                            <Link href="/ppdhome/user/newsAndPublic" className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
+                                <button className="inline-flex items-center gap-2 font-light text-black hover:text-pink-700">
                                     ข่าวประชาสัมพันธ์
                                 </button>
                             </Link>
@@ -181,7 +189,7 @@ export default function Header() {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setDesktopServiceOpen((v) => !v);
-                                }} className="inline-flex items-center gap-2 text-lg font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                }} className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                 บริการ
                                 <svg
                                     className="w-4 h-4"
@@ -213,7 +221,7 @@ export default function Header() {
                                                 e.stopPropagation();
                                                 setServiceJobOpen((v) => !v);
                                             }}
-                                            className="flex items-center w-full gap-2 px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                            className="flex items-center w-full gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                         >
                                             กิจกรรมฝึกอาชีพ
                                             <span className="text-xl leading-none">›</span>
@@ -226,13 +234,13 @@ export default function Header() {
                                             >
                                                 <Link
                                                     href="/ppdhome/user/services/activityPrint"
-                                                    className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                                    className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                                 >
                                                     โครงการพิมพ์ฝัน ปั้นอาชีพ
                                                 </Link>
                                                 <Link
                                                     href="/ppdhome/user/services/activityBasket"
-                                                    className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                                    className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                                 >
                                                     กิจกรรมสานตะกร้า
                                                 </Link>
@@ -251,7 +259,7 @@ export default function Header() {
                                                 e.stopPropagation();
                                                 setServiceRehabOpen((v) => !v);
                                             }}
-                                            className="flex items-center w-full gap-2 px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                            className="flex items-center w-full gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                         >
                                             การฟื้นฟูสมรรถภาพ
                                             <span className="text-xl leading-none">›</span>
@@ -260,10 +268,10 @@ export default function Header() {
                                         {serviceRehabOpen && (
                                             <div className="absolute left-full top-0 w-60 font-light bg-white shadow-lg z-100"
                                                 onClick={(e) => e.stopPropagation()}>
-                                                <Link href="/ppdhome/user/services/sport" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/sport" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     การฟื้นฟูสมรรถภาพทางกีฬา
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/activityPhysical" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/activityPhysical" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     กายภาพบำบัด
                                                 </Link>
                                             </div>
@@ -272,7 +280,7 @@ export default function Header() {
 
                                     <Link
                                         href="/ppdhome/user/services/study"
-                                        className="flex items-center gap-2 px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                        className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                     >
                                         การศึกษา
                                     </Link>
@@ -287,7 +295,7 @@ export default function Header() {
                                                 e.stopPropagation();
                                                 setServiceMedicalOpen((v) => !v);
                                             }}
-                                            className="flex items-center gap-2 px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                            className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                         >
                                             ทางการแพทย์
                                             <span className="text-xl leading-none">›</span>
@@ -296,22 +304,22 @@ export default function Header() {
                                         {serviceMedicalOpen && (
                                             <div className="absolute left-full top-0 w-60 font-light bg-white shadow-lg z-100"
                                                 onClick={(e) => e.stopPropagation()}>
-                                                <Link href="/ppdhome/user/services/medical31" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical31" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     กิจกรรมพบแพทย์ในบ้าน
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical58" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical58" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     ฟันสวยกับสภากาชาดไทย
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical146" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical146" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     ฉีดวัคซีนป้องกันไข้หวัดใหญ่
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical158" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical158" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     ตรวจสุขภาพประจำปี 2568
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical179" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical179" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     คัดกรองวัณโรคในกลุ่มเสี่ยง
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical204" className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical204" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                                     วางแผนจัดการและควบคุมโรคติดต่อ
                                                 </Link>
                                             </div>
@@ -323,7 +331,7 @@ export default function Header() {
 
 
                         <div className="relative">
-                            <button className="inline-flex items-center gap-2 text-lg font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                            <button className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                 <Link
                                     href="/ppdhome/user/product"
                                     className="block"
@@ -338,7 +346,7 @@ export default function Header() {
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     setDesktopKnowledgeOpen((v) => !v);
-                                }} className="inline-flex items-center gap-2 text-lg font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02] z-90">
+                                }} className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02] z-90">
                                 คลังความรู้
                                 <svg
                                     className="w-4 h-4"
@@ -362,25 +370,25 @@ export default function Header() {
                                     onClick={(e) => e.stopPropagation()}>
                                     <Link
                                         href="/ppdhome/user/knowledge/manual"
-                                        className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                     >
                                         คู่มือคนพิการ
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/goldCard"
-                                        className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                     >
                                         สิทธิบัตรทอง
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/home-for-disabled-person"
-                                        className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                     >
                                         การรับคนพิการเข้าสถานคุ้มครอง
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/disabled-person-id-card"
-                                        className="block px-4 py-2 text-lg transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                                     >
                                         บัตรประจำตัวคนพิการ
                                     </Link>
@@ -389,7 +397,7 @@ export default function Header() {
                         </div>
 
                         <div className="relative">
-                            <button className="inline-flex items-center gap-2 text-lg font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                            <button className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                                 <Link
                                     href="/ppdhome/user/contact"
                                     className="block"
