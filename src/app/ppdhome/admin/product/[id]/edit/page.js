@@ -1,14 +1,16 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-export default function CreateProductPage() {
+export default function EditProductPage() {
   const router = useRouter();
-  const [errors, setErrors] = useState({});
+  const { id } = useParams();
 
-  /* ===== state ===== */
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const [form, setForm] = useState({
     name: "",
     category: "",
@@ -19,156 +21,178 @@ export default function CreateProductPage() {
   });
 
   const [files, setFiles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [oldImages, setOldImages] = useState([]);
+  const [isDirty, setIsDirty] = useState(false);
 
-  /* ===== handlers ===== */
+  /* ================= โหลดข้อมูล ================= */
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const res = await fetch("/ppdhome/api/product");
+      const json = await res.json();
+
+      const all = json.categories.flatMap((c) => c.items);
+      const found = all.find((p) => String(p.id) === id);
+
+      if (found) {
+        setForm({
+          name: found.name || "",
+          category: found.category || "",
+          description: found.description || "",
+          price: found.price || "",
+          size: found.size || "",
+          is_featured: found.is_featured || false,
+        });
+
+        setOldImages(found.image ? found.image.split(",") : []);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  /* ================= handlers ================= */
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+    setIsDirty(true);
   };
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     if (!selectedFiles.length) return;
-    setFiles((prev) => [...prev, ...selectedFiles]);
+
+    setFiles(selectedFiles);
+    setIsDirty(true);
   };
 
+  /* ================= submit ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newErrors = {};
-
-    if (!form.name.trim()) {
-      newErrors.name = "กรุณากรอกชื่อสินค้า";
-    }
-
-    if (!form.price) {
-      newErrors.price = "กรุณากรอกราคา";
-    }
-
-    if (!form.size.trim()) {
-      newErrors.size = "กรุณากรอกขนาดสินค้า";
-    }
-
-    if (files.length === 0) {
-      newErrors.images = "กรุณาเพิ่มรูปสินค้าอย่างน้อย 1 รูป";
-    }
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) return;
-
-    setLoading(true);
-
     const formData = new FormData();
+
+    formData.append("id", id);
     formData.append("name", form.name);
     formData.append("category", form.category);
     formData.append("description", form.description);
     formData.append("price", form.price);
     formData.append("size", form.size);
-    formData.append("is_featured", form.is_featured ? 1 : 0);
 
     files.forEach((file) => {
       formData.append("images", file);
     });
 
     const res = await fetch("/ppdhome/api/product", {
-      method: "POST",
+      method: "PUT",
       body: formData,
     });
 
     if (res.ok) {
-      alert("บันทึกสินค้าสำเร็จ");
+      // 🔥 toggle featured แยก
+      await fetch("/ppdhome/api/product", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          is_featured: form.is_featured,
+        }),
+      });
+
+      alert("แก้ไขสำเร็จ");
       router.push("/ppdhome/admin/product");
       return;
     }
 
     alert("เกิดข้อผิดพลาด");
-    setLoading(false);
   };
 
-  /* ===== render ===== */
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 text-black">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 text-black">
+
+      {/* 🔥 แจ้งเตือน */}
+      {isDirty && (
+        <div className="mb-4 bg-yellow-100 text-yellow-700 px-4 py-2 rounded">
+          ⚠️ ยังไม่ได้บันทึก
+        </div>
+      )}
+
       <form onSubmit={handleSubmit}>
-        {/* ===== แถวบน ===== */}
-        <div className="flex grid md:grid-cols-2 grid-cols-1 lg:gap-20 md:gap-10">
-          {/* ชื่อสินค้า */}
+
+        {/* ===== ชื่อ + category ===== */}
+        <div className="grid md:grid-cols-2 gap-10">
           <div>
-            <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-3">ชื่อสินค้า</h2>
+            <h2 className="text-xl font-bold mb-2">ชื่อสินค้า</h2>
             <input
               name="name"
               value={form.name}
               onChange={handleChange}
-              className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${errors.name ? "border-red-500" : ""
-                }`}
+              className="w-full border px-4 py-2 rounded"
             />
-
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
           </div>
 
-          {/* ประเภทสินค้า */}
           <div>
-            <h2 className="lg:text-2xl md:text-xl text-lg md:mt-0 mt-4 font-bold mb-3">ประเภทสินค้า</h2>
+            <h2 className="text-xl font-bold mb-2">ประเภทสินค้า</h2>
             <input
               name="category"
               value={form.category}
               onChange={handleChange}
-              placeholder="เช่น กระเป๋า / ที่ใส่แก้วเยติ"
-              className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
-              required
+              className="w-full border px-4 py-2 rounded"
             />
           </div>
         </div>
 
-        <div className="lg:mt-10 mt-4 flex grid md:grid-cols-2 grid-cols-1 lg:gap-20 md:gap-10">
+        {/* ===== ราคา + size ===== */}
+        <div className="grid md:grid-cols-2 gap-10 mt-6">
           <div>
-            <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-3">ราคา</h2>
+            <h2 className="text-xl font-bold mb-2">ราคา</h2>
             <input
               name="price"
               type="number"
               value={form.price}
               onChange={handleChange}
-              className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${errors.price ? "border-red-500" : ""
-                }`}
+              className="w-full border px-4 py-2 rounded"
             />
-
-            {errors.price && (
-              <p className="text-red-500 text-sm mt-1">{errors.price}</p>
-            )}
           </div>
 
           <div>
-            <h2 className="lg:text-2xl md:text-xl text-lg md:mt-0 mt-4 font-bold mb-3">ขนาด</h2>
+            <h2 className="text-xl font-bold mb-2">ขนาด</h2>
             <input
               name="size"
               value={form.size}
               onChange={handleChange}
-              className={`w-full border rounded-lg px-4 py-2 md:text-lg text-sm ${errors.size ? "border-red-500" : ""
-                }`}
+              className="w-full border px-4 py-2 rounded"
             />
-
-            {errors.size && (
-              <p className="text-red-500 text-sm mt-1">{errors.size}</p>
-            )}
           </div>
         </div>
 
-        {/* รายละเอียด */}
-        <div className="lg:mt-10 mt-4">
-          <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-3">รายละเอียด</h2>
+        {/* ===== description ===== */}
+        <div className="mt-6">
+          <h2 className="text-xl font-bold mb-2">รายละเอียด</h2>
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
             rows={4}
-            className="w-full border rounded-lg px-4 py-2 text-lg"
+            className="w-full border px-4 py-2 rounded"
           />
         </div>
 
-        {/* เพิ่มรูป */}
+        {/* ===== รูปเก่า ===== */}
+        <div className="mt-6">
+          <h2 className="text-xl font-bold mb-2">รูปปัจจุบัน</h2>
+
+          <div className="flex gap-3 flex-wrap">
+            {oldImages.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                className="w-[150px] h-[120px] object-cover rounded"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ===== รูปใหม่ ===== */}
         <div className="lg:mt-10 mt-4">
           <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-4">เพิ่มรูป</h2>
 
@@ -212,21 +236,22 @@ export default function CreateProductPage() {
           </div>
         </div>
 
-        <label className="flex items-center gap-2 mt-6 md:text-lg text-base">
+        {/* ===== checkbox ===== */}
+        <label className="flex items-center gap-2 mt-6">
           <input
             type="checkbox"
             checked={form.is_featured}
-            onChange={(e) =>
-              setForm({ ...form, is_featured: e.target.checked })
-            }
+            onChange={(e) => {
+              setForm({ ...form, is_featured: e.target.checked });
+              setIsDirty(true);
+            }}
           />
           ตั้งเป็นสินค้าแนะนำ
         </label>
 
-
-        {/* ปุ่มบันทึก */}
-        <div className="flex justify-end md:mt-12 mt-4 gap-4">
-          <Link
+        {/* ===== save ===== */}
+        <div className="flex justify-end mt-8 gap-4">
+            <Link
               href="/ppdhome/admin/product"
             >
               <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6">
@@ -236,12 +261,15 @@ export default function CreateProductPage() {
 
           <button
             type="submit"
-            disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white lg:text-xl md:text-lg text-sm px-8 py-2 rounded-xl transition"
+            disabled={!isDirty}
+            className={`px-6 py-2 rounded ${
+              isDirty ? "bg-green-600 text-white" : "bg-gray-300"
+            }`}
           >
-            {loading ? "saving..." : "save"}
+            บันทึกการแก้ไข
           </button>
         </div>
+
       </form>
     </div>
   );

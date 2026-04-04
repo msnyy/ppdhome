@@ -471,10 +471,13 @@ export default function Product() {
 
                 <div className="mt-6 flex flex-col">
 
+                  <Link href={`/ppdhome/admin/product/${selected.id}/edit`}>
+            <button className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-xl">แก้ไข</button>
+          </Link>
 
                   <button
                     onClick={handleDelete}
-                    className="w-full rounded-xl bg-white border border-red-700 text-red-700 py-2 mt-3 hover:bg-red-700 hover:text-white transition"
+                    className="rounded-xl bg-white border border-red-700 text-red-700 px-6 py-2 mt-3 hover:bg-red-700 hover:text-white transition"
                   >
                     ลบสินค้า
                   </button>

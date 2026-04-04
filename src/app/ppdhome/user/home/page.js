@@ -11,17 +11,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import {
-  PieChart,
-  Pie,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
-
-const data = [
-  { name: "เพศหญิง", value: 1042591 },
-  { name: "เพศชาย", value: 1122536 },
-];
 
 const COLORS = ["#F9BED8", "#88B7F1"];
 
@@ -68,9 +57,16 @@ export default function HomePage() {
       try {
         const res = await fetch("/ppdhome/api/banner");
         const data = await res.json();
-        setBanners(data);
+
+        const bannerList = Array.isArray(data)
+          ? data
+          : data.data || data.items || [];
+
+        setBanners(bannerList);
+
       } catch (err) {
         console.error("โหลด banner ไม่สำเร็จ", err);
+        setBanners([]);
       }
     };
 
@@ -78,10 +74,10 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black">
+    <div className="flex min-h-screen font-sansn text-black">
       <main className="relative flex min-h-screen w-full flex-col sm:items-start bg-cover ">
 
-        <section className="relative w-full xl:mb-10 mb-4 mt-2 lg:px-30">
+        <section className="relative w-full xl:mb-10 mb-4">
           <button
             ref={prevRef}
             className="absolute hidden lg:block left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 w-12 h-12 rounded-full bg-pink-100
@@ -133,7 +129,7 @@ export default function HomePage() {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
             }}
-            className="banner-swiper h-[120px] md:h-[350px] lg:h-[420px] overflow-visible z-0"
+            className="banner-swiper h-[220px] md:h-[350px] lg:h-[550px] xl:h-[670px] overflow-visible z-0"
           >
             {banners.map((banner) => (
               <SwiperSlide key={banner.id}>
@@ -148,228 +144,125 @@ export default function HomePage() {
 
         </section>
 
-        <section>
+        <section className="lg:mx-20 md:mx-10 mx-4">
           <HomeLatestNews />
         </section>
 
-        <section className="relative flex flex-col z-10 bg-pink-50 px-6 rounded-t-xl lg:mt-0 md:mt-4 w-full xl:px-30">
-          <motion.div initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.4 }}>
+        <section className="relative w-full text-black">
+          <div className="flex justify-between">
+            <div className="flex justify-center bg-[radial-gradient(circle_at_center,_white_0%,_#FDF0F5_40%,_#fbcfe8_70%,_#fbcfe8_100%)] shadow-lg shadow-pink-200/50 w-1/2">
+              <div className="flex flex-col justify-center mx-10 mt-40">
+                <p className="text-2xl font-semibold text-shadow-lg">สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ</p>
+                <p className="text-xl font-semibold text-shadow-lg mt-4">PHRAPRADAENG HOME FOR PERSONS WITH</p>
+                <p className="text-xl font-semibold text-shadow-lg mt-4">DISABILITIES PROTECTION AND DEVELOPMENT</p>
+                <p className="text-light text-shadow-lg mt-4">ก่อตั้งขึ้นเพื่อเป็นศูนย์กลางด้านการคุ้มครอง ฟื้นฟู และพัฒนาคนพิการ</p>
+                <p className="text-light text-shadow-lg mt-4">โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น</p>
 
-            <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-120">
-              <div className="relative overflow-hidden xl:mt-5 md:mt-8 mt-4 xl:h-[550px] xl:w-[550px] md:h-[260px] md:w-[260px] h-[200px] w-[280px]">
-                <Image
-                  src={getSupabaseImage("pic/pp.jpg")}
-                  alt="รูปสถาบัน"
-                  fill
-                  sizes="(max-width: 800px) 100vw, 550px"
-                  priority
-                  quality={75}
-                  className="object-cover xl:rounded-b-full xl:rounded-none md:rounded-full rounded-xl"
-                />
 
-              </div>
-
-              <div className="flex flex-col md:text-right x:mt-12 xl:ms-10 md:mt-8 mt-4">
-                <p className="xl:text-4xl md:text-3xl text-xl font-semibold text-shadow-lg">สถานคุ้มครองและพัฒนาคนพิการ</p>
-                <p className="xl:text-4xl md:text-3xl text-xl font-semibold text-shadow-lg">พระประแดง จ.สมุทรปราการ</p>
-                <p className="xl:mt-18 lg:text-xl text-sm md:mt-8 mt-4" >สถานคุ้มครองและพัฒนาคนพิการ พระประแดง</p>
-                <p className="lg:text-xl text-sm">ก่อตั้งขึ้นเพื่อเป็นศูนย์กลางด้านการคุ้มครอง ฟื้นฟู และพัฒนาคนพิการ</p>
-                <p className="xl:mt-10 md:mt-6 mt-4 lg:text-xl text-sm" >โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น</p>
-                <div className="xl:flex xl:justify-end">
-
-                  <Link
-                    href="/ppdhome/user/aboutAll/about"
-                  >
-                    <button className="p-3 border border-pink-700 hover:bg-pink-700 md:text-lg text-xs text-pink-700 hover:text-white shadow-md shadow-pink-700/25 rounded-3xl transition xl:mt-10 md:mt-6 mt-4 xl:mb-0 mb-4">
-                      คลิ๊กเพื่ออ่านเพิ่มเติม
-                    </button>
-                  </Link>
-
-                </div>
+                <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
+                  <h1 className="mb-8 text-shadow-lg border-b mt-18 w-26 hover:text-pink-700"> View All News </h1>
+                </Link>
               </div>
             </div>
-          </motion.div>
-        </section>
 
-        <section className="relative flex flex-col bg-pink-50 lg:px-15 px-6 rounded-b-xl mt-2 w-full xl:px-30">
-          <motion.div
-            className="relative z-30" initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.7 }}>
-            <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-110 xl:gap-10">
-              <div className="relative overflow-hidden md:hidden xl:h-[500px] xl:w-[430px] md:h-[250px] md:w-[300px] h-[200px] w-[280px] mt-5 xl:ms-0">
-                <Image src={getSupabaseImage("pic/product.JPG")}
-                  fill
-                  alt="รูปผลิตภัณฑ์ฝีมือคนพิการ"
-                  sizes="(max-width: 768px) 100vw, 550px"
-                  quality={75}
-                  className="object-cover xl:rounded-b-full xl:rounded-none md:rounded-full rounded-xl" />
-              </div>
-              <div className="flex flex-col xl:mt-15 xl:pt-15 md:mt-10 mt-4">
-                <p className="md:text-2xl text-xl font-semibold text-shadow-lg">ผลิตภัณฑ์ฝีมือคนพิการ “จักสานย่านลิเภา”</p>
-                <p className="md:mt-8 mt-4 md:text-lg text-sm" >ผลงานของผู้พิการที่ฝึกอาชีพในสถานฯ ถ่ายทอด ความประณีต ความตั้งใจ และคุณค่าแห่งการพึ่งพา ตนเอง</p>
-                <p className="mt-1 md:text-lg text-sm mt-4" >ผลิตภัณฑ์แต่ละชิ้นคือสัญลักษณ์ของโอกาสและศักดิ์ศรีในชีวิต</p>
-                <div className="xl:flex xl:justify-end">
-                  <Link
-                    href="/ppdhome/user/product"
-                  >
-                    <button className="p-3 xl:mt-8 mt-6 xl:mb-0 mb-6 border border-pink-700 hover:bg-pink-700 md:text-lg text-xs text-pink-700 hover:text-white shadow-md shadow-pink-700/25 rounded-3xl transition">
-                      คลิ๊กเพื่อดูสินค้าเพิ่มเติม
-                    </button>
-                  </Link>
-                </div>
-
-              </div>
-              <div className="relative overflow-hidden hidden md:block xl:h-[500px] xl:w-[430px] h-[250px] w-[300px] mt-5 md:mb-4 lg:mb-0">
-                <Image src={getSupabaseImage("pic/product.JPG")} fill alt="รูปผลิตภัณฑ์ฝีมือคนพิการ" className="object-cover xl:rounded-b-full xl:rounded-none rounded-full" />
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-
-        <section className="relative flex flex-col bg-pink-50 lg:px-15 px-6 rounded-b-xl mt-2 w-full xl:px-30">
-          <motion.div
-            className="relative z-30" initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.7 }}>
-            <div className="flex justify-between flex-col md:flex-row rounded-xl lg:h-110">
-              <div className="relative overflow-visible z-20 xl:-mt-20 md:mt-10 mt-4 xl:h-[500px] xl:w-[430px] md:h-[260px] md:w-[300px] h-[200px] w-[280px]">
-                <Image src={getSupabaseImage("pic/medical158/medical158_5.jpg")}
-                  fill
-                  alt="รูปออกกำลังกาย"
-                  sizes="(max-width: 768px) 100vw, 550px"
-                  priority
-                  quality={75}
-                  className="object-cover xl:rounded-t-full xl:rounded-none md:rounded-full rounded-xl" />
-              </div>
-              <div className="flex flex-col text-right xl:mt-15 xl:pt-15 md:mt-10 mt-4">
-                <p className="md:text-2xl text-xl font-semibold text-shadow-lg">การฟื้นฟูสมรรถภาพทางการแพทย์</p>
-                <p className="md:mt-8 mt-4 md:text-lg text-sm" >งานจักสานย่านลิเภาเป็นหัตถศิลป์ไทยจากพระราชดำริของ พระพันปี เพื่อส่งเสริมอาชีพและพัฒนาคุณภาพชีวิตของคนพิการ</p>
-                <p className="mt-1 md:text-lg text-sm mt-4" >สะท้อนภูมิปัญญาไทย สร้างรายได้และความภาคภูมิใจให้ผู้พิการอย่างยั่งยืน</p>
-                <div className="xl:flex xl:justify-end">
-                  <Link
-                    href="/ppdhome/user/services/medical158"
-                  >
-                    <button className="p-3 xl:mt-8 mt-6 xl:mb-0 mb-6 border border-pink-700 hover:bg-pink-700 md:text-lg text-xs text-pink-700 hover:text-white shadow-md shadow-pink-700/25 rounded-3xl transition">
-                      คลิ๊กเพื่ออ่านเพิ่มเติม
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        <div className="w-full max-w-4xl mx-auto xl:mt-16 md:mt-8 mt-4">
-          <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-center text-shadow-lg">
-            กิจกรรมอาชีวบำบัด ตะกร้าสานพลาสติก
-          </p>
-          <iframe className="w-full aspect-video rounded-2xl shadow-xl object-cover xl:mt-6 md:mt-4 mt-2"
-            width="560"
-            src="https://www.youtube.com/embed/Fg9xnAyiizQ"
-            allowFullScreen
-          ></iframe>
-        </div>
-
-        <section className="relative flex flex-col z-10 xl:pb-20 md:pb-8 lg:mt-10 mt-2 w-full bg-transparent">
-          <div className="relative flex flex-col bg-pink-100 md:mt-10 mt-4 shadow-md rounded-xl md:pt-8 pt-4 xl:px-10 px-4 z-10 pb-8">
-            <div className="flex justify-center text-center">
-              <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-shadow-lg">
-                รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
-              </p>
-            </div>
-
-            <div className="relative">
-              <div className="flex flex-col md:flex-row md:items-start items-center justify-center lg:gap-20">
-                {/* Pie Chart */}
-                <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] ">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={data}
-                        dataKey="value"
-                        nameKey="name"
-                        cx="50%"
-                        cy="50%"
-                        startAngle={90}
-                        endAngle={450}
-                      >
-                        {data.map((entry, idx) => (
-                          <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
-                        ))}
-                      </Pie>
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-
-                {/* Text */}
-                <div className="flex flex-col md:items-end md:text-right lg:mt-10 md:mt-6">
-
-                  <p className="xl:text-2xl md:text-xl text-sm font-light">
-                    ข้อมูล ณ วันที่ 1 เดือนกุมภาพันธ์ พ.ศ. 2567
-                  </p>
-
-                  <div className="flex items-end mt-4 gap-4">
-                    <p className="xl:text-2xl md:text-xl text-sm font-light">
-                      คนพิการทั่วประเทศ
-                    </p>
-                    <p className="xl:text-4xl md:text-3xl text-lg font-semibold text-pink-700">
-                      2,165,127
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-3 mt-8">
-                    {data.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-4 md:text-2xl text-sm">
-                        <span
-                          className="w-5 h-5 rounded-sm"
-                          style={{ backgroundColor: COLORS[idx] }}
-                        />
-                        <span className="font-light">{item.name}</span>
-                        <span className="font-semibold text-pink-700">
-                          {item.value.toLocaleString()}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
+            <Image
+              src={getSupabaseImage("pic/testppd.png")}
+              alt="ตราสถาบัน"
+              width={700}
+              height={200}
+              className="h-auto w-1/2"
+            />
           </div>
+
         </section>
 
+        <section className="relative flex flex-col z-10 lg:pb-10 md:pb-8 lg:mt-10 mt-2 w-full bg-transparent lg:mt-18 text-black mb-14">
+          <div className="flex justify-between lg:mx-20 md:mx-10 mx-4 lg:gap-18">
+            <div className="relative flex flex-col bg-pink-100 shadow-md rounded-xl md:pt-8 pt-4 xl:px-6 px-4 z-10 w-1/2">
+              <div className="flex justify-center text-center">
+                <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg">
+                  รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
+                </p>
+              </div>
 
-        <section className="relative flex flex-col w-full bg-transparent py-5 xl:mb-10">
-          <div className="relative flex flex-col items-center bg-pink-100 shadow-md rounded-xl md:py-10 py-6">
-            <p className="text-xl md:text-3xl xl:text-5xl font-semibold text-shadow-lg text-center md:px-0 px-4">
-              ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ
-            </p>
-            <p className="text-xl md:text-3xl xl:text-5xl font-semibold text-shadow-lg text-center md:px-0 px-4">
-              พระประแดง จ.สมุทรปราการ
-            </p>
+              <div className="relative">
+                <div className="flex flex-col md:flex-row md:items-start items-center justify-center">
 
-            <div className="relative w-full flex justify-center md:mt-10 mt-4">
+                  {/* Text */}
+                  <div className="flex flex-col md:items-end md:text-right lg:mt-6 md:mt-4">
 
-              <div className="absolute top-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-pink-200 rounded-[40px]"></div>
+                    <p className="xl:text-xl md:text-xl text-sm font-light">
+                      ข้อมูล ณ วันที่ 1 เดือนกุมภาพันธ์ พ.ศ. 2567
+                    </p>
 
-              <div className="relative bg-white md:w-[50%] w-[60%] md:rounded-[40px] rounded-xl md:px-10 px-4 md:pt-10 pt-4 pb-8 flex flex-col items-center z-10 shadow-md">
-                <Image
-                  src={getSupabaseImage("pic/parent.jpeg")}
-                  alt="รูปผู้ปกครองสถานคุ้มครอง"
-                  width={260}
-                  height={300}
-                  className="object-cover rounded-md"
-                />
-                <p className="mt-6 md:text-xl font-light text-sm">ว่าที่ร้อยตรีณัทกร ธงสอาด</p>
+                    <div className="bg-white rounded-xl px-8 py-2 mt-8 shadow-lg">
+
+                      <div className="flex flex-col items-center mt-4 gap-4">
+                        <p className="xl:text-3xl md:text-3xl text-lg font-semibold text-black">
+                          2,165,127
+                        </p>
+                        <p className="xl:text-xl md:text-xl text-sm font-light">
+                          คนพิการทั่วประเทศ
+                        </p>
+                      </div>
+
+                      <div className="border-b mt-6"></div>
+
+                      <div className="flex flex-row gap-8 ">
+                        <div className="flex flex-col justify-center mt-4">
+                          <div className="flex flex-row gap-6">
+                            <p className="px-3 bg-pink-200"></p>
+                            <p className="text-lg">เพศหญิง</p>
+                          </div>
+
+                          <div className="mt-4">
+                            <p className="font-semibold text-2xl">1,042,591</p>
+                          </div>
+                        </div>
+                        <div className="border-e"></div>
+                        <div className="flex flex-col justify-center mt-4">
+                          <div className="flex flex-row gap-6">
+                            <p className="px-3 bg-blue-200"></p>
+                            <p className="text-lg">เพศชาย</p>
+                          </div>
+
+                          <div className="mt-4">
+                            <p className="font-semibold text-2xl">1,122,536</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div className="relative flex flex-col items-center bg-pink-100 shadow-md rounded-xl md:py-10 py-6 w-1/2">
+              <p className="text-lg md:text-2xl xl:text-xl font-semibold text-shadow-lg text-center xl:px-6 px-4">
+                ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ
+              </p>
+              <p className="text-lg md:text-2xl xl:text-xl font-semibold text-shadow-lg text-center md:px-0 px-4">
+                พระประแดง จ.สมุทรปราการ
+              </p>
+
+              <div className="relative w-full flex flex-col justify-center md:mt-6 mt-4">
+
+                <div className="relative flex flex-col items-center z-10 ">
+                  <Image
+                    src={getSupabaseImage("pic/parent.jpeg")}
+                    alt="รูปผู้ปกครองสถานคุ้มครอง"
+                    width={200}
+                    height={260}
+                    className="object-cover bg-white p-4 rounded-md shadow-md"
+                  />
+
+                </div>
+                <p className="mt-6 md:text-xl font-light text-sm text-center">ว่าที่ร้อยตรีณัทกร ธงสอาด</p>
               </div>
             </div>
           </div>

@@ -49,3 +49,7 @@ body {
   width: 20px;
   border-radius: 10px;
 }
+
+body {
+  font-family: var(--font-thai);
+}

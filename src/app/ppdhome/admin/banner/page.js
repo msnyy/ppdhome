@@ -7,24 +7,30 @@ import Link from "next/link";
 
 export default function BannerAdmin() {
   const [banners, setBanners] = useState([]);
+  const [hasNew, setHasNew] = useState(false);
+  const [hasEdit, setHasEdit] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
+  /* ================= fetch ================= */
   const fetchBanner = async () => {
     const res = await fetch("/ppdhome/api/banner");
-    const data = await res.json();
+    const json = await res.json();
 
-    const formatted = data.map((b) => ({
+    const formatted = json.data.map((b) => ({
       ...b,
       file: null,
+      isNew: false,
+      originalLink: b.link,
+      originalImage: b.image_url,
     }));
-
-    setBanners(formatted);
+    setBanners(formatted); // ✅ ต้องมี
   };
 
   useEffect(() => {
     fetchBanner();
   }, []);
 
-  /* เพิ่ม banner */
+  /* ================= add ================= */
   const addBanner = () => {
     setBanners([
       ...banners,
@@ -36,35 +42,12 @@ export default function BannerAdmin() {
         isNew: true,
       },
     ]);
+
+    setHasNew(true);
+    setIsDirty(true);
   };
 
-  const editBanner = async (banner) => {
-    const formData = new FormData();
-
-    formData.append("id", banner.id);
-    formData.append("link", banner.link || "");
-
-    if (banner.file) {
-      formData.append("image", banner.file);
-    }
-
-    const res = await fetch("/ppdhome/api/banner", {
-      method: "PUT",
-      body: formData,
-    });
-
-    const data = await res.json();
-
-    if (data.error) {
-      alert(data.error);
-      return;
-    }
-
-    alert("แก้ไขสำเร็จ");
-    fetchBanner();
-  };
-
-  /* preview */
+  /* ================= update image ================= */
   const updateImage = (index, file) => {
     if (!file) return;
 
@@ -78,152 +61,170 @@ export default function BannerAdmin() {
     };
 
     setBanners(newBanner);
+
+
+    if (newBanner[index].id) setHasEdit(true);
+    else setHasNew(true);
+    setIsDirty(true);
   };
 
-  /* update link */
+  /* ================= update link ================= */
   const updateLink = (index, value) => {
     const newBanner = [...banners];
     newBanner[index].link = value;
     setBanners(newBanner);
+
+
+    if (newBanner[index].id) setHasEdit(true);
+    else setHasNew(true);
+    setIsDirty(true);
   };
 
-  /* save */
-  const saveBanner = async () => {
-    for (let banner of banners) {
-      const formData = new FormData();
+  /* ================= save NEW ================= */
+  const saveNew = async () => {
+    for (let banner of banners.filter((b) => b.isNew)) {
+      if (!banner.file) {
+        alert("กรุณาเลือกรูปก่อนบันทึก");
+        return;
+      }
 
+      const formData = new FormData();
+      formData.append("link", banner.link || "");
+      formData.append("image", banner.file);
+
+      await fetch("/ppdhome/api/banner", {
+        method: "POST",
+        body: formData,
+      });
+    }
+
+    alert("เพิ่มสำเร็จ");
+
+
+    setBanners(
+      banners.map((b) => ({
+        ...b,
+        file: null,
+        originalLink: b.link,
+        originalImage: b.image_url,
+      }))
+    )
+      ; setHasNew(false);
+  };
+
+  /* ================= save EDIT ================= */
+  const saveEdit = async () => {
+    for (let banner of banners.filter((b) => b.id)) {
+
+      const isChanged =
+        banner.file || banner.link !== banner.originalLink;
+
+      if (!isChanged) continue; // 🔥 ไม่แก้ = ไม่ยิง PUT
+
+      const formData = new FormData();
+      formData.append("id", banner.id);
       formData.append("link", banner.link || "");
 
       if (banner.file) {
         formData.append("image", banner.file);
       }
 
-      if (banner.id) {
-        formData.append("id", banner.id);
-
-        await fetch("/ppdhome/api/banner", {
-          method: "PUT",
-          body: formData,
-        });
-      } else {
-        if (!banner.file) {
-          alert("กรุณาเลือกรูปก่อนบันทึก");
-          return;
-        }
-
-        await fetch("/ppdhome/api/banner", {
-          method: "POST",
-          body: formData,
-        });
-      }
+      await fetch("/ppdhome/api/banner", {
+        method: "PUT",
+        body: formData,
+      });
     }
 
-    alert("บันทึกสำเร็จ");
-    fetchBanner();
+    alert("แก้ไขสำเร็จ");
+    setHasEdit(false);
   };
 
-  /* delete */
-  const deleteBanner = async (id) => {
-    await fetch("/ppdhome/api/banner", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
+  /* ================= delete ================= */
+  const deleteBanner = async (id, index) => {
+    if (id) {
+      await fetch("/ppdhome/api/banner", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setBanners(banners.filter((b) => b.id !== id));
 
-    fetchBanner();
+    } else {
+      setBanners(banners.filter((_, i) => i !== index));
+    }
   };
 
   return (
     <section className="lg:mx-40 md:mx-20 mx-8 mb-8 text-black">
       <Link href="/ppdhome/admin/allCreate">
-        <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6 mt-4">
+        <button className="bg-pink-400 text-white text-xl rounded-xl py-2 px-6 mt-4">
           back
         </button>
       </Link>
 
       <div className="p-6 border mt-4">
         {banners.map((banner, index) => (
-          <div key={banner.id ?? `new-${index}`} className="mb-10">
-            <h2 className="text-xl font-semibold mb-3">
-              แบนเนอร์ที่ {index + 1}
-            </h2>
+          <div key={banner.id ?? index} className="mb-10">
+            <h2>แบนเนอร์ที่ {index + 1}</h2>
 
-            <label className="border rounded-lg h-[300px] flex items-center justify-center cursor-pointer overflow-hidden">
+            {/* image */}
+            <label className="border h-[300px] flex items-center justify-center cursor-pointer">
               {banner.image_url ? (
-                <img
-                  src={banner.image_url}
-                  className="w-full h-full object-cover"
-                />
+                <img src={banner.image_url} className="w-full h-full object-cover" />
               ) : (
-                <span className="text-3xl">+</span>
+                <span>+</span>
               )}
 
               <input
                 type="file"
-                accept="image/*"
                 hidden
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  updateImage(index, file);
-                }}
+                onChange={(e) => updateImage(index, e.target.files?.[0])}
               />
             </label>
 
+            {/* link */}
             <input
-              type="text"
-              placeholder="ใส่ลิงก์"
               value={banner.link || ""}
               onChange={(e) => updateLink(index, e.target.value)}
-              className="border w-full mt-3 px-3 py-2 rounded"
+              className="border w-full mt-2"
             />
 
-            {banner.id ? (
-              <button
-                onClick={() => deleteBanner(banner.id)}
-                className="text-red-500 mt-2"
-              >
-                ลบ
-              </button>
-            ) : (
-              <button
-                onClick={() =>
-                  setBanners(banners.filter((_, i) => i !== index))
-                }
-                className="text-red-500 mt-2"
-              >
-                ลบ
-              </button>
-            )}
-
-            {banner.id && (
-              <button
-                onClick={() => editBanner(banner)}
-                className="text-blue-500 mt-2 ml-4"
-              >
-                แก้ไข
-              </button>
-            )}
+            <button
+              onClick={() => deleteBanner(banner.id, index)}
+              className="text-red-500 mt-2 text-xl"
+            >
+              ลบ
+            </button>
           </div>
         ))}
 
-        <div className="flex justify-center mb-5">
-          <button
-            onClick={addBanner}
-            className="bg-pink-300 hover:bg-pink-400 px-6 py-2 rounded-lg"
-          >
+        {/* add */}
+        <div className="flex justify-center">
+          <button onClick={addBanner} className="bg-pink-300 px-4 py-2">
             เพิ่มแบนเนอร์
           </button>
         </div>
 
-        <div className="flex justify-end">
-          <button
-            onClick={saveBanner}
-            className="bg-pink-300 hover:bg-pink-400 px-6 py-2 rounded-lg"
-          >
-            บันทึก
-          </button>
+        
+
+        {/* save buttons */}
+        <div className="flex justify-end gap-3 mt-4">
+          {isDirty && (
+          <div className="mb-4 text-red-500 font-semibold">
+            ยังไม่ได้บันทึก
+          </div>
+        )}
+          {hasNew && (
+            <button onClick={saveNew} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">
+              บันทึก
+            </button>
+          )}
+
+          {hasEdit && (
+            <button onClick={saveEdit} className="bg-blue-500 px-4 py-2 rounded">
+              บันทึกการแก้ไข
+            </button>
+          )}
         </div>
       </div>
     </section>

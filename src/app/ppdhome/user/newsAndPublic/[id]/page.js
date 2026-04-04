@@ -105,6 +105,8 @@ export default function PostDetail() {
                                 onClick={() => setOpenImage(img)}
                             />
 
+                            
+
                         </div>
 
                     ))}

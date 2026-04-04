@@ -1,27 +1,46 @@
 export const dynamic = "force-dynamic";
-import { getPool } from "@lib/db";
 
+import { supabase } from "@lib/supabase";
+
+/* ================= GET ================= */
 export async function GET() {
-  const pool = await getPool();
+  try {
+    const { data, error } = await supabase
+      .from("site_settings")
+      .select("bw_mode")
+      .eq("id", 1)
+      .single();
 
-  const result = await pool
-    .request()
-    .query("SELECT bwMode FROM SiteSettings WHERE id = 1");
+    if (error) throw error;
 
-  return Response.json({
-    bwMode: result.recordset[0].bwMode
-  });
+    return Response.json({
+      bwMode: data.bw_mode
+    });
+
+  } catch (error) {
+    console.error("GET SETTINGS ERROR:", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
 
+/* ================= POST ================= */
 export async function POST(req) {
-  const { bwMode } = await req.json();
+  try {
+    const { bwMode } = await req.json();
 
-  const pool = await getPool();
+    const { error } = await supabase
+      .from("site_settings")
+      .update({
+        bw_mode: bwMode
+      })
+      .eq("id", 1);
 
-  await pool
-    .request()
-    .input("bwMode", bwMode ? 1 : 0)
-    .query("UPDATE SiteSettings SET bwMode = @bwMode WHERE id = 1");
+    if (error) throw error;
 
-  return Response.json({ success: true });
+    return Response.json({ success: true });
+
+  } catch (error) {
+    console.error("POST SETTINGS ERROR:", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }

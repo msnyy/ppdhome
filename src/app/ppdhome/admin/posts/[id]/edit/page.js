@@ -4,10 +4,11 @@ export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-export default function CreatePostPage() {
+export default function EditPostPage() {
 
+  const { id } = useParams();
   const router = useRouter();
 
   /* ===== utils ===== */
@@ -33,14 +34,49 @@ export default function CreatePostPage() {
   const [files, setFiles] = useState([]);
   const [pdfFile, setPdfFile] = useState(null);
 
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   /* ===== set datetime max ===== */
 
   useEffect(() => {
     setMaxDate(getNowLocal());
   }, []);
+
+  /* ===== โหลดข้อมูลเดิม ===== */
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchPost = async () => {
+      try {
+        const res = await fetch(`/ppdhome/api/posts/${id}`);
+
+        if (!res.ok) {
+          alert("โหลดข้อมูลไม่สำเร็จ");
+          return;
+        }
+
+        const data = await res.json();
+
+        setForm({
+          title: data.title || "",
+          subtitle: data.subtitle || "",
+          header_date: data.header_date || "",
+          content_date: data.content_date?.slice(0, 16) || "",
+          detail: data.detail || "",
+          category: data.category || 1
+        });
+
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [id]);
 
   /* ===== handlers ===== */
 
@@ -79,12 +115,12 @@ export default function CreatePostPage() {
     setPdfFile(file);
   };
 
+  /* ===== submit ===== */
+
   async function handleSubmit(e) {
 
     e.preventDefault();
-
-    setLoading(true);
-    setMessage("");
+    setSaving(true);
 
     const formData = new FormData();
 
@@ -103,23 +139,29 @@ export default function CreatePostPage() {
       formData.append("pdf", pdfFile);
     }
 
-    const res = await fetch("/ppdhome/api/posts", {
-      method: "POST",
+    const res = await fetch(`/ppdhome/api/posts/${id}`, {
+      method: "PUT",
       body: formData,
     });
 
     if (res.ok) {
-      alert("เพิ่มข้อมูลสำเร็จ");
-      router.push("/ppdhome/admin/newsAndPublicCreate");
+      alert("แก้ไขสำเร็จ");
+      router.push(`/ppdhome/admin/posts/${id}`);
       return;
     }
 
-    const data = await res.json();
-    setMessage("เกิดข้อผิดพลาด: " + data.error);
-    setLoading(false);
+    const text = await res.text();
+    console.error(text);
+    alert("เกิดข้อผิดพลาด");
+
+    setSaving(false);
   }
 
   /* ===== render ===== */
+
+  if (loading) {
+    return <p className="text-center mt-20">กำลังโหลด...</p>;
+  }
 
   return (
     <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 text-black">
@@ -127,7 +169,6 @@ export default function CreatePostPage() {
       <form onSubmit={handleSubmit} className="space-y-4">
 
         {/* category */}
-
         <label className="block">
           <span className="block mb-1 font-medium lg:text-2xl md:text-xl text-lg">
             หมวดข่าว
@@ -149,7 +190,6 @@ export default function CreatePostPage() {
         </label>
 
         {/* title + subtitle */}
-
         <div className="flex lg:gap-40 md:gap-10 md:flex-row flex-col">
 
           <label className="block">
@@ -159,7 +199,6 @@ export default function CreatePostPage() {
 
             <input
               name="title"
-              placeholder="ชื่อหัวข้อ"
               value={form.title}
               onChange={handleChange}
               required
@@ -174,7 +213,6 @@ export default function CreatePostPage() {
 
             <input
               name="subtitle"
-              placeholder="ชื่อหัวข้อ 2"
               value={form.subtitle}
               onChange={handleChange}
               className="lg:w-120 w-70 border p-2 rounded"
@@ -184,7 +222,6 @@ export default function CreatePostPage() {
         </div>
 
         {/* header + date */}
-
         <div className="flex lg:gap-40 md:gap-10 md:flex-row flex-col">
 
           <label className="block">
@@ -194,7 +231,6 @@ export default function CreatePostPage() {
 
             <input
               name="header_date"
-              placeholder="ex. ครั้งที่ 00/2569"
               value={form.header_date}
               onChange={handleChange}
               className="lg:w-120 w-70 border p-2 rounded"
@@ -219,7 +255,6 @@ export default function CreatePostPage() {
         </div>
 
         {/* detail */}
-
         <label className="block">
           <span className="block mb-1 font-medium lg:text-2xl md:text-xl text-lg">
             เพิ่มรายละเอียด
@@ -227,7 +262,6 @@ export default function CreatePostPage() {
 
           <textarea
             name="detail"
-            placeholder="รายละเอียดข่าว"
             value={form.detail}
             onChange={handleChange}
             rows={5}
@@ -235,19 +269,15 @@ export default function CreatePostPage() {
           />
         </label>
 
-        {/* pdf */}
-
+        {/* PDF */}
         <div className="block mt-6">
-
           <span className="block mb-2 font-medium lg:text-2xl md:text-xl text-lg">
             เพิ่มเอกสาร PDF (ถ้ามี)
           </span>
 
           {pdfFile ? (
-
             <div className="flex items-center gap-4 border p-3 rounded-md w-fit">
               <span className="text-sm">{pdfFile.name}</span>
-
               <button
                 type="button"
                 onClick={() => setPdfFile(null)}
@@ -255,32 +285,22 @@ export default function CreatePostPage() {
               >
                 ลบ
               </button>
-
             </div>
-
           ) : (
-
             <label className="w-[220px] h-[60px] border rounded-md flex items-center justify-center cursor-pointer hover:border-pink-700 transition">
-
               <input
                 type="file"
                 accept="application/pdf"
                 className="hidden"
                 onChange={handlePdfChange}
               />
-
               <span className="text-sm">เลือกไฟล์ PDF</span>
-
             </label>
-
           )}
-
         </div>
 
         {/* images */}
-
         <div className="block">
-
           <span className="block mb-2 font-medium lg:text-2xl md:text-xl text-lg">
             เพิ่มรูป
           </span>
@@ -288,53 +308,37 @@ export default function CreatePostPage() {
           <div className="flex gap-3 flex-wrap">
 
             {files.map((file, index) => (
-
-              <div
-                key={index}
-                className="lg:w-[220px] lg:h-[140px] md:w-[220px] md:h-[140px] w-[100px] h-[100px] rounded-md overflow-hidden relative"
-              >
-
+              <div key={index} className="w-[100px] h-[100px] rounded-md overflow-hidden relative">
                 <img
                   src={URL.createObjectURL(file)}
-                  alt="preview"
-                  className="w-full h-full object-cover pointer-events-none"
+                  className="w-full h-full object-cover"
                 />
-
                 <button
                   type="button"
-                  onClick={() =>
-                    setFiles((prev) => prev.filter((_, i) => i !== index))
-                  }
-                  className="absolute top-1 right-1 bg-black/60 text-white text-sm px-2 rounded"
+                  onClick={() => setFiles(prev => prev.filter((_, i) => i !== index))}
+                  className="absolute top-1 right-1 bg-black/60 text-white px-2 rounded"
                 >
                   ✕
                 </button>
-
               </div>
-
             ))}
 
-            <label className="lg:w-[220px] lg:h-[140px] md:w-[220px] md:h-[140px] w-[100px] h-[100px] border rounded-md flex items-center justify-center cursor-pointer hover:border-pink-700 transition">
-
+            <label className="w-[100px] h-[100px] border rounded-md flex items-center justify-center cursor-pointer hover:border-pink-700">
               <input
                 type="file"
-                accept="image/png, image/jpeg"
                 multiple
+                accept="image/png, image/jpeg"
                 className="hidden"
                 onChange={handleFileChange}
               />
-
-              <span className="text-4xl font-light">+</span>
-
+              +
             </label>
 
           </div>
-
         </div>
 
         {/* submit */}
-
-        <div className="flex items-end justify-end gap-4">
+        <div className="flex justify-end gap-4">
 
           <Link
               href="/ppdhome/admin/newsAndPublicCreate"
@@ -346,18 +350,14 @@ export default function CreatePostPage() {
 
           <button
             type="submit"
-            disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white lg:text-xl md:text-lg text-sm px-8 py-2 rounded-xl"
+            disabled={saving}
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-2 rounded-xl"
           >
-            {loading ? "Saving..." : "save"}
+            {saving ? "Saving..." : "save"}
           </button>
-
         </div>
 
       </form>
-
-      {message && <p className="mt-4 font-medium">{message}</p>}
-
     </div>
   );
 }

@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 /* ---------- utils ---------- */
 function formatThaiDate(input) {
@@ -113,6 +114,7 @@ export default function AdminPostDetail() {
     ? data.image.split(",").filter(Boolean)
     : [];
 
+
   return (
 
     <div className="lg:mx-20 md:mx-9 mx-5 lg:mt-16 mt-4 text-black">
@@ -170,12 +172,15 @@ export default function AdminPostDetail() {
 
         )}
 
-        <div className="flex justify-end mt-8">
+        <div className="flex justify-end mt-8 gap-4">
+
+          <Link href={`/ppdhome/admin/posts/${data.id}/edit`}>
+            <button className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-xl">แก้ไข</button>
+          </Link>
 
           <button
             onClick={handleDelete}
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl"
-          >
+            className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl">
 
             Delete
 

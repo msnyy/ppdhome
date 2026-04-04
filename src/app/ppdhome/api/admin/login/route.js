@@ -2,37 +2,26 @@ export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import sql from "mssql";
-import { getPool } from "@lib/db";
+import { supabase } from "@lib/supabase";
 
 export async function POST(req) {
   try {
     const { username, password } = await req.json();
 
-    const pool = await getPool();
+    const { data: admin, error } = await supabase
+      .from("admin_users")
+      .select("id, username, password_hash")
+      .eq("username", username)
+      .maybeSingle();
 
-    const result = await pool
-      .request()
-      .input("username", sql.VarChar, username)
-      .query(`
-        SELECT id, username, password_hash
-        FROM admin_users
-        WHERE username = @username
-      `);
-
-    const admin = result.recordset[0];
-
-    if (!admin) {
+    if (error || !admin) {
       return NextResponse.json(
         { message: "Username or password incorrect" },
         { status: 401 }
       );
     }
 
-    console.log("HASH from DB:", admin.password_hash);
-
     const isValid = await bcrypt.compare(password, admin.password_hash);
-    console.log("COMPARE RESULT:", isValid);
 
     if (!isValid) {
       return NextResponse.json(
@@ -43,7 +32,7 @@ export async function POST(req) {
 
     const res = NextResponse.json({ success: true });
 
-    res.cookies.set("admin_id", admin.id.toString(), {
+    res.cookies.set("admin_id", admin.id, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

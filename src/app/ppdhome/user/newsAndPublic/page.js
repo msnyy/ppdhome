@@ -202,12 +202,17 @@ export default function NewsAndPublic() {
                   <div className="flex justify-between">
 
                     <div>
-                      {subtitle && (
-                        <div className="flex items-center gap-2 flex-wrap">
+                      <div className="flex items-center gap-2 flex-wrap">
 
                           <p className="text-lg">
-                            {title} {subtitle}
+                            {title} 
                           </p>
+                          
+                          {subtitle && (
+                          <span className="text-lg">
+                           {subtitle}
+                          </span>
+                        )}
 
                           {newsNew && (
                             <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
@@ -216,11 +221,6 @@ export default function NewsAndPublic() {
                           )}
 
                         </div>
-                      )}
-
-                      <p className="text-lg">
-
-                      </p>
 
 
                       {header_date && (

@@ -1,262 +1,278 @@
-import sql from "mssql";
-import { supabase } from "@lib/supabase";
-import { getPool } from "@lib/db";
-
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/* ===================== GET : ดึงสินค้า + กรอง ===================== */
+import { supabase } from "@lib/supabase";
+
+/* ===================== GET ===================== */
 export async function GET(request) {
-    try {
-        const pool = await getPool();
-        const { searchParams } = new URL(request.url);
+  try {
+    const { searchParams } = new URL(request.url);
 
-        const category = searchParams.get("category");
-        const minPrice = searchParams.get("minPrice");
-        const maxPrice = searchParams.get("maxPrice");
+    const category = searchParams.get("category");
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
 
-        let where = "WHERE 1=1";
-        const reqSql = pool.request();
+    let query = supabase.from("products").select("*");
 
-        // ===== filter =====
-        if (category && category !== "all") {
-            where += " AND category = @category";
-            reqSql.input("category", sql.NVarChar, category);
-        }
-
-        if (minPrice) {
-            where += " AND price >= @minPrice";
-            reqSql.input("minPrice", sql.Decimal(10, 2), minPrice);
-        }
-
-        if (maxPrice) {
-            where += " AND price <= @maxPrice";
-            reqSql.input("maxPrice", sql.Decimal(10, 2), maxPrice);
-        }
-
-        // ⭐ สินค้าแนะนำ (ไม่กรอง)
-        const featuredResult = await pool.request().query(`
-      SELECT TOP 6
-        id, name, description, size, price, image, category
-      FROM dbo.products
-      WHERE is_featured = 1
-      ORDER BY updated_at DESC
-    `);
-
-        // 📦 สินค้าตามตัวกรอง
-        const allResult = await reqSql.query(`
-      SELECT
-        id, name, description, size, price, image, category, is_featured
-      FROM dbo.products
-      ${where}
-      ORDER BY category, id DESC
-    `);
-
-        // 🔹 แยกสินค้า (ไว้แสดงผล)
-        const map = {};
-        allResult.recordset.forEach((item) => {
-            if (!map[item.category]) map[item.category] = [];
-            map[item.category].push(item);
-        });
-
-        const categories = Object.keys(map).map((key) => ({
-            title: key,
-            items: map[key],
-        }));
-
-        // 🔥 ดึงประเภทสินค้าทั้งหมด (ไว้ทำ dropdown)
-        const categoryResult = await pool.request().query(`
-      SELECT DISTINCT category FROM dbo.products
-      ORDER BY category
-    `);
-
-        const allCategories = categoryResult.recordset.map(
-            (row) => row.category
-        );
-
-        return Response.json({
-            featured: featuredResult.recordset,
-            categories,      // ❗ ใช้แสดงสินค้า (ถูกกรอง)
-            allCategories,   // ✅ ใช้ทำ dropdown (ไม่กรอง)
-        });
-    } catch (error) {
-        console.error("GET PRODUCT ERROR 👉", error);
-        return Response.json({ error: error.message }, { status: 500 });
+    if (category && category !== "all") {
+      query = query.eq("category", category);
     }
+
+    if (minPrice) {
+      query = query.gte("price", minPrice);
+    }
+
+    if (maxPrice) {
+      query = query.lte("price", maxPrice);
+    }
+
+    const { data: allProducts, error } = await query.order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    // ⭐ featured
+    const { data: featured } = await supabase
+      .from("products")
+      .select("*")
+      .eq("is_featured", true)
+      .order("updated_at", { ascending: false })
+      .limit(6);
+
+    // 📦 group by category
+    const map = {};
+    allProducts.forEach((item) => {
+      if (!map[item.category]) map[item.category] = [];
+      map[item.category].push(item);
+    });
+
+    const categories = Object.keys(map).map((key) => ({
+      title: key,
+      items: map[key],
+    }));
+
+    // 🔹 category dropdown
+    const { data: categoryData } = await supabase
+      .from("products")
+      .select("category");
+
+    const allCategories = [...new Set(categoryData.map(c => c.category))];
+
+    return Response.json({
+      featured,
+      categories,
+      allCategories,
+    });
+
+  } catch (error) {
+    console.error("GET PRODUCT ERROR 👉", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
 
-
-
-/* ===================== POST : เพิ่มสินค้า ===================== */
+/* ===================== POST ===================== */
 export async function POST(request) {
-    try {
-        const formData = await request.formData();
+  try {
+    const formData = await request.formData();
 
-        const name = formData.get("name");
-        const category = formData.get("category");
-        const description = formData.get("description");
-        const price = formData.get("price");
-        const size = formData.get("size");
-        const is_featured = formData.get("is_featured") === "1"; // ⭐ สำคัญ
+    const name = formData.get("name");
+    const category = formData.get("category");
+    const description = formData.get("description");
+    const price = formData.get("price");
+    const size = formData.get("size");
+    const is_featured = formData.get("is_featured") === "1";
 
-        const files = formData.getAll("images");
-        let imagePaths = [];
+    const files = formData.getAll("images");
+    let imagePaths = [];
 
-        // upload รูปไป Supabase
-        for (const file of files) {
+    for (const file of files) {
+      if (!file.name) continue;
 
-            if (!file.name) continue;
+      const fileName = `${Date.now()}-${file.name}`;
+      const buffer = Buffer.from(await file.arrayBuffer());
 
-            const fileExt = file.name.split('.').pop();
-            const safeName = file.name
-                .replace(/\s+/g, '-')        // space → -
-                .replace(/[^\w.-]/g, '');    // เอาไทย/อักขระพิเศษออก
+      const { error } = await supabase.storage
+        .from("ppdhome-pic")
+        .upload(`products/${fileName}`, buffer, {
+          contentType: file.type,
+        });
 
-            const fileName = `${Date.now()}-${safeName || "image"}.${fileExt}`;
+      if (error) throw error;
 
-            const buffer = Buffer.from(await file.arrayBuffer());
+      const url =
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
 
-            const { error } = await supabase.storage
-                .from("ppdhome-pic")
-                .upload(`products/${fileName}`, buffer, {
-                    contentType: file.type
-                });
+      imagePaths.push(url);
+    }
 
-            if (error) throw error;
-
-            const url =
-                `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
-
-            imagePaths.push(url);
-        }
-
-        const pool = await getPool();
-        const reqSql = pool.request();
-
-        reqSql
-            .input("name", sql.NVarChar, name)
-            .input("category", sql.NVarChar, category)
-            .input("description", sql.NVarChar, description)
-            .input("price", sql.Decimal(10, 2), price)
-            .input("size", sql.NVarChar, size)
-            .input("image", sql.NVarChar, imagePaths.join(","))
-            .input("is_featured", sql.Bit, is_featured); // ✅ bind ค่า
-
-        await reqSql.query(`
-      INSERT INTO dbo.products (
+    const { error } = await supabase.from("products").insert([
+      {
         name,
         category,
         description,
         price,
         size,
-        image,
+        image: imagePaths.join(","),
         is_featured,
-        created_at,
-        updated_at
-      )
-      VALUES (
-        @name,
-        @category,
-        @description,
-        @price,
-        @size,
-        @image,
-        @is_featured,
-        GETDATE(),
-        GETDATE()
-      )
-    `);
+      },
+    ]);
 
-        return Response.json({ message: "เพิ่มสินค้าสำเร็จ" }, { status: 201 });
-    } catch (error) {
-        console.error("POST PRODUCT ERROR 👉", error);
-        return Response.json({ error: error.message }, { status: 500 });
-    }
+    if (error) throw error;
+
+    return Response.json({ message: "เพิ่มสินค้าสำเร็จ" }, { status: 201 });
+
+  } catch (error) {
+    console.error("POST PRODUCT ERROR 👉", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
 
-/* ===================== PATCH : ตั้ง / ยกเลิกสินค้าแนะนำ ===================== */
+/* ===================== PATCH (toggle featured) ===================== */
 export async function PATCH(request) {
-    try {
-        const { id, is_featured } = await request.json();
+  try {
+    const { id, is_featured } = await request.json();
 
-        const pool = await getPool();
-        await pool
-            .request()
-            .input("id", sql.Int, id)
-            .input("is_featured", sql.Bit, is_featured)
-            .query(`
-        UPDATE dbo.products
-        SET is_featured = @is_featured,
-            updated_at = GETDATE()
-        WHERE id = @id
-      `);
+    const { error } = await supabase
+      .from("products")
+      .update({
+        is_featured,
+        updated_at: new Date(),
+      })
+      .eq("id", id);
 
-        return Response.json({ message: "อัปเดตสินค้าแนะนำแล้ว" });
-    } catch (error) {
-        console.error("PATCH PRODUCT ERROR 👉", error);
-        return Response.json({ error: error.message }, { status: 500 });
-    }
+    if (error) throw error;
+
+    return Response.json({ message: "อัปเดตสินค้าแนะนำแล้ว" });
+
+  } catch (error) {
+    console.error("PATCH PRODUCT ERROR 👉", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
 
-/* ===================== DELETE : ลบสินค้า ===================== */
-export async function DELETE(request) {
-    try {
-        const { searchParams } = new URL(request.url);
-        const id = searchParams.get("id");
+/* ===================== PUT (edit product) ===================== */
+export async function PUT(request) {
+  try {
+    const formData = await request.formData();
 
-        if (!id) {
-            return Response.json({ error: "ไม่พบ id" }, { status: 400 });
-        }
+    const id = formData.get("id");
+    const name = formData.get("name");
+    const category = formData.get("category");
+    const description = formData.get("description");
+    const price = formData.get("price");
+    const size = formData.get("size");
 
-        const pool = await getPool();
+    const files = formData.getAll("images");
 
-        /* 1️⃣ หา image ก่อน */
+    // 👉 หา image เดิม
+    const { data } = await supabase
+      .from("products")
+      .select("image")
+      .eq("id", id)
+      .single();
 
-        const result = await pool
-            .request()
-            .input("id", sql.Int, id)
-            .query(`
-        SELECT image
-        FROM dbo.products
-        WHERE id = @id
-      `);
+    let imagePaths = data?.image ? data.image.split(",") : [];
 
-        const imageStr = result.recordset[0]?.image;
+    // 👉 ถ้ามีรูปใหม่
+    if (files.length > 0 && files[0].name) {
 
-        /* 2️⃣ ลบรูปใน Supabase */
+      // ลบของเก่า
+      const oldPaths = imagePaths
+        .map((url) =>
+          url.split("/storage/v1/object/public/ppdhome-pic/")[1]
+        )
+        .filter(Boolean);
 
-        if (imageStr) {
+      if (oldPaths.length > 0) {
+        await supabase.storage.from("ppdhome-pic").remove(oldPaths);
+      }
 
-            const images = imageStr.split(",");
+      imagePaths = [];
 
-            const paths = images.map((url) =>
-                url.split("/storage/v1/object/public/ppdhome-pic/")[1]
-            ).filter(Boolean);
+      for (const file of files) {
+        const fileName = `${Date.now()}-${file.name}`;
+        const buffer = Buffer.from(await file.arrayBuffer());
 
-            if (paths.length > 0) {
+        const { error } = await supabase.storage
+          .from("ppdhome-pic")
+          .upload(`products/${fileName}`, buffer, {
+            contentType: file.type,
+          });
 
-                await supabase.storage
-                    .from("ppdhome-pic")
-                    .remove(paths);
+        if (error) throw error;
 
-            }
-        }
+        const url =
+          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/products/${fileName}`;
 
-        /* 3️⃣ ลบสินค้า */
-
-        await pool
-            .request()
-            .input("id", sql.Int, id)
-            .query(`
-        DELETE FROM dbo.products
-        WHERE id = @id
-      `);
-
-        return Response.json({ message: "ลบสินค้าสำเร็จ" });
-
-    } catch (error) {
-        console.error("DELETE PRODUCT ERROR 👉", error);
-
-        return Response.json({ error: error.message }, { status: 500 });
+        imagePaths.push(url);
+      }
     }
+
+    const { error } = await supabase
+      .from("products")
+      .update({
+        name,
+        category,
+        description,
+        price,
+        size,
+        image: imagePaths.join(","),
+        updated_at: new Date(),
+      })
+      .eq("id", id);
+
+    if (error) throw error;
+
+    return Response.json({ message: "แก้ไขสินค้าสำเร็จ" });
+
+  } catch (error) {
+    console.error("PUT PRODUCT ERROR 👉", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}
+
+/* ===================== DELETE ===================== */
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return Response.json({ error: "ไม่พบ id" }, { status: 400 });
+    }
+
+    // 👉 หา image
+    const { data } = await supabase
+      .from("products")
+      .select("image")
+      .eq("id", id)
+      .single();
+
+    if (data?.image) {
+      const paths = data.image
+        .split(",")
+        .map((url) =>
+          url.split("/storage/v1/object/public/ppdhome-pic/")[1]
+        )
+        .filter(Boolean);
+
+      if (paths.length > 0) {
+        await supabase.storage
+          .from("ppdhome-pic")
+          .remove(paths);
+      }
+    }
+
+    const { error } = await supabase
+      .from("products")
+      .delete()
+      .eq("id", id);
+
+    if (error) throw error;
+
+    return Response.json({ message: "ลบสินค้าสำเร็จ" });
+
+  } catch (error) {
+    console.error("DELETE PRODUCT ERROR 👉", error);
+    return Response.json({ error: error.message }, { status: 500 });
+  }
 }
