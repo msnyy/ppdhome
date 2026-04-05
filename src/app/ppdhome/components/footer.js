@@ -27,19 +27,30 @@ export default function Footer() {
 
     }, []);
 
-
-
     const pathname = usePathname();
-    if (pathname === "/ppdhome/admin/login") return null;
-    if (pathname === "/ppdhome/admin/allCreate") return null;
-    if (pathname === "/ppdhome/admin/newCreate") return null;
-    if (pathname === "/ppdhome/admin/publicCreate") return null;
-    if (pathname === "/ppdhome/admin/product") return null;
-    if (pathname === "/ppdhome/admin/newsAndPublicCreate") return null;
-    if (pathname === "/ppdhome/admin/banner") return null;
+const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  setMounted(true);
+}, []);
+
+
+
+const hiddenPaths = [
+  "/ppdhome/admin/login",
+  "/ppdhome/admin/allCreate",
+  "/ppdhome/admin/newCreate",
+  "/ppdhome/admin/publicCreate",
+  "/ppdhome/admin/product",
+  "/ppdhome/admin/newsAndPublicCreate",
+  "/ppdhome/admin/banner",
+];
+
+if (!mounted) return null;
+if (hiddenPaths.includes(pathname)) return null;
 
     return (
-        <footer className="bg-white shadow-xl shadow-pink-700 p-8 md:px-20 text-black">
+        <footer className="bg-white p-8 md:px-20 text-black">
 
             <div className="flex flex-row gap-16">
                 <div className="flex justify-between">

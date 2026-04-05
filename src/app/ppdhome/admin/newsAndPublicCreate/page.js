@@ -3,6 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ChevronLeftIcon,
@@ -24,17 +25,6 @@ function formatThaiDate(input) {
   ];
 
   return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear() + 543}`;
-}
-
-function isNew(date) {
-  if (!date) return false;
-
-  const now = new Date();
-  const newsDate = new Date(date);
-
-  const diff = (now - newsDate) / (1000 * 60 * 60 * 24);
-
-  return diff <= 7; // ภายใน 7 วัน
 }
 
 /* ---------- component ---------- */
@@ -69,7 +59,23 @@ export default function PostsAdmin() {
     }
   };
 
-  const pageSize = 10;
+  const [now, setNow] = useState(null);
+
+  useEffect(() => {
+    setNow(new Date());
+  }, []);
+
+  function isNew(content_date, now) {
+    if (!now || !content_date) return false;
+
+    const newsDate = new Date(content_date);
+    if (Number.isNaN(newsDate.getTime())) return false;
+
+    const diff = (now - newsDate) / (1000 * 60 * 60 * 24);
+    return diff <= 7;
+  }
+
+  const pageSize = 12;
 
   const categories = [
     { id: 1, name: "ทั่วไป" },
@@ -86,25 +92,20 @@ export default function PostsAdmin() {
   );
 
   /* ---------- tab button ---------- */
-
   const tabBtn = (active) =>
     cx(
-      "lg:px-10 md:px-6 px-4 py-3 border rounded-xl md:text-lg transition-all",
+      "lg:px-10 md:px-6 px-4 py-3 border rounded-xl md:text-lg transition-all duration-200",
       active
-        ? "bg-pink-400 text-white border-pink-400"
-        : "bg-white text-pink-400 border-pink-300 hover:bg-pink-400 hover:text-white"
+        ? "bg-pink-400 text-white border-pink-400 shadow-md/30"
+        : "bg-white text-pink-400 border-pink-300 hover:bg-pink-400 hover:text-white hover:shadow-md/30"
     );
 
   /* ---------- fetch data ---------- */
-
   useEffect(() => {
-
     const controller = new AbortController();
 
     async function load() {
-
       try {
-
         setLoading(true);
         setError("");
 
@@ -113,75 +114,77 @@ export default function PostsAdmin() {
           { signal: controller.signal }
         );
 
-        if (!res.ok) throw new Error("fetch error");
+        if (!res.ok) throw new Error(`Fetch failed (${res.status})`);
 
         const data = await res.json();
 
-        setItems(data.items || []);
-        setTotal(data.total || 0);
-
+        setItems(Array.isArray(data.items) ? data.items : []);
+        setTotal(Number.isFinite(data.total) ? data.total : 0);
       } catch (err) {
-
         if (err.name !== "AbortError") {
           console.error(err);
-          setError("โหลดข้อมูลไม่สำเร็จ");
+          setError("ไม่สามารถโหลดข้อมูลได้");
+          setItems([]);
+          setTotal(0);
         }
-
       } finally {
         setLoading(false);
       }
-
     }
 
     load();
-
     return () => controller.abort();
-
   }, [page, category]);
 
   /* ---------- pagination ---------- */
-
   const start = total === 0 ? 0 : (page - 1) * pageSize + 1;
   const end = total === 0 ? 0 : Math.min(page * pageSize, total);
 
   const pages = useMemo(() => {
-
     const last = totalPages;
-
-    if (last <= 7)
-      return Array.from({ length: last }, (_, i) => i + 1);
+    if (last <= 7) return Array.from({ length: last }, (_, i) => i + 1);
 
     const set = new Set([
-      1, 2, 3, last - 2, last - 1, last, page, page - 1, page + 1
+      1,
+      2,
+      3,
+      last - 2,
+      last - 1,
+      last,
+      page,
+      page - 1,
+      page + 1,
     ]);
 
     const arr = [...set]
-      .filter(n => n >= 1 && n <= last)
+      .filter((n) => n >= 1 && n <= last)
       .sort((a, b) => a - b);
 
     const out = [];
-
     for (let i = 0; i < arr.length; i++) {
       out.push(arr[i]);
       if (i < arr.length - 1 && arr[i + 1] - arr[i] > 1) {
         out.push("...");
       }
     }
-
     return out;
-
   }, [page, totalPages]);
 
   return (
+    <section className="lg:mx-20 md:mx-10 mx-4 mb-18">
+      <div>
+        <Link
+          href="/ppdhome/admin/allCreate"
+        >
+          <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6 mt-4 mb-4">
+            back
+          </button>
+        </Link>
+      </div>
 
-    <section className="lg:mx-20 md:mx-10 mx-4 mt-6">
-
-      {/* ---------- category tabs ---------- */}
-
+      {/* ---------- Tabs ---------- */}
       <div className="flex flex-wrap justify-center gap-4">
-
-        {categories.map(c => (
-
+        {categories.map((c) => (
           <button
             key={c.id}
             className={tabBtn(category === c.id)}
@@ -190,180 +193,158 @@ export default function PostsAdmin() {
               setPage(1);
             }}
           >
-
             {c.name}
-
           </button>
-
         ))}
-
       </div>
 
-      {/* ---------- content ---------- */}
-
-      <div className="border bg-white border-gray-300 mt-6 p-5 rounded-xl">
-
+      {/* ---------- Content ---------- */}
+      <div className="md:mt-10 mt-4 p-5 rounded-xl">
         {loading ? (
-
-          <p className="text-center py-8 text-gray-500">
-            กำลังโหลดข้อมูล...
-          </p>
-
+          <p className="py-8 text-center text-gray-500">กำลังโหลดข้อมูล...</p>
         ) : error ? (
-
-          <p className="text-center py-8 text-red-500">
-            {error}
-          </p>
-
+          <p className="py-8 text-center text-red-500">{error}</p>
         ) : items.length === 0 ? (
-
-          <p className="text-center py-8 text-gray-500">
-            ยังไม่มีข้อมูล
-          </p>
-
+          <p className="py-8 text-center text-gray-500">ยังไม่มีข้อมูล</p>
         ) : (
-
-          <div className="">
-
-            {items.map(it => {
-
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
+            {items.map((it) => {
               const {
-                id, title, subtitle, header_date, content_date, pdf_file
+                id,
+                title,
+                subtitle,
+                content_date,
+                image,
+                pdf_file,
+                detail, // 👈 เผื่อมีรายละเอียด
               } = it;
 
-              const newsNew = isNew(content_date);
+              const newsNew = isNew(content_date, now);
 
               const href = pdf_file
                 ? pdf_file
-                : `/ppdhome/admin/posts/${id}`;
+                : `/ppdhome/user/newsAndPublic/${id}`;
 
               return (
-
                 <Link
                   key={id}
                   href={href}
                   target={pdf_file ? "_blank" : undefined}
-                  className="block py-4 hover:bg-pink-50 px-2 border-b border-gray-300 text-black"
+                  className="group bg-white rounded-xl overflow-hidden shadow-lg transition"
                 >
+                  {/* 🔥 รูป */}
+                  <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
+                    {image ? (
+                      <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400">
+                        ไม่มีรูป
+                      </div>
+                    )}
+                  </div>
 
-                  <div className="flex justify-between items-start">
+                  {/* 🔥 content */}
+                  <div className="p-4">
+                    {/* title */}
+                    <p className="text-base font-semibold line-clamp-2 group-hover:text-pink-600">
+                      {title} {subtitle}
+                    </p>
 
-                    <div>
-                      
-                        <div className="flex items-center gap-2 flex-wrap">
+                    {/* detail */}
+                    {detail && (
+                      <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                        {detail}
+                      </p>
+                    )}
 
-                          <p className="text-lg">
-                            {title} 
-                          </p>
-                          
-                          {subtitle && (
-                          <span className="text-lg">
-                           {subtitle}
-                          </span>
-                        )}
-
-                          {newsNew && (
-                            <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
-                              NEW
-                            </span>
-                          )}
-
-                        </div>
-                      
-
-
-                      {header_date && (
-                        <p className="text-xs text-gray-500">
-                          {header_date}
-                        </p>
-                      )}
-
-                    </div>
-
-                    <div className="flex gap-2">
-
-                      <p className="text-sm text-gray-500">
+                    {/* date + NEW */}
+                    <div className="flex items-center justify-between mt-3">
+                      <p className="text-xs text-gray-500">
                         {formatThaiDate(content_date)}
                       </p>
+
+                      {newsNew && (
+                        <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
+                          NEW
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between mt-3">
+                      <p className="text-blue-600 text-sm text-light mt-2">Read More</p>
 
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           handleDelete(id);
                         }}
-                        className="bg-red-500 rounded-xl p-2 text-white hover:text-red-700 text-sm"
+                        className="bg-red-500 rounded-xl p-1 px-3 text-white hover:bg-red-700 text-sm"
                       >
                         ลบ
                       </button>
-
                     </div>
 
                   </div>
-
+                  
                 </Link>
-
               );
-
             })}
-
           </div>
-
         )}
 
-        {/* ---------- pagination ---------- */}
-
-        <div className="flex justify-between pt-3">
-
-          <p className="text-sm">
+      </div>
+      <div>
+        {/* pagination เหมือนเดิม */}
+        <div className="flex justify-center gap-6 items-center mt-5 pt-3">
+          <p className="text-sm text-gray-700">
             แสดง {start} ถึง {end} จากทั้งหมด {total} รายการ
           </p>
 
-          <nav className="flex">
-
+          <nav className="inline-flex shadow-sm">
             <button
               disabled={page <= 1}
-              onClick={() => setPage(p => Math.max(1, p - 1))}
-              className="px-3 border border-gray-400 rounded-l"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
             >
-              <ChevronLeftIcon className="w-5" />
+              <ChevronLeftIcon className="w-5 h-5" />
             </button>
 
             {pages.map((p, i) =>
-
-              p === "..." ?
-
-                <span key={i} className="px-3 border">...</span>
-
-                :
-
+              p === "..." ? (
+                <span key={i} className="px-4 py-2 border text-gray-400">
+                  ...
+                </span>
+              ) : (
                 <button
                   key={p}
                   onClick={() => setPage(p)}
                   className={cx(
-                    "px-3 border",
+                    "px-4 py-2 border",
                     p === page && "bg-pink-400 text-white"
                   )}
                 >
                   {p}
                 </button>
-
+              )
             )}
 
             <button
               disabled={page >= totalPages}
-              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-              className="px-3 border border-gray-400 rounded-r"
+              onClick={() =>
+                setPage((p) => Math.min(totalPages, p + 1))
+              }
+              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
             >
-              <ChevronRightIcon className="w-5" />
+              <ChevronRightIcon className="w-5 h-5" />
             </button>
-
           </nav>
-
         </div>
-
       </div>
-
-      {/* ---------- floating add button ---------- */}
 
       <Link
         href="/ppdhome/admin/newsAndPublicCreate/postsCreate"
@@ -373,16 +354,6 @@ export default function PostsAdmin() {
         +
 
       </Link>
-
-      <div className="flex justify-end">
-        <Link
-          href="/ppdhome/admin/allCreate"
-        >
-          <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6 mt-4">
-            back
-          </button>
-        </Link>
-      </div>
     </section>
 
   );

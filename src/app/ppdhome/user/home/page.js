@@ -166,7 +166,7 @@ export default function HomePage() {
             </div>
 
             <Image
-              src={getSupabaseImage("pic/testppd.png")}
+              src={getSupabaseImage("pic/ppdhome.png")}
               alt="ตราสถาบัน"
               width={700}
               height={200}

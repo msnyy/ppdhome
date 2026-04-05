@@ -3,7 +3,7 @@ export default function AboutMission(){
     return(
         <div className="lg:mx-20 md:mx-12 mx-5 lg:my-16 md:my-10 my-4 text-black">
             <div>
-                <p className="text-center lg:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg">ภารกิจและหน้าที่รับผิดชอบ</p>
+                <p className="text-center lg:text-5xl md:text-3xl text-xl text-shadow-lg">ภารกิจและหน้าที่รับผิดชอบ</p>
             </div>
             <div className="lg:mt-10 mt-4 md:text-base text-xs">
                 <p>1. การฟื้นฟูสมรรถภาพทางการแพทย์</p>

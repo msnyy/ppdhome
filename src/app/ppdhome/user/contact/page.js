@@ -1,19 +1,33 @@
+import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
+
 export const dynamic = "force-dynamic";
 export default function Contact() {
     return (
-        <section className="bg-pink-100 rounded-xl text-black">
-            <div className="lg:p-10 md:p-6 p-4">
-                <p className="text-center xl:text-5xl md:text-3xl text-xl text-shadow-lg">
-                    Contact Us
-                </p>
+        <section className="bg-pink-100 text-black">
+            <div className="lg:p-10 md:p-6 p-4 flex md:justify-between md:flex-row flex-col">
                 {/* <p className="xl:text-4xl md:text-2xl text-xl text-center font-semibold text-shadow-lg lg:mt-8 md:mt-4 mt-2">
                     สถาบันคุ้มครองและพัฒนาผู้พิการ พระประแดง
                 </p> */}
-                <div className="flex md:justify-between md:flex-row flex-col lg:mt-10 md:mt-6 lg:mx-15 md:mx-10 md:mx-6 mx-2">
+
+
+                <div className="w-full">
+                    <Image
+                        src={getSupabaseImage("pic/ppdhome.png")}
+                        alt="ตราสถาบัน"
+                        width={1500}
+                        height={200}
+                        className="h-auto w-full rounded-xl"
+                    />
+                </div>
+                <div className="flex flex-col lg:mx-15 md:mx-10 md:mx-6 mx-2">
                     <div>
-                        <div className="flex flex-row gap-4">
+                        <p className="xl:text-4xl md:text-2xl text-shadow-lg">
+                            Contact Us
+                        </p>
+                        <div className="flex flex-row gap-4 mt-4">
                             <p className="flex gap-2 lg:text-2xl md:text-xl text-lg font-semibold mt-4">
-                                <svg className="md:w-[40px] md:h-[40px] w-[30px] h-[30px] md:-mt-3 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
+                                <svg className="w-[35px] h-[35px] md:-mt-4 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z" />
                                 </svg>
@@ -30,7 +44,7 @@ export default function Contact() {
 
                         <div className="flex flex-row gap-4 lg:mt-10 mt-4">
                             <p className="flex gap-2 lg:text-2xl md:text-xl text-lg font-semibold ">
-                                <svg className="md:w-[40px] md:h-[40px] w-[30px] h-[30px] md:-mt-2 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <svg className="w-[35px] h-[35px] md:-mt-2 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z" />
                                 </svg>
                             </p>
@@ -41,7 +55,7 @@ export default function Contact() {
 
                         <div className="flex flex-row gap-4 lg:mt-10 mt-4">
                             <p className="flex gap-2 lg:text-2xl md:text-xl text-lg font-semibold mt-1">
-                                <svg className="md:w-[40px] md:h-[40px] w-[30px] h-[30px] md:-mt-2 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <svg className="w-[35px] h-[35px] md:-mt-2 -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
                                 </svg>
                             </p>
@@ -82,6 +96,7 @@ export default function Contact() {
                             width="500" height="400" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="rounded-xl w-[280px] h-[200px] mt-4"></iframe>
                     </div>
                 </div>
+
             </div>
         </section>
     );

@@ -2,15 +2,15 @@ export const dynamic = "force-dynamic";
 
 export default function Header() {
     return (
-        <div className="flex flex-col min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black">
-            <p className="xl:text-5xl md:text-3xl text-lg font-semibold text-shadow-lg text-center lg:mt-10 mt-4">
+        <div className="flex flex-col min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black mb-18">
+            <p className="xl:text-5xl md:text-3xl text-lg text-shadow-lg text-center lg:mt-10 mt-4">
                 พรบ. คุ้มครองข้อมูลส่วนบุคคล
             </p>
-            <p className="lg:mt-10 mt-4 md:text-xl text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-xl text-xs font-medium text-shadow-lg">
                 นโยบายเว็บไซต์
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 1. วัตถุประสงค์
             </p>
             <p className="md:text-base text-xs mt-2">
@@ -21,14 +21,14 @@ export default function Header() {
                 ขอความกรุณาท่านยุติการเข้าชมและใช้งานเว็บไซต์นี้ในทันที
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 2. เงื่อนไขและข้อกําหนดการใช้งานเว็บไซต์
             </p>
             <p className="md:text-base text-xs mt-2">
                 2.1 ผู้ใช้บริการอาจได้รับ เข้าถึง หรือแสดงข้อมูล เช่น ไฟล์ข้อมูล ข้อความลายลักษณ์อักษร
                 ซอฟต์แวร์คอมพิวเตอร์ ดนตรี ไฟล์เสียง หรือเสียงอื่นๆ ภาพถ่าย วิดีโอ หรือรูปภาพอื่นๆ
                 โดยเป็นส่วนหนึ่งของบริการหรือโดยผ่านการใช้บริการ ซึ่งต่อไปนี้จะเรียกว่า
-                <span className="font-semibold"> เนื้อหา</span>
+                <span className="font-medium"> เนื้อหา</span>
             </p>
             <p className="md:text-base text-xs mt-2">
                 2.2 เนื้อหาที่นําเสนอต่อผู้ใช้บริการ อาจได้รับการคุ้มครองโดยสิทธิในทรัพย์สินทางปัญญาของเจ้าของเนื้อหานั้น ผู้ใช้บริการไม่มีสิทธิเปลี่ยนแปลงแก้ไข 
@@ -46,7 +46,7 @@ export default function Header() {
                 หากการให้บริการดังกล่าวส่งผลกระทบต่อผู้ใช้บริการอื่นๆ หรือขัดแย้งต่อกฎหมาย โดยไม่ต้องแจ้งให้ผู้ใช้บริการทราบล่วงหน้า
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-x font-medium text-shadow-lg">
                 3. สิทธิหน้าที่ และความรับผิดชอบของผู้ใช้บริการ
             </p>
             <p className="md:text-base text-xs mt-2">
@@ -67,7 +67,7 @@ export default function Header() {
                 3.5 ผู้ใช้บริการจะเป็นผู้รับผิดชอบแต่เพียงผู้เดียวต่อบุคคลใดๆ รวมถึงสถานคุ้มครองและพัฒนาคนพิการบ้านนนทภูมิในความเสียหายอันเกิดจากการละเมิดข้อกําหนด
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 4. การเชื่อมโยงกับเว็บไซต์อื่นๆ
             </p>
             <p className="md:text-base text-xs mt-2">
@@ -81,7 +81,7 @@ export default function Header() {
                 ที่เกิดขึ้นจากการใช้เว็บไซต์เหล่านั้น
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 5. การปฏิเสธความรับผิด
             </p>
             <p className="md:text-base text-xs mt-2">
@@ -94,7 +94,7 @@ export default function Header() {
                 รวมถึงความเสียหายอื่นใดที่อาจเกิดขึ้นได้ผู้ใช้บริการยอมรับและตระหนักดีว่า สถานคุ้มครองและพัฒนาคนพิการบ้านนนทภูมิจะไม่ต้องรับผิดชอบต่อการกระทําใดของผู้ใช้บริการทั้งสิ้น
             </p>
             
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 6. กรรมสิทธิ์และสิทธิในทรัพย์สินทางปัญญา
             </p>
             <p className="md:text-base text-xs mt-2">
@@ -106,7 +106,7 @@ export default function Header() {
                 ที่มีอยู่ในบริการซึ่งสถานคุ้มครองและพัฒนาคนพิการบ้านนนทภูมิหรือ ผู้ให้อนุญาตแก่สถานคุ้มครองและพัฒนาคนพิการบ้านนนทภูมิเป็นผู้จัดทําขึ้น ไม่ว่าสิทธิเหล่านั้นจะได้รับการจดทะเบียนไว้หรือไม่ก็ตาม
             </p>
 
-            <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold text-shadow-lg">
+            <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
                 7. กฎหมายที่ใช้บังคับ
             </p>
             <p className="md:text-base text-xs mt-2">

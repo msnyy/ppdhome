@@ -3,6 +3,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ChevronLeftIcon,
@@ -35,14 +36,6 @@ function formatThaiDate(input) {
   return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear() + 543}`;
 }
 
-function isNew(content_date) {
-  const now = new Date();
-  const newsDate = new Date(content_date);
-
-  const diff = (now - newsDate) / (1000 * 60 * 60 * 24);
-  return diff <= 7;
-}
-
 /* ---------- component ---------- */
 export default function NewsAndPublic() {
   const [category, setCategory] = useState(1);
@@ -53,7 +46,23 @@ export default function NewsAndPublic() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const pageSize = 10;
+  const [now, setNow] = useState(null);
+
+  useEffect(() => {
+    setNow(new Date());
+  }, []);
+
+  function isNew(content_date, now) {
+    if (!now || !content_date) return false;
+
+    const newsDate = new Date(content_date);
+    if (Number.isNaN(newsDate.getTime())) return false;
+
+    const diff = (now - newsDate) / (1000 * 60 * 60 * 24);
+    return diff <= 7;
+  }
+
+  const pageSize = 12;
 
   const categories = [
     { id: 1, name: "ทั่วไป" },
@@ -149,7 +158,7 @@ export default function NewsAndPublic() {
   }, [page, totalPages]);
 
   return (
-    <section className="lg:mx-20 md:mx-10 mx-4 md:mt-16 mt-4">
+    <section className="lg:mx-20 md:mx-10 mx-4 md:mt-16 mt-4 mb-18">
       {/* ---------- Tabs ---------- */}
       <div className="flex flex-wrap justify-center gap-4">
         {categories.map((c) => (
@@ -167,7 +176,7 @@ export default function NewsAndPublic() {
       </div>
 
       {/* ---------- Content ---------- */}
-      <div className="border bg-white border-gray-300 md:mt-10 mt-4 p-5 rounded-xl">
+      <div className="md:mt-10 mt-4 p-5 rounded-xl">
         {loading ? (
           <p className="py-8 text-center text-gray-500">กำลังโหลดข้อมูล...</p>
         ) : error ? (
@@ -175,75 +184,87 @@ export default function NewsAndPublic() {
         ) : items.length === 0 ? (
           <p className="py-8 text-center text-gray-500">ยังไม่มีข้อมูล</p>
         ) : (
-          <div className="divide-y divide-gray-200">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-6">
             {items.map((it) => {
               const {
                 id,
                 title,
                 subtitle,
-                header_date,
                 content_date,
+                image,
                 pdf_file,
+                detail, // 👈 เผื่อมีรายละเอียด
               } = it;
+
+              const newsNew = isNew(content_date, now);
 
               const href = pdf_file
                 ? pdf_file
                 : `/ppdhome/user/newsAndPublic/${id}`;
-
-              const newsNew = isNew(content_date);
 
               return (
                 <Link
                   key={id}
                   href={href}
                   target={pdf_file ? "_blank" : undefined}
-                  className="block py-4 px-2 rounded-lg hover:bg-pink-50 transition text-black"
+                  className="group bg-white rounded-xl overflow-hidden shadow-lg transition"
                 >
-                  <div className="flex justify-between">
+                  {/* 🔥 รูป */}
+                  <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
+                    {image ? (
+                      <Image
+                        src={image}
+                        alt={title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400">
+                        ไม่มีรูป
+                      </div>
+                    )}
+                  </div>
 
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-
-                          <p className="text-lg">
-                            {title} 
-                          </p>
-                          
-                          {subtitle && (
-                          <span className="text-lg">
-                           {subtitle}
-                          </span>
-                        )}
-
-                          {newsNew && (
-                            <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
-                              NEW
-                            </span>
-                          )}
-
-                        </div>
-
-
-                      {header_date && (
-                        <p className="text-xs text-gray-500">
-                          {header_date}
-                        </p>
-                      )}
-
-                    </div>
-
-                    <p className="text-sm text-gray-500">
-                      {formatThaiDate(content_date)}
+                  {/* 🔥 content */}
+                  <div className="p-4">
+                    {/* title */}
+                    <p className="text-base font-semibold line-clamp-2 group-hover:text-pink-600">
+                      {title} {subtitle}
                     </p>
 
+                    {/* detail */}
+                    {detail && (
+                      <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                        {detail}
+                      </p>
+                    )}
+
+                    {/* date + NEW */}
+                    <div className="flex items-center justify-between mt-3">
+                      <p className="text-xs text-gray-500">
+                        {formatThaiDate(content_date)}
+                      </p>
+
+                      {newsNew && (
+                        <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
+                          NEW
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="text-blue-600 text-sm text-light mt-2">Read More</p>
                   </div>
+                  
                 </Link>
               );
             })}
           </div>
         )}
 
-        {/* ---------- Pagination ---------- */}
-        <div className="flex justify-between items-center border-t mt-5 pt-3">
+      </div>
+      <div>
+        {/* pagination เหมือนเดิม */}
+        <div className="flex justify-center gap-6 items-center mt-5 pt-3">
           <p className="text-sm text-gray-700">
             แสดง {start} ถึง {end} จากทั้งหมด {total} รายการ
           </p>
@@ -252,7 +273,7 @@ export default function NewsAndPublic() {
             <button
               disabled={page <= 1}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="px-2 py-2 border rounded-l disabled:text-gray-300"
+              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
             >
               <ChevronLeftIcon className="w-5 h-5" />
             </button>
@@ -281,7 +302,7 @@ export default function NewsAndPublic() {
               onClick={() =>
                 setPage((p) => Math.min(totalPages, p + 1))
               }
-              className="px-2 py-2 border rounded-r disabled:text-gray-300"
+              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
             >
               <ChevronRightIcon className="w-5 h-5" />
             </button>

@@ -97,11 +97,9 @@ export default function Header() {
                 <nav className="flex-1 flex">
                     <div className="flex justify-center items-center gap-6 lg:gap-12 w-full rounded-xl py-4">
                         <div className="relative">
-                            <Link href="/ppdhome/user/newsAndPublic" className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
-                                <button className="inline-flex items-center gap-2 font-light text-black hover:text-pink-700">
+                            <a href="/ppdhome/user/home" className="inline-flex font-light text-black flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
                                     หน้าหลัก
-                                </button>
-                            </Link>
+                            </a>
                         </div>
 
                         <div className="relative" onMouseEnter={() => setDesktopAboutOpen(true)} onMouseLeave={() => setDesktopAboutOpen(false)}>
