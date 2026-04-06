@@ -8,15 +8,19 @@ export default function ActivityPrint() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
-            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black">
-                <p className="xl:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg text-center">
+            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black mb-18">
+                <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">
                     โครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ
                 </p>
 
+                <p className="mt-6">
+                    วันจันทร์ ที่ 3 มีนาคม 2568
+                </p>
+
+                <div className="border-b mt-6"></div>
+
                 <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                    <p>
-                        วันจันทร์ ที่ 3 มีนาคม 2568
-                    </p>
+
                     <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
                         ว่าที่ร้อยตรีณัทกร ธงสอาด ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
                         พร้อมด้วยข้าราชการและเจ้าหน้าที่ ร่วมกับคณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี สาขาวิชาเทคโนโลยีการพิมพ์และบรรจุภัณฑ์มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี

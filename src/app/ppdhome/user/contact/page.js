@@ -13,7 +13,7 @@ export default function Contact() {
 
                 <div className="w-full">
                     <Image
-                        src={getSupabaseImage("pic/ppdhome.png")}
+                        src={getSupabaseImage("pic/ppdhome.jpeg")}
                         alt="ตราสถาบัน"
                         width={1500}
                         height={200}

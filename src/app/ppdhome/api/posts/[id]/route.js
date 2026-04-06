@@ -22,6 +22,7 @@ export async function GET(request) {
       return Response.json({ error: "invalid id" }, { status: 400 });
     }
 
+    /* ---------- post ปัจจุบัน ---------- */
     const { data, error } = await supabase
       .from("posts")
       .select("*")
@@ -32,7 +33,32 @@ export async function GET(request) {
       return Response.json({ error: "ไม่พบข้อมูล" }, { status: 404 });
     }
 
-    return Response.json(data);
+    /* ---------- ข่าวก่อนหน้า ---------- */
+    const { data: prev } = await supabase
+      .from("posts")
+      .select("id, title")
+      .lt("id", id)
+      .order("id", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    /* ---------- ข่าวถัดไป ---------- */
+    const { data: next } = await supabase
+      .from("posts")
+      .select("id, title")
+      .gt("id", id)
+      .order("id", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    return Response.json({
+      ...data,
+      prevId: prev?.id || null,
+      prevTitle: prev?.title || null,
+      nextId: next?.id || null,
+      nextTitle: next?.title || null,
+    });
+
   } catch (error) {
     console.error("GET POST DETAIL ERROR:", error);
     return Response.json({ error: error.message }, { status: 500 });

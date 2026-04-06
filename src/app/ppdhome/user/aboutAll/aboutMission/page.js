@@ -11,7 +11,7 @@ export default function AboutMission() {
             <div className="flex flex-col md:flex-row gap-12">
                 <div className="w-full">
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>1. การฟื้นฟูสมรรถภาพทางการแพทย์</p>
+                        <p className="font-medium text-shadow-lg">1. การฟื้นฟูสมรรถภาพทางการแพทย์</p>
                         <ul className="list-disc ms-8">
                             <li>ให้บริการดูแลสุขภาพและฟื้นฟูโดยพยาบาลและเจ้าหน้าที่สาธารณสุข</li>
                             <li>มีพยาบาลประจำตลอด 24 ชั่วโมง</li>
@@ -24,7 +24,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>2. การเข้าถึงการศึกษา</p>
+                        <p className="font-medium text-shadow-lg">2. การเข้าถึงการศึกษา</p>
                         <ul className="list-disc ms-8">
                             <li>ส่งเสริมการเรียนรู้ร่วมกับ “ศูนย์การศึกษานอกระบบอำเภอพระประแดง”</li>
                             <li>มีการจัดสอนในระดับประถม - มัธยมปลาย</li>
@@ -34,7 +34,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>3. การฟื้นฟูสมรรถภาพด้านอาชีพ</p>
+                        <p className="font-medium text-shadow-lg">3. การฟื้นฟูสมรรถภาพด้านอาชีพ</p>
                         <ul className="list-disc ms-8">
                             <li>ให้บริการดูแลสุขภาพและฟื้นฟูโดยพยาบาลและเจ้าหน้าที่สาธารณสุข</li>
                             <li>ฝึกอาชีพให้คนพิการ เช่น</li>
@@ -54,7 +54,7 @@ export default function AboutMission() {
 
                 <div className="w-full">
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>4. การมีส่วนร่วมในสังคม</p>
+                        <p className="font-medium text-shadow-lg">4. การมีส่วนร่วมในสังคม</p>
                         <ul className="list-disc ms-8">
                             <li>ส่งเสริมให้คนพิการเข้าร่วมกิจกรรมทางสังคม วัฒนธรรม และศาสนา เช่น</li>
                             <li className="ms-6">วันสงกรานต์, ลอยกระทง, ส่งท้ายปีเก่า</li>
@@ -64,7 +64,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>5. การเข้าถึงนโยบายและสิทธิภาครัฐ</p>
+                        <p className="font-medium text-shadow-lg">5. การเข้าถึงนโยบายและสิทธิภาครัฐ</p>
                         <ul className="list-disc ms-8">
                             <li>ประสานงานกับสถาบันสิรินธร เพื่อจัดหากายอุปกรณ์ช่วยเหลือ</li>
                             <li>ดำเนินโครงการแก้ไข “ปัญหาสถานะบุคคล”</li>
@@ -73,7 +73,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>6. การสื่อสารและเทคโนโลยีสารสนเทศ</p>
+                        <p className="font-medium text-shadow-lg">6. การสื่อสารและเทคโนโลยีสารสนเทศ</p>
                         <ul className="list-disc ms-8">
                             <li>มีระบบโทรศัพท์และแอปฯ Line สำหรับติดต่อญาติ</li>
                             <li>ติดตั้งทีวีในเรือนนอนทุกหลังเพื่อรับข่าวสาร</li>
@@ -82,7 +82,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                        <p>การสนับสนุนอาชีพและการจ้างงาน</p>
+                        <p className="font-medium text-shadow-lg">การสนับสนุนอาชีพและการจ้างงาน</p>
                         <ul className="list-disc ms-8">
                             <li>ฝึกอาชีพให้คนพิการในความดูแลอย่างต่อเนื่อง</li>
                             <li>คนพิการบางส่วนเข้าฝึกตามมาตรา 33 และ 35 (กฎหมายจ้างงานคนพิการ)</li>

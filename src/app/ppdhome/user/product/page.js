@@ -117,6 +117,9 @@ export default function Product() {
                 {/* 🖤 overlay มืด (ช่วยให้อ่านตัวหนังสือชัด) */}
                 <div className="absolute inset-0 bg-black/40"></div>
 
+                {/* 🌑 เงาดำไล่จากล่างขึ้นบน */}
+                <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+
                 {/* 📝 เนื้อหา */}
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
                     <p className="text-2xl md:text-4xl font-bold">

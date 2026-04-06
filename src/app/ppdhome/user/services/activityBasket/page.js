@@ -8,10 +8,12 @@ export default function ActivityBasket() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
-            <section className="lg:mx-20 md:mx-10 mx-5 lg:mt-15 md:mt-10 text-black">
-                <p className="lg:text-5xl md:text-3xl text-xl font-semibold text-shadow-lg text-center">
+            <section className="lg:mx-20 md:mx-10 mx-5 lg:mt-15 md:mt-10 text-black mb-18">
+                <p className="lg:text-4xl md:text-3xl text-xl text-shadow-lg">
                     กิจกรรมสานตะกร้า
                 </p>
+
+                <div className="border-b mt-6"></div>
 
                 <div className="md:mt-10 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 md:gap-4 gap-4 flex justify-between">
                     <div className="relative aspect-[4/3] w-full overflow-hidden">

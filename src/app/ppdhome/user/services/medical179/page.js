@@ -8,18 +8,22 @@ export default function Medical() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
-            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black">
-                <p className="xl:text-5xl md:text-3xl text-xl font-semibold text-center text-shadow-lg">
+            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black mb-6">
+                <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">
                     บ้านพระประแดงร่วมกับโรงพยาบาลบางจากและคลินิกมิตรไมตรี
                 </p>
-                <p className="xl:text-5xl md:text-3xl text-xl lg:mt-5 mt-2 font-semibold text-center text-shadow-lg">
+
+                <p className="xl:text-3xl md:text-3xl lg:mt-5 mt-2 text-xl text-shadow-lg">
                     ดำเนินการตรวจคัดกรองวัณโรคในกลุ่มเสี่ยงให้กับผู้ใช้บริการ
                 </p>
-
-                <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                    <p>
+                <p className="mt-6">
                         วันพฤหัสบดีที่ 4 กันยายน พ.ศ. 2568 
                     </p>
+
+                    <div className="border-b mt-6"></div>
+
+                <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
+                    
                     <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
                         สถานคุ้มครองและพัฒนาคนพิการพระประแดงจังหวัดสมุทรปราการ นำโดยว่าที่ร้อยตรีณัทกร ธงสอาด ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
                         

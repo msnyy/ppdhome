@@ -8,69 +8,72 @@ export default function ActivityPhysical() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
-            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black">
-                <p className="xl:text-5xl md:text-3xl text-xl font-semibold text-center text-shadow-lg">
+            <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black mb-18">
+                <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">
                     กิจกรรมสนับสนุนและส่งเสริมการเรียนรู้ (สกร.)
                 </p>
+                <p className="mt-6">
+                    วันอังคารที่ 17 มิถุนายน พ.ศ. 2568 เวลา 13.30 น.
+                </p>
+
+                <div className="border-b mt-6"></div>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                    <p>
-                        วันอังคารที่ 17 มิถุนายน พ.ศ. 2568 เวลา 13.30 น.
-                    </p>
+
                     <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                        สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ 
+                        สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
                     </p>
                     <p>
-                        จัดกิจกรรมสนับสนุนและส่งเสริมการเรียนรู้ (สกร.) เพื่อส่งเสริมศักยภาพการเรียนรู้ ของผู้ใช้บริการ 
-                        ตลอดจนเปิดโอกาสให้เข้าถึงการ ศึกษาอย่างต่อเนื่องและทั่วถึง ซึ่งมุ่งเน้นการเสริมสร้างทักษะ ความรู้ 
-                        และสามารถนำไปประยุกต์ใช้ในชีวิตประจำวันได้ โดยได้รับเกียรติจากอาจารย์ บุญธวัช พันธ์เสือ เป็นอาจารย์ผู้สอน 
+                        จัดกิจกรรมสนับสนุนและส่งเสริมการเรียนรู้ (สกร.) เพื่อส่งเสริมศักยภาพการเรียนรู้ ของผู้ใช้บริการ
+                        ตลอดจนเปิดโอกาสให้เข้าถึงการ ศึกษาอย่างต่อเนื่องและทั่วถึง ซึ่งมุ่งเน้นการเสริมสร้างทักษะ ความรู้
+                        และสามารถนำไปประยุกต์ใช้ในชีวิตประจำวันได้ โดยได้รับเกียรติจากอาจารย์ บุญธวัช พันธ์เสือ เป็นอาจารย์ผู้สอน
                         ณ อาคารอเนกประสงค์สถานคุ้มครองและพัฒนาคนพิการพระประแดงจังหวัดสมุทรปราการ
                     </p>
                 </div>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
                     <Image src={getSupabaseImage("pic/study/study1.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study1.JPG"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study2.jpg")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study2.jpg"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study3.jpg")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study3.jpg"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study4.jpg")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study4.jpg"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study5.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study5.JPG"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study6.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study6.JPG"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study7.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study7.JPG"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study8.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study8.JPG"))}>
                     </Image>
                     <Image src={getSupabaseImage("pic/study/study9.JPG")} alt="การศึกษา"
-                    className="transition delay-50 duration-300 ease-in-out hover:scale-105"
+                        className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/study/study9.JPG"))}>
                     </Image>

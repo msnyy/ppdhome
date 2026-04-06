@@ -52,7 +52,8 @@ export default function Header() {
     return (
         <header className="inset-x-0 top-0 xl:w-full z-50 text-black z-1000 bg-white">
             <div className="flex justify-between items-center px-4 pt-4">
-                <div className="flex items-center px-2 md:px-5 ms-2 md:ms-2">
+                <div className="flex justify-between items-center px-2 md:px-5 ms-2 md:ms-2 w-full">
+                    <div>
                     <Link href="/ppdhome/user/home" className="flex items-center gap-3" onClick={handleCloseMenu}>
                         <Image
                             src="/pic/logo.png"
@@ -63,6 +64,17 @@ export default function Header() {
                         />
 
                     </Link>
+                    </div>
+
+                    <div className="border-b">
+                    <Link
+                                    href="/ppdhome/admin/login"
+                                    className="block hover:text-gray-700"
+                                >
+                                    บุคลากร
+                                </Link>
+                                
+                                </div>
                 </div>
 
                 <div className="flex items-center gap-3 me-4">

@@ -223,7 +223,7 @@ export default function PostsAdmin() {
 
               const href = pdf_file
                 ? pdf_file
-                : `/ppdhome/user/newsAndPublic/${id}`;
+                : `/ppdhome/admin/posts/${id}`;
 
               return (
                 <Link
