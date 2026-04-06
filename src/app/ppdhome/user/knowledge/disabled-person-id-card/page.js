@@ -8,13 +8,13 @@ export default function AboutMission() {
     return (
         <div className="lg:mx-20 md:mx-12 mx-5 lg:my-16 md:my-10 my-4 text-black">
             <div>
-                <p className="text-center lg:text-4xl md:text-3xl text-xl font-medium text-shadow-lg">บัตรประจำตัวคนพิการ</p>
+                <p className="text-center lg:text-4xl md:text-3xl text-xl text-shadow-lg">บัตรประจำตัวคนพิการ</p>
             </div>
 
             <div className="border border-t mt-8"></div>
 
             <div className="lg:mt-10 mt-4 md:text-base text-xs">
-                <p className="text-shadow-lg">1. คุณสมบัติของคนพิการที่ยื่นคำขอ</p>
+                <p className="font-medium text-shadow-lg">1. คุณสมบัติของคนพิการที่ยื่นคำขอ</p>
                 <div className="ms-8">
                     <p>1.1 เป็นบุคคลผู้มีสัญชาติไทย</p>
                     <p>1.2 บุคคลที่ยังไม่ได้แจ้งเกิดหรือบุคคลที่ไม่ปรากฏแน่ชัดว่าสัญชาติไทยต้องดำเนินการตามขั้นตอนตามพระราชบัญญัติการทะเบียนราษฎร์พ.ศ.2534 และที่แก้ไขเพิ่มเติม (ฉบับที่ 2) ก่อน</p>

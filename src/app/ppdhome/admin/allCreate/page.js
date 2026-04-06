@@ -39,7 +39,7 @@ export default function AllCreate() {
 
                 <Link href="/ppdhome/admin/banner" className="">
                     <div className="bg-white lg:p-16 md:p-10 p-4 rounded-xl border border-pink-200 text-shadow-lg shadow-lg hover:bg-pink-200 hover:shadow-sm hover:text-pink-700 hover:inset-shadow-sm hover:inset-shadow-pink-700/50 hover:text-shadow-2xs">
-                        <p className="lg:text-5xl md:text-3xl text-lg">แก้ไขแบรนด์เนอร์</p>
+                        <p className="lg:text-5xl md:text-3xl text-lg">แก้ไขแบนเนอร์</p>
                     </div>
                 </Link>
 

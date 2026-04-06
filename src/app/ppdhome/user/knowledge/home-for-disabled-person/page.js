@@ -3,8 +3,8 @@ import { getSupabaseImage } from "@lib/image";
 export const dynamic = "force-dynamic";
 export default function GoldCard(){
     return(
-        <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4 text-black">
-            <p className="lg:text-4xl md:text-4xl text-xl text-center font-semibold md:mb-10 mb-4 text-shadow-lg">
+        <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4 text-black mb-8">
+            <p className="lg:text-4xl md:text-4xl text-xl text-center md:mb-10 mb-4 text-shadow-lg">
                 การรับคนพิการเข้าสถานคุ้มครอง
             </p>
             <Image src={getSupabaseImage("pic/knowledge/pic1.png")} alt="รูปการรับคนพิการเข้าสถานคุ้มครอง" width={1400} height={100}></Image>

@@ -182,13 +182,13 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative hidden lg:block z-10 flex flex-col justify-center mx-10 py-20">
-                  <p className="lg:text-2xl font-semibold text-shadow-lg">
+                  <p className="lg:text-2xl text-shadow-lg">
                     สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
                   </p>
-                  <p className="lg:text-xl text-sm font-semibold mt-4">
+                  <p className="lg:text-xl text-sm text-shadow-lg mt-4">
                     PHRAPRADAENG HOME FOR PERSONS WITH
                   </p>
-                  <p className="lg:text-xl text-sm font-semibold mt-4">
+                  <p className="lg:text-xl text-sm text-shadow-lg mt-4">
                     DISABILITIES PROTECTION AND DEVELOPMENT
                   </p>
                   <p className="mt-4 text-sm">
@@ -199,7 +199,7 @@ export default function HomePage() {
                   </p>
 
                   <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
-                    <h1 className="mb-8 border-b mt-10 w-30 hover:text-pink-700 text-sm">
+                    <h1 className="mb-8 border-b mt-10 w-30 hover:text-pink-700">
                       Read More
                     </h1>
                   </Link>
@@ -229,13 +229,13 @@ export default function HomePage() {
                 <div className="absolute inset-0 flex items-end md:pb-8 pb-6">
                   <div className="max-w-xl md:ml-10 ml-2 text-white z-10">
 
-                    <p className="md:text-xl text-sm font-semibold text-shadow-lg">
+                    <p className="md:text-xl text-sm text-shadow-lg">
                       สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
                     </p>
-                    <p className="md:text-xl text-sm font-semibold text-shadow-lg">
+                    <p className="md:text-xl text-sm text-shadow-lg">
                       PHRAPRADAENG HOME FOR PERSONS WITH
                     </p>
-                    <p className="md:text-xl text-sm font-semibold text-shadow-lg">
+                    <p className="md:text-xl text-sm text-shadow-lg">
                       DISABILITIES PROTECTION AND DEVELOPMENT
                     </p>
 
@@ -266,7 +266,7 @@ export default function HomePage() {
             <div className="flex justify-between lg:mx-20 md:mx-10 mx-4 lg:gap-18 gap-8">
               <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-10 xl:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
                 <div className="flex justify-center text-center">
-                  <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg">
+                  <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg">
                     รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
                   </p>
                 </div>
@@ -284,7 +284,7 @@ export default function HomePage() {
                       <div className="bg-white rounded-xl px-8 py-2 lg:mt-8 mt-4 shadow-lg">
 
                         <div className="flex flex-col items-center mt-4 gap-4">
-                          <p className="xl:text-3xl md:text-xl text-lg font-semibold text-black">
+                          <p className="xl:text-3xl md:text-xl text-lg text-black text-shadow-lg">
                             2,165,127
                           </p>
                           <p className="xl:text-xl md:text-base text-sm font-light">
@@ -302,7 +302,7 @@ export default function HomePage() {
                             </div>
 
                             <div className="mt-4">
-                              <p className="font-semibold lg:text-2xl text-base">1,042,591</p>
+                              <p className="lg:text-2xl text-base text-shadow-lg">1,042,591</p>
                             </div>
                           </div>
                           <div className="border-e"></div>
@@ -313,7 +313,7 @@ export default function HomePage() {
                             </div>
 
                             <div className="mt-4">
-                              <p className="font-semibold lg:text-2xl text-base">1,122,536</p>
+                              <p className="text-shadow-lg lg:text-2xl text-base">1,122,536</p>
                             </div>
                           </div>
                         </div>
@@ -329,10 +329,10 @@ export default function HomePage() {
               </div>
 
               <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-4 lg:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
-                <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg text-center">
+                <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg text-center">
                   ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ
                 </p>
-                <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg text-center">
+                <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg text-center">
                   พระประแดง จ.สมุทรปราการ
                 </p>
 
@@ -360,7 +360,7 @@ export default function HomePage() {
             <div className="flex flex-col lg:mx-20 md:mx-10 mx-4 lg:gap-18 gap-8">
               <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-10 xl:px-6 px-4 z-10 w-full justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
                 <div className="flex justify-center text-center">
-                  <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg">
+                  <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg">
                     รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
                   </p>
                 </div>
@@ -378,7 +378,7 @@ export default function HomePage() {
                       <div className="bg-white rounded-xl px-8 py-2 lg:mt-8 mt-4 shadow-lg">
 
                         <div className="flex flex-col items-center mt-4 gap-4">
-                          <p className="xl:text-3xl md:text-xl text-lg font-semibold text-black">
+                          <p className="xl:text-3xl md:text-xl text-lg text-shadow-lg text-black">
                             2,165,127
                           </p>
                           <p className="xl:text-xl md:text-base text-sm font-light">
@@ -396,7 +396,7 @@ export default function HomePage() {
                             </div>
 
                             <div className="mt-4">
-                              <p className="font-semibold lg:text-2xl text-base">1,042,591</p>
+                              <p className="text-shadow-lg lg:text-2xl text-base">1,042,591</p>
                             </div>
                           </div>
                           <div className="border-e"></div>
@@ -407,7 +407,7 @@ export default function HomePage() {
                             </div>
 
                             <div className="mt-4">
-                              <p className="font-semibold lg:text-2xl text-base">1,122,536</p>
+                              <p className="text-shadow-lg lg:text-2xl text-base">1,122,536</p>
                             </div>
                           </div>
                         </div>

@@ -57,7 +57,7 @@ export default function HomeLatestNews() {
         <section className="lg:mx-20 md:mx-10 mx-4 lg:mb-18 mb-8 text-black">
 
             <div className="flex justify-between">
-                <h2 className="lg:text-3xl md:text-xl text-lg font-semibold mb-8 text-shadow-lg">
+                <h2 className="lg:text-3xl md:text-xl text-lg mb-8 text-shadow-lg">
                     Latest News
                 </h2>
 

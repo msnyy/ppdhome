@@ -132,14 +132,16 @@ export default function Footer() {
 
                 <div className="lg:me-16 w-full hidden md:block">
                     <p className="lg:text-2xl text-xl">Website Menu</p>
-                    <div className="mt-3 lg:text-base md:text-sm text-xs">
-                        <p>หน้าหลัก</p>
-                        <p className="mt-1">เกี่ยวกับเรา</p>
-                        <p className="mt-1">ข่าวประชาสัมพันธ์</p>
-                        <p className="mt-1">บริการ</p>
-                        <p className="mt-1">ผลิตภัณฑ์</p>
-                        <p className="mt-1">คลังความรู้</p>
-                        <p className="mt-1">ติดต่อเรา</p>
+                    <div className="mt-3 lg:text-base md:text-sm text-xs flex flex-col">
+                        <a href="/ppdhome/user/home" className="text-black" >
+                                หน้าหลัก
+                            </a>
+                        <a href="/ppdhome/user/aboutAll/about" className="mt-1">เกี่ยวกับเรา</a>
+                        <a href="/ppdhome/user/newsAndPublic" className="mt-1">ข่าวประชาสัมพันธ์</a>
+                        <a href="/ppdhome/user/services/activityPrint" className="mt-1">บริการ</a>
+                        <a href="/ppdhome/user/product" className="mt-1">ผลิตภัณฑ์</a>
+                        <a href="/ppdhome/user/knowledge/manual" className="mt-1">คลังความรู้</a>
+                        <a href="/ppdhome/user/contact" className="mt-1">ติดต่อเรา</a>
                     </div>
                 </div>
 
