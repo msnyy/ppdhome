@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 export default function Header() {
     return (
         <div className="flex flex-col min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black mb-18">
-            <p className="xl:text-5xl md:text-3xl text-lg text-shadow-lg text-center lg:mt-10 mt-4">
+            <p className="xl:text-4xl md:text-3xl text-lg text-shadow-lg text-center lg:mt-10 mt-4">
                 พรบ. คุ้มครองข้อมูลส่วนบุคคล
             </p>
 

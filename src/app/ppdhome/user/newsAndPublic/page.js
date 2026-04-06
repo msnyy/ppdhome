@@ -228,13 +228,13 @@ export default function NewsAndPublic() {
                   {/* 🔥 content */}
                   <div className="p-4">
                     {/* title */}
-                    <p className="text-base font-semibold line-clamp-2 group-hover:text-pink-600">
+                    <p className="md:text-base text-sm font-semibold line-clamp-2 group-hover:text-pink-600">
                       {title} {subtitle}
                     </p>
 
                     {/* detail */}
                     {detail && (
-                      <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                      <p className="md:text-sm text-xs text-gray-500 mt-2 line-clamp-2">
                         {detail}
                       </p>
                     )}
@@ -252,7 +252,7 @@ export default function NewsAndPublic() {
                       )}
                     </div>
 
-                    <p className="text-blue-600 text-sm text-light mt-2">Read More</p>
+                    <p className="text-blue-600 md:text-sm text-xs text-light mt-2">Read More</p>
                   </div>
                   
                 </Link>

@@ -57,12 +57,12 @@ export default function HomeLatestNews() {
         <section className="lg:mx-20 md:mx-10 mx-4 lg:mb-18 mb-8 text-black">
 
             <div className="flex justify-between">
-                <h2 className="text-3xl font-semibold mb-8 text-shadow-lg">
+                <h2 className="lg:text-3xl md:text-xl text-lg font-semibold mb-8 text-shadow-lg">
                     Latest News
                 </h2>
 
                 <Link href={`/ppdhome/user/newsAndPublic`}>
-                    <h1 className="mb-8 text-shadow-lg border-b ">
+                    <h1 className="mb-8 text-shadow-lg lg:text-base text-sm border-b ">
                         View All News
                     </h1>
                 </Link>
@@ -101,14 +101,14 @@ export default function HomeLatestNews() {
                                 </div>
 
                                 {/* title */}
-                                <p className="mt-4 text-lg font-medium line-clamp-2 group-hover:text-pink-700 transition">
+                                <p className="mt-4 lg:text-lg text-sm font-medium line-clamp-2 group-hover:text-pink-700 transition">
 
                                     {it.title} {it.subtitle}
 
                                 </p>
 
                                 {/* date */}
-                                <p className="text-sm text-gray-500 mt-1">
+                                <p className="lg:text-sm text-xs text-gray-500 mt-1">
 
                                     {formatThaiDate(it.content_date)}
 
@@ -120,7 +120,7 @@ export default function HomeLatestNews() {
 
                                 </p>
 
-                                <p className="text-blue-600 text-light mt-2">Read More</p>
+                                <p className="text-blue-600 text-light lg:text-base text-sm mt-2">Read More</p>
                             </Link>
 
                     );

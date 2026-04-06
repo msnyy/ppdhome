@@ -6,9 +6,9 @@ export default function AboutMission() {
                 <p className="text-center lg:text-4xl md:text-3xl text-xl text-shadow-lg">ภารกิจและหน้าที่รับผิดชอบ</p>
             </div>
 
-            <div className="border border-t mt-8"></div>
+            <div className="border border-t lg:mt-8 mt-4"></div>
 
-            <div className="flex flex-col md:flex-row gap-12">
+            <div className="flex flex-col lg:flex-row lg:gap-12 ">
                 <div className="w-full">
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">1. การฟื้นฟูสมรรถภาพทางการแพทย์</p>
@@ -50,7 +50,7 @@ export default function AboutMission() {
                     </div>
                 </div>
 
-                <div className="border border-l"></div>
+                <div className="border border-l hidden lg:block"></div>
 
                 <div className="w-full">
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">

@@ -125,8 +125,8 @@ export default function PostDetail() {
                         href={`/ppdhome/user/newsAndPublic/${data.prevId}`}
                         className="flex p-4 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
                     >
-                        <p className="">← </p>
-                        <p className="line-clamp-2 ms-2">{data.prevTitle}</p>
+                        <p className="md:text-base text-xs">← </p>
+                        <p className="line-clamp-2 ms-2 md:text-base text-xs">{data.prevTitle}</p>
                     </Link>
                 ) : <div />}
 
@@ -135,8 +135,8 @@ export default function PostDetail() {
                         href={`/ppdhome/user/newsAndPublic/${data.nextId}`}
                         className="flex p-4 bg-pink-200 rounded-lg hover:bg-pink-300 transition text-right"
                     >
-                        <p className="line-clamp-2 me-2">{data.nextTitle}</p>
-                        <p className="">→ </p>
+                        <p className="line-clamp-2 me-2 md:text-base text-xs">{data.nextTitle}</p>
+                        <p className="md:text-base text-xs">→ </p>
                         
                     </Link>
                 )}

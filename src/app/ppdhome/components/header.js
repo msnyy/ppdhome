@@ -54,27 +54,27 @@ export default function Header() {
             <div className="flex justify-between items-center px-4 pt-4">
                 <div className="flex justify-between items-center px-2 md:px-5 ms-2 md:ms-2 w-full">
                     <div>
-                    <Link href="/ppdhome/user/home" className="flex items-center gap-3" onClick={handleCloseMenu}>
-                        <Image
-                            src="/pic/logo.png"
-                            alt="ตราสถาบัน"
-                            width={700}
-                            height={200}
-                            className="xl:w-[600px] lg:w-[500px] md:w-[300px] h-auto"
-                        />
+                        <Link href="/ppdhome/user/home" className="flex items-center gap-3" onClick={handleCloseMenu}>
+                            <Image
+                                src="/pic/logo.png"
+                                alt="ตราสถาบัน"
+                                width={700}
+                                height={200}
+                                className="xl:w-[600px] lg:w-[500px] md:w-[300px] h-auto"
+                            />
 
-                    </Link>
+                        </Link>
                     </div>
 
-                    <div className="border-b">
-                    <Link
-                                    href="/ppdhome/admin/login"
-                                    className="block hover:text-gray-700"
-                                >
-                                    บุคลากร
-                                </Link>
-                                
-                                </div>
+                    <div className="border-b hidden lg:block">
+                        <Link
+                            href="/ppdhome/admin/login"
+                            className="block hover:text-gray-700"
+                        >
+                            บุคลากร
+                        </Link>
+
+                    </div>
                 </div>
 
                 <div className="flex items-center gap-3 me-4">
@@ -110,7 +110,7 @@ export default function Header() {
                     <div className="flex justify-center items-center gap-6 lg:gap-12 w-full rounded-xl py-4">
                         <div className="relative">
                             <a href="/ppdhome/user/home" className="inline-flex font-light text-black flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
-                                    หน้าหลัก
+                                หน้าหลัก
                             </a>
                         </div>
 
@@ -468,6 +468,14 @@ export default function Header() {
                                 >
                                     ภารกิจหลักองค์กร
                                 </Link>
+
+                                <Link
+                                    href="/ppdhome/user/aboutAll/privatePolicy"
+                                    className="block hover:text-pink-700"
+                                    onClick={handleCloseMenu}
+                                >
+                                    พรบ. คุ้มครองข้อมูลส่วนบุคคล
+                                </Link>
                             </div>
                         )}
                     </div>
@@ -638,6 +646,16 @@ export default function Header() {
                             ติดต่อเรา
                         </Link>
                     </button>
+
+                    <div className="block w-full text-left py-2">
+                        <Link
+                            href="/ppdhome/admin/login"
+                            className="block hover:text-gray-700"
+                        >
+                            บุคลากร
+                        </Link>
+
+                    </div>
                 </nav>
             )}
         </header>

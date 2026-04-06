@@ -103,7 +103,7 @@ export default function Product() {
 
     return (
         <div className="text-black">
-            <section className="relative w-full h-[800px] overflow-hidden">
+            <section className="relative w-full lg:h-[800px] md:h-[600px] h-[400px] overflow-hidden">
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
                     autoPlay
