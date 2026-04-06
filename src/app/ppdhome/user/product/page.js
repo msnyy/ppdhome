@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { getSupabaseImage } from "@lib/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -102,9 +103,34 @@ export default function Product() {
 
     return (
         <div className="text-black">
+            <section className="relative w-full h-[800px] overflow-hidden">
+                <video
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                >
+                    <source src={getSupabaseImage("pic/product.mov")} type="video/mp4" />
+                </video>
+
+                {/* 🖤 overlay มืด (ช่วยให้อ่านตัวหนังสือชัด) */}
+                <div className="absolute inset-0 bg-black/40"></div>
+
+                {/* 📝 เนื้อหา */}
+                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+                    <p className="text-2xl md:text-4xl font-bold">
+                        ส่งเสริมศักยภาพ สร้างโอกาสอย่างยั่งยืน
+                    </p>
+                    <p className="mt-4 text-lg md:text-xl">
+                        “ผลิตภัณฑ์จากคนพิการ ที่สะท้อนถึงทักษะและความมุ่งมั่นในการพัฒนาตนเอง”
+                    </p>
+                </div>
+
+            </section>
             <section className="w-full py-10 relative z-[10000] text-black">
                 <div className="relative xl:mx-20 md:mx-9 mx-4">
-                    <h2 className="xl:text-5xl md:text-3xl text-xl font-bold mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
+                    <h2 className="xl:text-4xl md:text-3xl text-xl mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
                     <button
                         ref={prevRef}
                         className="absolute left-0 top-1/2 xl:-left-16 xl:top-46 xl:-translate-y-1/2 z-10 
@@ -231,10 +257,10 @@ export default function Product() {
             </section>
 
             <section className="relative z-[10001]">
-                <div className="flex min-h-screen font-sans">
+                <div className="flex min-h-screen">
                     <main className="relative flex min-h-screen w-full flex-col bg-cover">
                         <section className="relative flex flex-col z-10 xl:mx-20 md:mx-9 mx-4 lg:mt-10 md:mt-6 mt-4 mb-16">
-                            <h2 className="xl:text-5xl md:text-3xl text-xl font-bold text-center mb-6">
+                            <h2 className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
                                 ผลิตภัณฑ์โดยคนพิการ
                             </h2>
                             {/*  FILTER BAR  */}
@@ -373,7 +399,7 @@ export default function Product() {
                             <div className="flex flex-col lg:gap-12 flex-wrap ">
                                 {categories.map((cat) => (
                                     <div key={cat.title} className="mt-6">
-                                        <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg font-semibold mb-4">
+                                        <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg mb-4">
                                             {cat.title}
                                         </p>
 

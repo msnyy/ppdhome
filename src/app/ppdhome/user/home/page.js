@@ -78,6 +78,12 @@ export default function HomePage() {
       <main className="relative flex min-h-screen w-full flex-col sm:items-start bg-cover ">
 
         <section className="relative w-full xl:mb-10 mb-4">
+          <motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true, amount: 0.3 }}
+>
           <button
             ref={prevRef}
             className="absolute hidden lg:block left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 w-12 h-12 rounded-full bg-pink-100
@@ -141,11 +147,18 @@ export default function HomePage() {
               </SwiperSlide>
             ))}
           </Swiper>
-
+</motion.div>
         </section>
 
         <section className="lg:mx-20 md:mx-10 mx-4">
+          <motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true, amount: 0.3 }}
+>
           <HomeLatestNews />
+          </motion.div>
         </section>
 
         <section className="relative w-full text-black">
@@ -166,7 +179,7 @@ export default function HomePage() {
             </div>
 
             <Image
-              src={getSupabaseImage("pic/ppdhome.png")}
+              src={getSupabaseImage("pic/ppdhome.jpeg")}
               alt="ตราสถาบัน"
               width={700}
               height={200}
@@ -177,8 +190,14 @@ export default function HomePage() {
         </section>
 
         <section className="relative flex flex-col z-10 lg:pb-10 md:pb-8 lg:mt-10 mt-2 w-full bg-transparent lg:mt-18 text-black mb-14">
+          <motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  viewport={{ once: true, amount: 0.3 }}
+>
           <div className="flex justify-between lg:mx-20 md:mx-10 mx-4 lg:gap-18">
-            <div className="relative flex flex-col bg-pink-100 shadow-md rounded-xl md:pt-8 pt-4 xl:px-6 px-4 z-10 w-1/2">
+            <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-4 xl:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
               <div className="flex justify-center text-center">
                 <p className="xl:text-2xl md:text-xl text-lg font-semibold text-shadow-lg">
                   รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
@@ -242,7 +261,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative flex flex-col items-center bg-pink-100 shadow-md rounded-xl md:py-10 py-6 w-1/2">
+            <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-4 xl:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
               <p className="text-lg md:text-2xl xl:text-xl font-semibold text-shadow-lg text-center xl:px-6 px-4">
                 ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ
               </p>
@@ -266,6 +285,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          </motion.div>
         </section>
         <CookieConsent />
 

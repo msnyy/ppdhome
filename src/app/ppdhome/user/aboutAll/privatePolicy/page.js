@@ -6,6 +6,9 @@ export default function Header() {
             <p className="xl:text-5xl md:text-3xl text-lg text-shadow-lg text-center lg:mt-10 mt-4">
                 พรบ. คุ้มครองข้อมูลส่วนบุคคล
             </p>
+
+            <div className="border border-t mt-8"></div>
+            
             <p className="lg:mt-10 mt-4 md:text-xl text-xs font-medium text-shadow-lg">
                 นโยบายเว็บไซต์
             </p>

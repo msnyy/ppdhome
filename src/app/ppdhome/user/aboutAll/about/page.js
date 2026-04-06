@@ -7,19 +7,19 @@ export default function AboutInto() {
       <main className="relative flex min-h-screen w-full flex-col sm:items-start bg-cover">
 
         <section className="relative flex flex-col z-10 lg:pb-10 w-full rounded-xl text-black">
-          <div>
+          <div className="">
             <Image
-              src={getSupabaseImage("pic/ppdhome.png")}
+              src={getSupabaseImage("pic/ppdhome.jpeg")}
               alt="ตราสถาบัน"
               width={700}
               height={200}
-              className="h-auto w-full"
+              className="h-180 w-full object-cover"
             />
           </div>
 
           <div className="xl:mx-20 md:mx-9 mx-4 mt-4">
           <div className="flex flex-col lg:my-7 md:my-6 my-4">
-            <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg">ประวัติความเป็นมา</p>
+            <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">ประวัติความเป็นมา</p>
           </div>
 
           <div className="border border-t"></div>
@@ -55,20 +55,20 @@ export default function AboutInto() {
           <div className="lg:mx-20 md:mx-9 mx-4 bg-white md:py-10 py-6 rounded-xl shadow-lg">
 
           <div className="flex items-center flex-col lg:my-7">
-            <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg text-blue-900">วิสัยทัศน์ พันธ์กิจ ค่านิยม</p>
+            <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">วิสัยทัศน์ พันธ์กิจ ค่านิยม</p>
           </div>
 
           <div className="lg:pb-10 md:pb-6 space-y-2 text-lg md:mx-12 mx-4 lg:mt-8">
             <div className="flex flex-row justify-between gap-8">
               <div className="text-center w-full">
-              <p className="xl:text-4xl md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg text-blue-900">วิสัยทัศน์</p>
+              <p className="md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg">วิสัยทัศน์</p>
               <p className="lg:text-xl md:text-lg text-xs mt-2 text-black">“เป็นองค์กรคุณธรรม พลังสร้างสุข 3 ส สุขใจ สุขดี สุขจัง"</p>
               </div>
 
               <div className="border border-r hidden md:block"></div>
 
               <div className="w-full">
-                <p className="xl:text-4xl md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg text-blue-900 text-center">พันธกิจขององค์กร</p>
+                <p className="md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg text-center">พันธกิจขององค์กร</p>
                 <ul className="list-disc ms-4">
                 <li className="lg:text-xl md:text-lg text-xs mt-2 text-black">ส่งเสริมให้คนพิการเข้าถึงสิทธิประโยชน์สวัสดิการ</li>
                 <li className="lg:text-xl md:text-lg text-xs mt-2 text-black">ส่งเสริมอํานวยความสะดวกได้อย่างเท่าเทียม</li>
@@ -80,7 +80,7 @@ export default function AboutInto() {
               <div className="border border-r hidden md:block" ></div>
 
               <div className="text-center w-full">
-                <p className="xl:text-4xl md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg text-blue-900">ค่านิยม</p>
+                <p className="md:text-3xl text-xl md:mt-8 mt-4 text-shadow-lg">ค่านิยม</p>
                 <p className="lg:text-xl md:text-lg text-xs mt-2 text-black">"เรามาอาศัยโลกนี้ เพื่อทำความดีทุกวันสำหรับความช่วยเหลือ ความเมตตา ความห่วงใย เพื่อมอบความรัก แด่คนพิการทุกท่าน"</p>
               </div>
             </div>

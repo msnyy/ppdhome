@@ -28,36 +28,36 @@ export default function Footer() {
     }, []);
 
     const pathname = usePathname();
-const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
-useEffect(() => {
-  setMounted(true);
-}, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
 
 
-const hiddenPaths = [
-  "/ppdhome/admin/login",
-  "/ppdhome/admin/allCreate",
-  "/ppdhome/admin/newCreate",
-  "/ppdhome/admin/publicCreate",
-  "/ppdhome/admin/product",
-  "/ppdhome/admin/newsAndPublicCreate",
-  "/ppdhome/admin/banner",
-];
+    const hiddenPaths = [
+        "/ppdhome/admin/login",
+        "/ppdhome/admin/allCreate",
+        "/ppdhome/admin/newCreate",
+        "/ppdhome/admin/publicCreate",
+        "/ppdhome/admin/product",
+        "/ppdhome/admin/newsAndPublicCreate",
+        "/ppdhome/admin/banner",
+    ];
 
-if (!mounted) return null;
-if (hiddenPaths.includes(pathname)) return null;
+    if (!mounted) return null;
+    if (hiddenPaths.includes(pathname)) return null;
 
     return (
         <footer className="bg-white p-8 md:px-20 text-black">
 
-            <div className="flex flex-row gap-16">
-                <div className="flex justify-between">
+            <div className="flex flex-row justify-between gap-16">
+                <div className="flex justify-between w-full">
                     <div>
                         <div>
                             <Link href="./home" className="flex items-center gap-3">
-                                <Image src="/pic/logo.png" alt="ตราสถาบัน" width={500} height={200} />
+                                <Image src="/pic/logo.png" alt="ตราสถาบัน" width={600} height={200} />
                             </Link>
                         </div>
 
@@ -67,8 +67,8 @@ if (hiddenPaths.includes(pathname)) return null;
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.8 13.938h-.011a7 7 0 1 0-11.464.144h-.016l.14.171c.1.127.2.251.3.371L12 21l5.13-6.248c.194-.209.374-.429.54-.659l.13-.155Z" />
                             </svg>
                             <div className="flex flex-col">
-                            <p>เลขที่ 374 ถนนศรีเขื่อนขันธ์ ตำบลตลาด</p>
-                            <p>อำเภอพระประแดง จังหวัดสมุทรปราการ 10130</p>
+                                <p>เลขที่ 374 ถนนศรีเขื่อนขันธ์ ตำบลตลาด</p>
+                                <p>อำเภอพระประแดง จังหวัดสมุทรปราการ 10130</p>
                             </div>
                         </div>
                         <div className="mt-4 md:mt-8 md:text-base text-xs flex flex-row gap-4">
@@ -124,7 +124,7 @@ if (hiddenPaths.includes(pathname)) return null;
 
                 <div className="border-e h-75"></div>
 
-                <div className="me-16">
+                <div className="me-16 w-full">
                     <p className="text-2xl">Website Menu</p>
                     <div className="mt-3">
                         <p>หน้าหลัก</p>
@@ -139,7 +139,7 @@ if (hiddenPaths.includes(pathname)) return null;
 
                 <div className="border-e ms-10"></div>
 
-                <div className="flex flex-col hidden md:block">
+                <div className="flex flex-col hidden md:block w-full">
                     <div className="md:text-base">
                         <p>Today's visitors: {visitor.todayViews}</p>
                         <p className="mt-4">Total visitors: {visitor.totalViews}</p>
