@@ -41,41 +41,26 @@ export default function Medical() {
                         </p>
                     </MotionWrapper>
                 </div>
-                
+
                 <MotionWrapper>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between ">
-                    
-                        <Image src={getSupabaseImage("pic/medical179/medical179_1.jpg")} alt="รูปตรวจคัดกรองวัณโรคในกลุ่มเสี่ยง"
-                            className="transition delay-50 duration-300 ease-in-out hover:scale-105 object-cover "
-                            width={250} height={100}
-                            onClick={() => setOpenImage(getSupabaseImage("pic/medical179/medical179_1.jpg"))}
-                        ></Image>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:mt-10 md:mt-6 mt-4">
 
-                        <Image src={getSupabaseImage("pic/medical179/medical179_2.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
-                            className="transition delay-50 duration-300 ease-in-out hover:scale-105 object-cover"
-                            width={250} height={100}
-                            onClick={() => setOpenImage(getSupabaseImage("pic/medical179/medical179_2.jpg"))}
-                        ></Image>
+                        {[1, 2, 3, 4, 5].map((num) => (
+                            <div key={num} className="relative w-full aspect-[4/3] overflow-hidden">
 
-                        <Image src={getSupabaseImage("pic/medical179/medical179_3.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
-                            className="transition delay-50 duration-300 ease-in-out hover:scale-105 object-cover"
-                            width={250} height={100}
-                            onClick={() => setOpenImage(getSupabaseImage("pic/medical179/medical179_3.jpg"))}
-                        ></Image>
+                                <Image
+                                    src={getSupabaseImage(`pic/medical179/medical179_${num}.jpg`)}
+                                    alt=""
+                                    fill
+                                    className="object-cover transition duration-300 hover:scale-105 cursor-pointer"
+                                    onClick={() => setOpenImage(getSupabaseImage(`pic/medical179/medical179_${num}.jpg`))}
+                                />
 
-                        <Image src={getSupabaseImage("pic/medical179/medical179_4.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
-                            className="transition delay-50 duration-300 ease-in-out hover:scale-105 object-cover"
-                            width={250} height={100}
-                            onClick={() => setOpenImage(getSupabaseImage("pic/medical179/medical179_4.jpg"))}
-                        ></Image>
+                            </div>
+                        ))}
 
-                        <Image src={getSupabaseImage("pic/medical179/medical179_5.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
-                            className="transition delay-50 duration-300 ease-in-out hover:scale-105 object-cover"
-                            width={250} height={100}
-                            onClick={() => setOpenImage(getSupabaseImage("pic/medical179/medical179_5.jpg"))}
-                        ></Image>
-                    
-                </div>
+
+                    </div>
                 </MotionWrapper>
 
                 {openImage && (

@@ -39,7 +39,10 @@ export default function RootLayout({ children }) {
 
         <Background />
         <Header />
-        {children}
+        <main className="pt-34">
+          {children}
+        </main>
+
         <Footer />
 
       </body>
