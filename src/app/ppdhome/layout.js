@@ -38,11 +38,8 @@ export default function RootLayout({ children }) {
         <BWWrapper />
 
         <Background />
-        <Header />
-        <main className="pt-34">
-          {children}
-        </main>
-
+        <Header/>
+        {children}
         <Footer />
 
       </body>

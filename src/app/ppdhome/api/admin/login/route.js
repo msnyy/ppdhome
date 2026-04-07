@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import bcrypt from "bcrypt";
 import { supabase } from "@lib/supabase";
 
@@ -40,6 +41,7 @@ export async function POST(req) {
     });
 
     return res;
+
   } catch (err) {
     console.error("LOGIN ERROR:", err);
     return NextResponse.json(
