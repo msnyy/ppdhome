@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -42,6 +43,28 @@ export default function Header() {
         return () => window.removeEventListener("click", closeAll);
     }, []);
 
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                // เลื่อนลง → ซ่อน
+                setShowHeader(false);
+            } else {
+                // เลื่อนขึ้น → แสดง
+                setShowHeader(true);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
+
 
 
     const pathname = usePathname();
@@ -50,7 +73,15 @@ export default function Header() {
 
 
     return (
-        <header className="inset-x-0 top-0 xl:w-full z-50 text-black z-1000 bg-white">
+        <motion.header
+            initial={{ y: 0, opacity: 1 }}
+            animate={{
+                y: showHeader ? 0 : -100,
+                opacity: showHeader ? 1 : 0,
+                filter: showHeader ? "blur(0px)" : "blur(6px)",
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="inset-x-0 top-0 xl:w-full text-black z-1000 bg-white">
             <div className="flex justify-between items-center px-4 pt-4">
                 <div className="flex justify-between items-center px-2 md:px-5 ms-2 md:ms-2 w-full">
                     <div>
@@ -658,6 +689,6 @@ export default function Header() {
                     </div>
                 </nav>
             )}
-        </header>
+        </motion.header>
     );
 }

@@ -52,8 +52,8 @@ export default function Footer() {
     return (
         <footer className="bg-white p-8 lg:px-20 text-black">
 
-            <div className="flex flex-row justify-between gap-16">
-                <div className="flex justify-between w-full">
+            <div className="flex flex-row justify-between gap-10">
+                <div className="flex justify-between w-3/5">
                     <div>
                         <div>
                             <Link href="./home" className="flex items-center gap-3">
@@ -130,24 +130,24 @@ export default function Footer() {
 
                 <div className="border-e h-75 hidden md:block"></div>
 
-                <div className="lg:me-16 w-full hidden md:block">
+                <div className="w-1/5 hidden md:block ms-10">
                     <p className="lg:text-2xl text-xl">Website Menu</p>
                     <div className="mt-3 lg:text-base md:text-sm text-xs flex flex-col">
-                        <a href="/ppdhome/user/home" className="text-black" >
+                        <a href="/ppdhome/user/home" className="text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
                                 หน้าหลัก
                             </a>
-                        <a href="/ppdhome/user/aboutAll/about" className="mt-1">เกี่ยวกับเรา</a>
-                        <a href="/ppdhome/user/newsAndPublic" className="mt-1">ข่าวประชาสัมพันธ์</a>
-                        <a href="/ppdhome/user/services/activityPrint" className="mt-1">บริการ</a>
-                        <a href="/ppdhome/user/product" className="mt-1">ผลิตภัณฑ์</a>
-                        <a href="/ppdhome/user/knowledge/manual" className="mt-1">คลังความรู้</a>
-                        <a href="/ppdhome/user/contact" className="mt-1">ติดต่อเรา</a>
+                        <a href="/ppdhome/user/aboutAll/about" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">เกี่ยวกับเรา</a>
+                        <a href="/ppdhome/user/newsAndPublic" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">ข่าวประชาสัมพันธ์</a>
+                        <a href="/ppdhome/user/services/activityPrint" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">บริการ</a>
+                        <a href="/ppdhome/user/product" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">ผลิตภัณฑ์</a>
+                        <a href="/ppdhome/user/knowledge/manual" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">คลังความรู้</a>
+                        <a href="/ppdhome/user/contact" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">ติดต่อเรา</a>
                     </div>
                 </div>
 
                 <div className="border-e lg:ms-10 hidden md:block"></div>
 
-                <div className="flex flex-col hidden md:block w-full">
+                <div className="flex flex-col hidden md:block w-1/5">
                     <div className="lg:text-base md:text-sm text-xs">
                         <p>Today's visitors: {visitor.todayViews}</p>
                         <p className="mt-4">Total visitors: {visitor.totalViews}</p>

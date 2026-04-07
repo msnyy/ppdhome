@@ -1,13 +1,17 @@
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
+import MotionWrapper from "@components/MotionWrapper";
+
 export const dynamic = "force-dynamic";
 export default function Manual(){
     return(
         <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4 text-black mb-8">
+            <MotionWrapper>
             <p className="lg:text-4xl md:text-4xl text-xl text-center md:mb-10 mb-4 text-shadow-lg">
                 คู่มือคนพิการ
             </p>
             <Image src={getSupabaseImage("pic/knowledge/manual.png")} alt="รูปคู่มือคนพิการ" width={1400} height={100}></Image>
+            </MotionWrapper>
         </section>
     );
 }

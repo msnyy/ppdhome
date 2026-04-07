@@ -69,20 +69,20 @@ export default function AboutInto() {
 
             <div className="lg:pb-10 md:pb-6 space-y-2 text-lg md:mx-12 mx-4 lg:mt-8">
               <div className="flex-row justify-between hidden lg:flex lg:gap-8 md:gap-4 gap-2">
-                
-                  <div className="text-center w-full">
-                    <MotionWrapper >
+
+                <div className="text-center w-full">
+                  <MotionWrapper >
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">วิสัยทัศน์</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">“เป็นองค์กรคุณธรรม พลังสร้างสุข 3 ส สุขใจ สุขดี สุขจัง"</p>
                   </MotionWrapper>
-                  </div>
-                
+                </div>
+
 
                 <div className="border border-r hidden lg:block lg:mt-0"></div>
 
-                
-                  <div className="w-full">
-                    <MotionWrapper>
+
+                <div className="w-full">
+                  <MotionWrapper>
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg text-center">พันธกิจขององค์กร</p>
                     <ul className="list-disc ms-4">
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริมให้คนพิการเข้าถึงสิทธิประโยชน์สวัสดิการ</li>
@@ -90,34 +90,34 @@ export default function AboutInto() {
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริม สนับสนุน องค์กรเครือข่าย ในการพัฒนาศักยภาพของคนพิการ</li>
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">พัฒนาองค์กรให้เปนบ้านพํานักพักพิงแก่คนพิการ ให้อยู่ร่วมกันอย่างมีความสุข</li>
                     </ul>
-                    </MotionWrapper>
-                  </div>
+                  </MotionWrapper>
+                </div>
 
-                
-                
+
+
                 <div className="border border-r hidden lg:block lg:mt-0" ></div>
 
-                
-                  <div className="text-center w-full">
-                    <MotionWrapper>
+
+                <div className="text-center w-full">
+                  <MotionWrapper>
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">ค่านิยม</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">"เรามาอาศัยโลกนี้ เพื่อทำความดีทุกวันสำหรับความช่วยเหลือ ความเมตตา ความห่วงใย เพื่อมอบความรัก แด่คนพิการทุกท่าน"</p>
                   </MotionWrapper>
-                  </div>
-                
+                </div>
+
               </div>
 
               <div className="flex flex-col lg:hidden lg:gap-8 md:gap-4 gap-2">
-                
-                  <div className=" w-full">
-                    <MotionWrapper >
+
+                <div className=" w-full">
+                  <MotionWrapper >
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">วิสัยทัศน์</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">“เป็นองค์กรคุณธรรม พลังสร้างสุข 3 ส สุขใจ สุขดี สุขจัง"</p>
                   </MotionWrapper>
-                  </div>
-                
-                  <div className="w-full">
-                    <MotionWrapper>
+                </div>
+
+                <div className="w-full">
+                  <MotionWrapper>
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">พันธกิจขององค์กร</p>
                     <ul className="list-disc ms-4">
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริมให้คนพิการเข้าถึงสิทธิประโยชน์สวัสดิการ</li>
@@ -125,16 +125,16 @@ export default function AboutInto() {
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริม สนับสนุน องค์กรเครือข่าย ในการพัฒนาศักยภาพของคนพิการ</li>
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">พัฒนาองค์กรให้เปนบ้านพํานักพักพิงแก่คนพิการ ให้อยู่ร่วมกันอย่างมีความสุข</li>
                     </ul>
-                    </MotionWrapper>
-                  </div>
-                
-                  <div className="w-full">
-                    <MotionWrapper>
+                  </MotionWrapper>
+                </div>
+
+                <div className="w-full">
+                  <MotionWrapper>
                     <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">ค่านิยม</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">"เรามาอาศัยโลกนี้ เพื่อทำความดีทุกวันสำหรับความช่วยเหลือ ความเมตตา ความห่วงใย เพื่อมอบความรัก แด่คนพิการทุกท่าน"</p>
                   </MotionWrapper>
-                  </div>
-                
+                </div>
+
               </div>
 
             </div>

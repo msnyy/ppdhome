@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
+import MotionWrapper from "@components/MotionWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -104,36 +105,37 @@ export default function Product() {
     return (
         <div className="text-black">
             <section className="relative w-full lg:h-[800px] md:h-[600px] h-[400px] overflow-hidden">
-                <video
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                >
-                    <source src={getSupabaseImage("pic/product.mov")} type="video/mp4" />
-                </video>
+                    <video
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src={getSupabaseImage("pic/product.mov")} type="video/mp4" />
+                    </video>
 
-                {/* 🖤 overlay มืด (ช่วยให้อ่านตัวหนังสือชัด) */}
-                <div className="absolute inset-0 bg-black/40"></div>
+                    {/* 🖤 overlay มืด (ช่วยให้อ่านตัวหนังสือชัด) */}
+                    <div className="absolute inset-0 bg-black/40"></div>
 
-                {/* 🌑 เงาดำไล่จากล่างขึ้นบน */}
-                <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+                    {/* 🌑 เงาดำไล่จากล่างขึ้นบน */}
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-                {/* 📝 เนื้อหา */}
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-                    <p className="text-2xl md:text-4xl font-bold">
-                        ส่งเสริมศักยภาพ สร้างโอกาสอย่างยั่งยืน
-                    </p>
-                    <p className="mt-4 text-lg md:text-xl">
-                        “ผลิตภัณฑ์จากคนพิการ ที่สะท้อนถึงทักษะและความมุ่งมั่นในการพัฒนาตนเอง”
-                    </p>
-                </div>
-
+                    {/* 📝 เนื้อหา */}
+                    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
+                        <p className="text-2xl md:text-4xl font-bold">
+                            ส่งเสริมศักยภาพ สร้างโอกาสอย่างยั่งยืน
+                        </p>
+                        <p className="mt-4 text-lg md:text-xl">
+                            “ผลิตภัณฑ์จากคนพิการ ที่สะท้อนถึงทักษะและความมุ่งมั่นในการพัฒนาตนเอง”
+                        </p>
+                    </div>
             </section>
             <section className="w-full py-10 relative z-[10000] text-black">
                 <div className="relative xl:mx-20 md:mx-9 mx-4">
-                    <h2 className="xl:text-4xl md:text-3xl text-xl mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
+                    <MotionWrapper>
+                        <h2 className="xl:text-4xl md:text-3xl text-xl mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
+                    </MotionWrapper>
                     <button
                         ref={prevRef}
                         className="absolute left-0 top-1/2 xl:-left-16 xl:top-46 xl:-translate-y-1/2 z-10 
@@ -204,55 +206,57 @@ export default function Product() {
                     >
                         {products.map((p) => (
                             <SwiperSlide key={p.id}>
-                                <div
-                                    onClick={() => {
-                                        setSelected(p);
-                                        setOpen(true);
-                                    }}
-                                    className="flex md:flex-row flex-col bg-white rounded-2xl shadow-md overflow-hidden py-4 lg:w-full lg:h-[210px] md:w-full md:h-[150px] md:my-5 md:mb-0 mb-4 cursor-pointer"
-                                >
-                                    <div className="relative md:mx-0 my-auto mx-auto lg:w-[210px] md:w-[150px] w-[200px] md:h-full h-[200px]">
-                                        <Image
-                                            src={p.image?.split(",")[0]}
-                                            alt={p.name}
-                                            fill
-                                            sizes="(max-width: 768px) 200px,
+                                <MotionWrapper>
+                                    <div
+                                        onClick={() => {
+                                            setSelected(p);
+                                            setOpen(true);
+                                        }}
+                                        className="flex md:flex-row flex-col bg-white rounded-2xl shadow-md overflow-hidden py-4 lg:w-full lg:h-[210px] md:w-full md:h-[150px] md:my-5 md:mb-0 mb-4 cursor-pointer"
+                                    >
+                                        <div className="relative md:mx-0 my-auto mx-auto lg:w-[210px] md:w-[150px] w-[200px] md:h-full h-[200px]">
+                                            <Image
+                                                src={p.image?.split(",")[0]}
+                                                alt={p.name}
+                                                fill
+                                                sizes="(max-width: 768px) 200px,
                                             (max-width: 1024px) 150px,
                                             210px"
-                                            className="object-cover"
-                                            quality={75}
-                                        />
-                                    </div>
-
-
-                                    <div className="flex-1 px-4 flex flex-col justify-between">
-                                        <div>
-                                            <h3 className="text-lg font-semibold text-gray-800">
-                                                {p.name}
-                                            </h3>
-                                            <p className="text-sm text-gray-600 line-clamp-2">
-                                                {p.description}
-                                            </p>
+                                                className="object-cover"
+                                                quality={75}
+                                            />
                                         </div>
 
-                                        {p.size && (
-                                            <div className="text-sm">
-                                                ขนาด {p.size}
+
+                                        <div className="flex-1 px-4 flex flex-col justify-between">
+                                            <div>
+                                                <h3 className="text-lg font-semibold text-gray-800">
+                                                    {p.name}
+                                                </h3>
+                                                <p className="text-sm text-gray-600 line-clamp-2">
+                                                    {p.description}
+                                                </p>
                                             </div>
-                                        )}
+
+                                            {p.size && (
+                                                <div className="text-sm">
+                                                    ขนาด {p.size}
+                                                </div>
+                                            )}
 
 
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-pink-700 font-bold">
-                                                {Number(p.price).toLocaleString()} บาท
-                                            </span>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-pink-700 font-bold">
+                                                    {Number(p.price).toLocaleString()} บาท
+                                                </span>
 
-                                            <button className="text-sm px-3 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
-                                                ดูสินค้า
-                                            </button>
+                                                <button className="text-sm px-3 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
+                                                    ดูสินค้า
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </MotionWrapper>
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -263,9 +267,12 @@ export default function Product() {
                 <div className="flex min-h-screen">
                     <main className="relative flex min-h-screen w-full flex-col bg-cover">
                         <section className="relative flex flex-col z-10 xl:mx-20 md:mx-9 mx-4 lg:mt-10 md:mt-6 mt-4 mb-16">
-                            <h2 className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
-                                ผลิตภัณฑ์โดยคนพิการ
-                            </h2>
+                            <MotionWrapper>
+                                <h2 className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
+                                    ผลิตภัณฑ์โดยคนพิการ
+                                </h2>
+                            </MotionWrapper>
+
                             {/*  FILTER BAR  */}
                             <div className="md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4 items-end">
                                 <div className="relative">
@@ -402,61 +409,63 @@ export default function Product() {
                             <div className="flex flex-col lg:gap-12 flex-wrap ">
                                 {categories.map((cat) => (
                                     <div key={cat.title} className="mt-6">
-                                        <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg mb-4">
-                                            {cat.title}
-                                        </p>
+                                        <MotionWrapper>
+                                            <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg mb-4">
+                                                {cat.title}
+                                            </p>
 
-                                        <div className="flex grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-6 gap-4 mt-2 flex-wrap">
-                                            {cat.items.map((item) => (
-                                                <div
-                                                    key={item.id}
-                                                    onClick={() => {
-                                                        setSelected(item);
-                                                        setOpen(true);
-                                                    }}
-                                                    className="bg-white shadow-xl rounded-xl overflow-hidden cursor-pointer"
-                                                >
-                                                    <div className="px-6 lg:py-4 md:py-8 py-4 ">
-                                                        <div>
-                                                            <Image
-                                                                src={item.image?.split(",")[0]}
-                                                                alt={item.name}
-                                                                width={250}
-                                                                height={250}
-                                                                className="mx-auto lg:w-[200px] lg:h-[220px] md:w-[150px] w-[200px] md:h-full h-[100px] object-cover"
-                                                            />
-                                                        </div>
-
-
-
-                                                        <div className="mt-4">
-                                                            <p className="md:text-2xl text-xl text-center font-semibold">
-                                                                {item.name}
-                                                            </p>
-                                                        </div>
-
-                                                        <div className="flex justify-between mt-2 md:text-sm text-xs">
-                                                            <p>ราคา</p>
-                                                            <p className="text-pink-700">
-                                                                {item.price} ฿
-                                                            </p>
-                                                        </div>
-
-                                                        {item.size && (
-                                                            <div className="mt-2 md:text-sm text-xs text-right">
-                                                                ขนาด {item.size}
+                                            <div className="flex grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-6 gap-4 mt-2 flex-wrap">
+                                                {cat.items.map((item) => (
+                                                    <div
+                                                        key={item.id}
+                                                        onClick={() => {
+                                                            setSelected(item);
+                                                            setOpen(true);
+                                                        }}
+                                                        className="bg-white shadow-xl rounded-xl overflow-hidden cursor-pointer"
+                                                    >
+                                                        <div className="px-6 lg:py-4 md:py-8 py-4 ">
+                                                            <div>
+                                                                <Image
+                                                                    src={item.image?.split(",")[0]}
+                                                                    alt={item.name}
+                                                                    width={250}
+                                                                    height={250}
+                                                                    className="mx-auto lg:w-[200px] lg:h-[220px] md:w-[150px] w-[200px] md:h-full h-[100px] object-cover"
+                                                                />
                                                             </div>
-                                                        )}
 
-                                                        <div className="md:mt-4 mt-2 flex justify-center">
-                                                            <button className="md:text-sm text-xs px-4 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
-                                                                ดูสินค้า
-                                                            </button>
+
+
+                                                            <div className="mt-4">
+                                                                <p className="md:text-2xl text-xl text-center font-semibold">
+                                                                    {item.name}
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="flex justify-between mt-2 md:text-sm text-xs">
+                                                                <p>ราคา</p>
+                                                                <p className="text-pink-700">
+                                                                    {item.price} ฿
+                                                                </p>
+                                                            </div>
+
+                                                            {item.size && (
+                                                                <div className="mt-2 md:text-sm text-xs text-right">
+                                                                    ขนาด {item.size}
+                                                                </div>
+                                                            )}
+
+                                                            <div className="md:mt-4 mt-2 flex justify-center">
+                                                                <button className="md:text-sm text-xs px-4 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
+                                                                    ดูสินค้า
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            ))}
-                                        </div>
+                                                ))}
+                                            </div>
+                                        </MotionWrapper>
                                     </div>
                                 ))}
                             </div>

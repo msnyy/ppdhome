@@ -3,23 +3,27 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
+import MotionWrapper from "@components/MotionWrapper";
 export const dynamic = "force-dynamic";
 export default function ActivityPrint() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
             <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 text-black mb-18">
+                <MotionWrapper>
                 <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">
                     การฟื้นฟูสมรรถภาพ ด้านกีฬา
                 </p>
                 <p className="mt-6">
                         บ้านพระประแดง จัดกิจกรรมทดสอบสมรรถภาพร่างกาย ส่งเสริมสุขภาพร่างกายของผู้ใช้บริการ และพัฒนาทักษะด้านกีฬา
                     </p>
+                   
 
                 <div className="border-b mt-6"></div>
+                 </MotionWrapper>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                    
+                    <MotionWrapper>
                     <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
                         สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ 
                     </p>
@@ -29,8 +33,11 @@ export default function ActivityPrint() {
                         การฝึกซ้อมกีฬาบอชชี่ เน้นการฝึกทักษะพื้นฐาน การวางแผนเกม การสร้างทีม และการปรับสภาพร่างกาย และการฝึกกีฬาซ้อมแบดมินตัน
                         การจับแบบโฟร์แฮนด์ การจับแบ็คแฮนด์ รวมถึงการเสริมสร้างพละกำลัง ความคล่องตัว การทรงตัว และการประสานงานของร่างกาย
                     </p>
+                    </MotionWrapper>
                 </div>
+                <MotionWrapper>
                 <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                    
                     <Image src={getSupabaseImage("pic/sport/sport1.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
@@ -85,7 +92,9 @@ export default function ActivityPrint() {
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/sport/sport10.jpg"))}
                     ></Image>
+                    
                 </div>
+                </MotionWrapper>
 
                 {openImage && (
                     <div

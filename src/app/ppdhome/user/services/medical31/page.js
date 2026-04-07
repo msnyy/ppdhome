@@ -3,35 +3,41 @@
 import { useState } from "react";
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
+import MotionWrapper from "@components/MotionWrapper";
 export const dynamic = "force-dynamic";
 export default function Medical() {
     const [openImage, setOpenImage] = useState(null);
     return (
         <div>
             <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-15 md:mt-6 mt-4 mb-18 text-black">
+                <MotionWrapper>
                 <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-shadow-lg">
                     โครงการบ้านพระประแดงยุคใหม่ใส่ใจสุขภาพ กิจกรรมพบแพทย์ในบ้าน
                 </p>
+                </MotionWrapper>
                 
+                <MotionWrapper>
                 <p className="mt-6">
                         วันพฤหัสบดี ที่ 13 กุมภาพันธ์ 2568 เวลา 08.30น.
                     </p>
 
                     <div className="border-b mt-6"></div>
+                    </MotionWrapper>
 
                 <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
-                    
+                    <MotionWrapper>
                     <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
                         ว่าที่ร้อยตรีณัทกร ธงสอาด ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
                         มอบหมายให้กลุ่มพัฒนาคนพิการโดยงานพยาบาล ร่วมกับมิตรไมตรีคลินิกสาขาพระประแดง จัดโครงการ บ้านพระประแดงยุคใหม่ใส่ใจสุขภาพ 
                         โดยมีกิจกรรมพบแพทย์ในบ้าน และ มีการคัดกรอก โรคติดเชื้อไวรัสตับอักเสบบีหรือไววัสตับอักเสบซี และตรวจเลือด HIV ให้กับผู้ใช้บริการรวมทั้งสิ้น 400 คน 
                         ณ อาคารอเนกประสงค์ สถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
                     </p>
-                    <p>
-
-                    </p>
+                    </MotionWrapper>
+                   
                 </div>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                <MotionWrapper>
+                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between object-cover">
+                    
                     <Image src={getSupabaseImage("pic/medical31/medical31_1.JPG")} alt="รูปกิจกรรมพบแพทย์ในบ้าน"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}
@@ -86,7 +92,9 @@ export default function Medical() {
                         width={250} height={100}
                         onClick={() => setOpenImage(getSupabaseImage("pic/medical31/medical31_10.JPG"))}
                     ></Image>
+                    
                 </div>
+                </MotionWrapper>
 
                 {openImage && (
                     <div

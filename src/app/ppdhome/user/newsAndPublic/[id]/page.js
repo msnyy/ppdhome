@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import MotionWrapper from "@components/MotionWrapper";
 
 function formatThaiDate(input) {
     if (!input) return "";
@@ -66,57 +67,69 @@ export default function PostDetail() {
 
         <section className="lg:mx-20 md:mx-9 mx-5 rounded-xl lg:p-10 md:p-6 p-4 text-black">
 
-            <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                {data.title}
-            </p>
-
-            {data.subtitle && (
+            <MotionWrapper>
                 <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                    {data.subtitle}
+                    {data.title}
                 </p>
-            )}
+            </MotionWrapper>
 
-            {data.header_date && (
-                <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                    {data.header_date}
+            <MotionWrapper>
+                {data.subtitle && (
+                    <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+                        {data.subtitle}
+                    </p>
+                )}
+            </MotionWrapper>
+
+            <MotionWrapper>
+                {data.header_date && (
+                    <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+                        {data.header_date}
+                    </p>
+                )}
+            </MotionWrapper>
+
+            <MotionWrapper>
+                <p className="mt-5">
+                    {formatThaiDate(data.content_date)}
                 </p>
-            )}
 
-            <p className="mt-5">
-                {formatThaiDate(data.content_date)}
-            </p>
+                <div className="border border-t mt-6"></div>
+            </MotionWrapper>
 
-            <div className="border border-t mt-6"></div>
+            <MotionWrapper>
+                <p className="mt-5 whitespace-pre-line">
+                    {data.detail}
+                </p>
+            </MotionWrapper>
 
-            <p className="mt-5 whitespace-pre-line">
-                {data.detail}
-            </p>
+            <MotionWrapper>
+                {images.length > 0 && (
 
-            {images.length > 0 && (
+                    <div className="grid md:grid-cols-5 grid-cols-2 gap-4 mt-6">
 
-                <div className="grid md:grid-cols-5 grid-cols-2 gap-4 mt-6">
+                        {images.map((img, i) => (
 
-                    {images.map((img, i) => (
+                            <div key={i} className="relative w-full aspect-[5/4] overflow-hidden">
 
-                        <div key={i} className="relative w-full aspect-[5/4] overflow-hidden">
-
-                            <Image
-                                src={img}
-                                alt=""
-                                fill
-                                className="object-cover cursor-pointer hover:scale-105 transition"
-                                onClick={() => setOpenImage(img)}
-                            />
-
+                                <Image
+                                    src={img}
+                                    alt=""
+                                    fill
+                                    className="object-cover cursor-pointer hover:scale-105 transition"
+                                    onClick={() => setOpenImage(img)}
+                                />
 
 
-                        </div>
 
-                    ))}
+                            </div>
 
-                </div>
+                        ))}
 
-            )}
+                    </div>
+
+                )}
+            </MotionWrapper>
 
             <div className="flex justify-between mt-10 gap-4">
 
@@ -137,7 +150,7 @@ export default function PostDetail() {
                     >
                         <p className="line-clamp-2 me-2 md:text-base text-xs">{data.nextTitle}</p>
                         <p className="md:text-base text-xs">→ </p>
-                        
+
                     </Link>
                 )}
 

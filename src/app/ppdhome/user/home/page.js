@@ -199,7 +199,7 @@ export default function HomePage() {
                   </p>
 
                   <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
-                    <h1 className="mb-8 border-b mt-10 w-30 hover:text-pink-700">
+                    <h1 className="mb-8 border-b mt-10 w-20 hover:text-pink-700">
                       Read More
                     </h1>
                   </Link>

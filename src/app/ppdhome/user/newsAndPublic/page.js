@@ -4,6 +4,7 @@ export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 import Image from "next/image";
+import MotionWrapper from "@components/MotionWrapper";
 import { useEffect, useMemo, useState } from "react";
 import {
   ChevronLeftIcon,
@@ -209,6 +210,7 @@ export default function NewsAndPublic() {
                   target={pdf_file ? "_blank" : undefined}
                   className="group bg-white rounded-xl overflow-hidden shadow-lg transition"
                 >
+                  <MotionWrapper>
                   {/* 🔥 รูป */}
                   <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
                     {image ? (
@@ -254,7 +256,7 @@ export default function NewsAndPublic() {
 
                     <p className="text-blue-600 md:text-sm text-xs text-light mt-2">Read More</p>
                   </div>
-                  
+                  </MotionWrapper>
                 </Link>
               );
             })}

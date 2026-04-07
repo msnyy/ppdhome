@@ -1,3 +1,5 @@
+import MotionWrapper from "@components/MotionWrapper";
+
 export const dynamic = "force-dynamic";
 export default function AboutMission() {
     return (
@@ -10,6 +12,7 @@ export default function AboutMission() {
 
             <div className="flex flex-col lg:flex-row lg:gap-12 ">
                 <div className="w-full">
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">1. การฟื้นฟูสมรรถภาพทางการแพทย์</p>
                         <ul className="list-disc ms-8">
@@ -23,6 +26,9 @@ export default function AboutMission() {
                             <li>กำลังดำเนินการยกระดับสถานคุ้มครองเป็น “สถานชีวาภิบาล” ตาม พ.ร.บ.สาธารณสุข</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
+
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">2. การเข้าถึงการศึกษา</p>
                         <ul className="list-disc ms-8">
@@ -33,6 +39,9 @@ export default function AboutMission() {
                             <li>บางรายสามารถนำความรู้ไปต่อยอดอาชีพและพึ่งพาตนเองได้</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
+
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">3. การฟื้นฟูสมรรถภาพด้านอาชีพ</p>
                         <ul className="list-disc ms-8">
@@ -48,11 +57,15 @@ export default function AboutMission() {
                             <li>ร่วมมือกับ มูลนิธิและมหาวิทยาลัย (เช่น ม.พระจอมเกล้าธนบุรี) เพื่อพัฒนาทักษะอาชีพอิสระ</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
                 </div>
 
-                <div className="border border-l hidden lg:block"></div>
+                <MotionWrapper>
+                <div className="border border-l hidden lg:block h-190"></div>
+                </MotionWrapper>
 
                 <div className="w-full">
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">4. การมีส่วนร่วมในสังคม</p>
                         <ul className="list-disc ms-8">
@@ -63,6 +76,9 @@ export default function AboutMission() {
                             <li>มีนักสังคมสงเคราะห์ 4 คน ให้บริการผู้พิการ 460 คน (เฉลี่ย 1:115)</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
+
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">5. การเข้าถึงนโยบายและสิทธิภาครัฐ</p>
                         <ul className="list-disc ms-8">
@@ -72,6 +88,9 @@ export default function AboutMission() {
                             <li>คนพิการกว่า 80% ได้รับสิทธิและสวัสดิการตามกฎหมาย</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
+
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">6. การสื่อสารและเทคโนโลยีสารสนเทศ</p>
                         <ul className="list-disc ms-8">
@@ -81,6 +100,9 @@ export default function AboutMission() {
                             <li>สนับสนุนการให้คำปรึกษาและสร้างเครือข่ายช่วยเหลือ</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
+
+                    <MotionWrapper>
                     <div className="lg:mt-10 mt-4 md:text-base text-xs">
                         <p className="font-medium text-shadow-lg">การสนับสนุนอาชีพและการจ้างงาน</p>
                         <ul className="list-disc ms-8">
@@ -90,6 +112,7 @@ export default function AboutMission() {
                             <li>คนพิการในโครงการราว 9.11% ของผู้ช่วยเหลือตนเองได้</li>
                         </ul>
                     </div>
+                    </MotionWrapper>
                 </div>
             </div>
         </div>
