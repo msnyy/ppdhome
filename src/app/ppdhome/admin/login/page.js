@@ -19,6 +19,7 @@ export default function AdminLoginPage() {
   const handleLogin = async () => {
     const res = await fetch("/ppdhome/api/admin/login", {
       method: "POST",
+      credentials: "include", // ✅ สำคัญ
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
@@ -108,6 +109,8 @@ export default function AdminLoginPage() {
           <input
             type="text"
             placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="w-full border rounded-md p-2 mb-3"
           />
 
@@ -129,7 +132,10 @@ export default function AdminLoginPage() {
             </button>
           </div>
 
-          <button className="w-full bg-pink-700 text-white py-2 rounded-md hover:bg-pink-800 transition mt-6">
+          <button
+            onClick={handleLogin}
+            className="w-full bg-pink-700 text-white py-2 rounded-md hover:bg-pink-800 transition mt-6"
+          >
             Login
           </button>
 
