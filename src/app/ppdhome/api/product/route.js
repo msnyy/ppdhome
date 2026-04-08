@@ -87,7 +87,8 @@ export async function POST(request) {
     for (const file of files) {
       if (!file.name) continue;
 
-      const fileName = `${Date.now()}-${file.name}`;
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
       const buffer = Buffer.from(await file.arrayBuffer());
 
       const { error } = await supabase.storage
@@ -189,7 +190,8 @@ export async function PUT(request) {
       imagePaths = [];
 
       for (const file of files) {
-        const fileName = `${Date.now()}-${file.name}`;
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
         const buffer = Buffer.from(await file.arrayBuffer());
 
         const { error } = await supabase.storage

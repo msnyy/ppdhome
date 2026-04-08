@@ -199,7 +199,7 @@ export default function HomePage() {
                   </p>
 
                   <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
-                    <h1 className="mb-8 border-b mt-10 w-20 hover:text-pink-700">
+                    <h1 className="mb-8 border-b mt-10 w-20 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                       Read More
                     </h1>
                   </Link>
@@ -212,48 +212,48 @@ export default function HomePage() {
           <div className="relative lg:hidden w-full overflow-hidden">
             <MotionWrapper>
 
-                <Image
-                  src={getSupabaseImage("pic/ppdhome.jpeg")}
-                  alt=""
-                  width={700}
-                  height={500}
-                  className="object-cover w-full"
-                />
+              <Image
+                src={getSupabaseImage("pic/ppdhome.jpeg")}
+                alt=""
+                width={700}
+                height={500}
+                className="object-cover w-full"
+              />
 
-                {/* 🎨 overlay ไล่สี */}
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-300/60 via-pink-200/40 to-transparent"></div>
+              {/* 🎨 overlay ไล่สี */}
+              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-300/60 via-pink-200/40 to-transparent"></div>
 
-                {/* 📝 ข้อความทับ */}
-                <div className="absolute inset-0 flex items-end md:pb-8 pb-6">
-                  <div className="max-w-xl md:ml-10 ml-2 text-white z-10">
+              {/* 📝 ข้อความทับ */}
+              <div className="absolute inset-0 flex items-end md:pb-8 pb-6">
+                <div className="max-w-xl md:ml-10 ml-2 text-white z-10">
 
-                    <p className="md:text-xl text-sm text-shadow-lg">
-                      สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
-                    </p>
-                    <p className="md:text-xl text-sm text-shadow-lg">
-                      PHRAPRADAENG HOME FOR PERSONS WITH
-                    </p>
-                    <p className="md:text-xl text-sm text-shadow-lg">
-                      DISABILITIES PROTECTION AND DEVELOPMENT
-                    </p>
+                  <p className="md:text-xl text-sm text-shadow-lg">
+                    สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
+                  </p>
+                  <p className="md:text-xl text-sm text-shadow-lg">
+                    PHRAPRADAENG HOME FOR PERSONS WITH
+                  </p>
+                  <p className="md:text-xl text-sm text-shadow-lg">
+                    DISABILITIES PROTECTION AND DEVELOPMENT
+                  </p>
 
-                    <p className="md:text-sm text-xs mt-2 text-shadow-lg">
-                      ก่อตั้งขึ้นเพื่อเป็นศูนย์กลางด้านการคุ้มครอง ฟื้นฟู และพัฒนาคนพิการ
-                    </p>
-                    <p className="md:text-sm text-xs text-shadow-lg">
-                      โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น
-                    </p>
+                  <p className="md:text-sm text-xs mt-2 text-shadow-lg">
+                    ก่อตั้งขึ้นเพื่อเป็นศูนย์กลางด้านการคุ้มครอง ฟื้นฟู และพัฒนาคนพิการ
+                  </p>
+                  <p className="md:text-sm text-xs text-shadow-lg">
+                    โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น
+                  </p>
 
-                    <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
-                      <h1 className="border-b mt-4 w-18 hover:text-pink-700 md:text-sm text-xs">
-                        Read More
-                      </h1>
-                    </Link>
+                  <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
+                    <h1 className="border-b mt-4 w-18 hover:text-pink-700 md:text-sm text-xs">
+                      Read More
+                    </h1>
+                  </Link>
 
-                  </div>
                 </div>
+              </div>
 
             </MotionWrapper>
 

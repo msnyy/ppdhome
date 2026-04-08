@@ -58,7 +58,8 @@ export async function POST(request) {
     let pdfPath = null;
 
     if (pdf && pdf.name) {
-      const fileName = `${Date.now()}-${pdf.name}`;
+      const fileExt = pdf.name.split(".").pop();
+      const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
       const buffer = Buffer.from(await pdf.arrayBuffer());
 
       const { error } = await supabase.storage
@@ -79,7 +80,8 @@ export async function POST(request) {
     for (const file of images) {
       if (!file.name) continue;
 
-      const fileName = `${Date.now()}-${file.name}`;
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
       const buffer = Buffer.from(await file.arrayBuffer());
 
       const { error } = await supabase.storage
@@ -160,7 +162,8 @@ export async function PUT(request) {
         }
       }
 
-      const fileName = `${Date.now()}-${pdf.name}`;
+      const fileExt = pdf.name.split(".").pop();
+      const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
       const buffer = Buffer.from(await pdf.arrayBuffer());
 
       const { error } = await supabase.storage
@@ -189,7 +192,8 @@ export async function PUT(request) {
       imagePaths = [];
 
       for (const file of newImages) {
-        const fileName = `${Date.now()}-${file.name}`;
+        const fileExt = file.name.split(".").pop();
+        const fileName = `${Date.now()}-${crypto.randomUUID()}.${fileExt}`;
         const buffer = Buffer.from(await file.arrayBuffer());
 
         const { error } = await supabase.storage

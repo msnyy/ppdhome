@@ -88,10 +88,10 @@ export default function Header() {
                         </Link>
                     </div>
 
-                    <div className="border-b hidden lg:block">
+                    <div className="">
                         <Link
                             href="/ppdhome/admin/login"
-                            className="block hover:text-gray-700"
+                            className="block border-b hidden lg:block font-light transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
                         >
                             บุคลากร
                         </Link>

@@ -62,7 +62,7 @@ export default function HomeLatestNews() {
                 </h2>
 
                 <Link href={`/ppdhome/user/newsAndPublic`}>
-                    <h1 className="mb-8 text-shadow-lg lg:text-base text-sm border-b ">
+                    <h1 className="mb-8 text-shadow-lg lg:text-base text-sm border-b transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                         View All News
                     </h1>
                 </Link>

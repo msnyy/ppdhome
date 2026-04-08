@@ -488,7 +488,7 @@ export default function Product() {
           </div>
         )}
         <Link
-          href="/ppdhome/admin/productCreate"
+          href="/ppdhome/admin/product/productCreate"
           title="เพิ่มสินค้า"
           className="fixed bottom-10 right-10
                    w-14 h-14 rounded-full

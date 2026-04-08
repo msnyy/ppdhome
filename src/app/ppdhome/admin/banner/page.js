@@ -10,6 +10,7 @@ export default function BannerAdmin() {
   const [hasNew, setHasNew] = useState(false);
   const [hasEdit, setHasEdit] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState(null);
 
   /* ================= fetch ================= */
   const fetchBanner = async () => {
@@ -168,7 +169,7 @@ export default function BannerAdmin() {
             <h2>แบนเนอร์ที่ {index + 1}</h2>
 
             {/* image */}
-            <label className="border h-[300px] flex items-center justify-center cursor-pointer">
+            <label className="border h-[300px] lg:h-[600px] flex items-center justify-center cursor-pointer">
               {banner.image_url ? (
                 <img src={banner.image_url} className="w-full h-full object-cover" />
               ) : (
@@ -190,7 +191,7 @@ export default function BannerAdmin() {
             />
 
             <button
-              onClick={() => deleteBanner(banner.id, index)}
+              onClick={() => setDeleteTarget({ id: banner.id, index })}
               className="text-red-500 mt-2 text-xl"
             >
               ลบ
@@ -230,3 +231,35 @@ export default function BannerAdmin() {
     </section>
   );
 }
+
+{deleteTarget && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-xl shadow-lg w-[300px] text-center">
+
+      <p className="text-lg mb-4">ยืนยันการลบ</p>
+      <p className="text-sm text-gray-500 mb-6">
+        คุณแน่ใจหรือไม่ว่าต้องการลบแบนเนอร์นี้?
+      </p>
+
+      <div className="flex justify-center gap-3">
+        <button
+          onClick={() => setDeleteTarget(null)}
+          className="px-4 py-2 bg-gray-300 rounded"
+        >
+          ยกเลิก
+        </button>
+
+        <button
+          onClick={async () => {
+            await deleteBanner(deleteTarget.id, deleteTarget.index);
+            setDeleteTarget(null);
+          }}
+          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+        >
+          ลบ
+        </button>
+      </div>
+
+    </div>
+  </div>
+)}

@@ -96,11 +96,11 @@ export default function AdminLoginPage() {
             สถานคุ้มครองและพัฒนาคนพิการพระประแดง จ.สมุทรปราการ
           </p>
 
-          <p className="mt-2 text-sm">
+          <p className="mt-2 text-sm text-shadow-lg">
             PHRAPRADAENG HOME FOR PERSONS WITH
           </p>
 
-          <p className="text-sm mb-6">
+          <p className="text-sm mb-6 text-shadow-lg">
             DISABILITIES PROTECTION AND DEVELOPMENT
           </p>
 
