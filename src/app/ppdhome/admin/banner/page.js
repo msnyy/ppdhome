@@ -12,6 +12,13 @@ export default function BannerAdmin() {
   const [isDirty, setIsDirty] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
 
+  const confirmDelete = async () => {
+    if (!deleteTarget) return;
+
+    await deleteBanner(deleteTarget.id, deleteTarget.index);
+    setDeleteTarget(null);
+  };
+
   /* ================= fetch ================= */
   const fetchBanner = async () => {
     const res = await fetch("/ppdhome/api/banner");
@@ -206,15 +213,15 @@ export default function BannerAdmin() {
           </button>
         </div>
 
-        
+
 
         {/* save buttons */}
         <div className="flex justify-end gap-3 mt-4">
           {isDirty && (
-          <div className="mb-4 text-red-500 font-semibold">
-            ยังไม่ได้บันทึก
-          </div>
-        )}
+            <div className="mb-4 text-red-500 font-semibold">
+              ยังไม่ได้บันทึก
+            </div>
+          )}
           {hasNew && (
             <button onClick={saveNew} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">
               บันทึก
@@ -228,38 +235,38 @@ export default function BannerAdmin() {
           )}
         </div>
       </div>
+
+      {deleteTarget && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg w-[300px] text-center">
+
+            <p className="text-lg mb-4">ยืนยันการลบ</p>
+            <p className="text-sm text-gray-500 mb-6">
+              คุณแน่ใจหรือไม่ว่าต้องการลบแบนเนอร์นี้?
+            </p>
+
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={() => setDeleteTarget(null)}
+                className="px-4 py-2 bg-gray-300 rounded"
+              >
+                ยกเลิก
+              </button>
+
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                ลบ
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </section>
+
   );
+
 }
 
-{deleteTarget && (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-    <div className="bg-white p-6 rounded-xl shadow-lg w-[300px] text-center">
-
-      <p className="text-lg mb-4">ยืนยันการลบ</p>
-      <p className="text-sm text-gray-500 mb-6">
-        คุณแน่ใจหรือไม่ว่าต้องการลบแบนเนอร์นี้?
-      </p>
-
-      <div className="flex justify-center gap-3">
-        <button
-          onClick={() => setDeleteTarget(null)}
-          className="px-4 py-2 bg-gray-300 rounded"
-        >
-          ยกเลิก
-        </button>
-
-        <button
-          onClick={async () => {
-            await deleteBanner(deleteTarget.id, deleteTarget.index);
-            setDeleteTarget(null);
-          }}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          ลบ
-        </button>
-      </div>
-
-    </div>
-  </div>
-)}
