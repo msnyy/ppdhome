@@ -174,7 +174,7 @@ export default function PostsAdmin() {
   }, [page, totalPages]);
 
   return (
-    <section className="lg:mx-20 md:mx-10 mx-4 mb-18">
+    <section className="lg:mx-20 md:mx-10 mx-4 mb-18 text-black">
       <div>
         <button
             type="button"

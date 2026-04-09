@@ -66,7 +66,7 @@ export default function CreateProductPage() {
 
   /* ===== render ===== */
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 mb-8">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 mb-8 text-black">
 
       <form onSubmit={handleSubmit}>
         {/* ===== แถวบน ===== */}

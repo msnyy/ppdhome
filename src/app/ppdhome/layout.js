@@ -32,7 +32,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased text-black`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${ibmThai.variable} antialiased`}>
 
         {/* 👇 ย้าย logic ไป component */}
         <BWWrapper />
