@@ -157,7 +157,7 @@ export default function Product() {
                                             src={p.image?.split(",")[0]}
                                             alt={p.name}
                                             fill
-                                            className="object-cover"
+                                            className="object-contain"
                                         />
 
                                     </div>
@@ -356,7 +356,7 @@ export default function Product() {
                                                             alt={item.name}
                                                             width={250}
                                                             height={250}
-                                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-cover"
+                                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-contain"
                                                         />
 
 

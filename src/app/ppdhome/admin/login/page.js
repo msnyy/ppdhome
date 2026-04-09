@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen text-black">
 
       {/* 🔵 ฝั่งซ้าย (รูป + ข้อความ) */}
       <div className="lg:w-2/3 w-full flex flex-col">
