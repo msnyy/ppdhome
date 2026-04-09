@@ -131,6 +131,16 @@ export default function PostDetail() {
                 )}
             </MotionWrapper>
 
+            <div className="flex justify-end">
+                <button
+                    type="button"
+                    onClick={() => router.back()}
+                    className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 mt-4"
+                >
+                    Back
+                </button>
+            </div>
+
             <div className="flex justify-between mt-10 gap-4">
 
                 {data.prevId ? (
