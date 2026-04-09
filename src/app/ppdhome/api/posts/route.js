@@ -32,7 +32,10 @@ export async function GET(req) {
     if (error) throw error;
 
     return Response.json({
-      items: data,
+      items: data.map((item) => ({
+        ...item,
+        image: item.image ? item.image.split(",") : [],
+      })),
       total: count,
     });
   } catch (error) {

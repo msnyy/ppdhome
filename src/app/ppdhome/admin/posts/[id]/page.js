@@ -121,62 +121,69 @@ export default function AdminPostDetail() {
 
       <section className="rounded-xl text-black">
 
-            <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                {data.title}
-            </p>
+        <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+          {data.title}
+        </p>
 
-            {data.subtitle && (
-                <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                    {data.subtitle}
-                </p>
-            )}
+        {data.subtitle && (
+          <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+            {data.subtitle}
+          </p>
+        )}
 
-            {data.header_date && (
-                <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
-                    {data.header_date}
-                </p>
-            )}
+        {data.header_date && (
+          <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+            {data.header_date}
+          </p>
+        )}
 
-            <p className="mt-5">
-                {formatThaiDate(data.content_date)}
-            </p>
+        <p className="mt-5">
+          {formatThaiDate(data.content_date)}
+        </p>
 
-            <div className="border border-t mt-6"></div>
+        <div className="border border-t mt-6"></div>
 
-            <p className="mt-5 whitespace-pre-line">
-                {data.detail}
-            </p>
+        <p className="mt-5 whitespace-pre-line">
+          {data.detail}
+        </p>
 
-            {images.length > 0 && (
+        {images.length > 0 && (
 
-                <div className="grid md:grid-cols-5 grid-cols-2 gap-4 mt-6">
+          <div className="grid md:grid-cols-5 grid-cols-2 gap-4 mt-6">
 
-                    {images.map((img, i) => (
+            {images.map((img, i) => (
 
-                        <div key={i} className="relative w-full aspect-[5/4] overflow-hidden">
+              <div key={i} className="relative w-full aspect-[5/4] overflow-hidden">
 
-                            <Image
-                                src={img}
-                                alt=""
-                                fill
-                                className="object-cover cursor-pointer hover:scale-105 transition"
-                                onClick={() => setOpenImage(img)}
-                            />
+                <Image
+                  src={img}
+                  alt=""
+                  fill
+                  className="object-cover cursor-pointer hover:scale-105 transition"
+                  onClick={() => setOpenImage(img)}
+                />
 
 
 
-                        </div>
+              </div>
 
-                    ))}
+            ))}
 
-                </div>
+          </div>
 
-            )}
+        )}
 
-            <div className="flex justify-end mt-8 gap-4">
+        <div className="flex justify-end mt-8 gap-4">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
+          >
+            Back
+          </button>
 
           <Link href={`/ppdhome/admin/posts/${data.id}/edit`}>
-            <button className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-xl">แก้ไข</button>
+            <button className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-xl">Edit</button>
           </Link>
 
           <button
@@ -189,30 +196,30 @@ export default function AdminPostDetail() {
 
         </div>
 
-            <div className="flex justify-between mt-10 gap-4">
+        <div className="flex justify-between mt-10 gap-4">
 
-                {data.prevId ? (
-                    <Link
-                        href={`/ppdhome/admin/posts/${data.prevId}`}
-                        className="flex p-4 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
-                    >
-                        <p className="">← </p>
-                        <p className="line-clamp-2 ms-2">{data.prevTitle}</p>
-                    </Link>
-                ) : <div />}
+          {data.prevId ? (
+            <Link
+              href={`/ppdhome/admin/posts/${data.prevId}`}
+              className="flex p-4 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
+            >
+              <p className="">← </p>
+              <p className="line-clamp-2 ms-2">{data.prevTitle}</p>
+            </Link>
+          ) : <div />}
 
-                {data.nextId && (
-                    <Link
-                        href={`/ppdhome/admin/posts/${data.nextId}`}
-                        className="flex p-4 bg-pink-200 rounded-lg hover:bg-pink-300 transition text-right"
-                    >
-                        <p className="line-clamp-2 me-2">{data.nextTitle}</p>
-                        <p className="">→ </p>
-                        
-                    </Link>
-                )}
+          {data.nextId && (
+            <Link
+              href={`/ppdhome/admin/posts/${data.nextId}`}
+              className="flex p-4 bg-pink-200 rounded-lg hover:bg-pink-300 transition text-right"
+            >
+              <p className="line-clamp-2 me-2">{data.nextTitle}</p>
+              <p className="">→ </p>
 
-            </div>
+            </Link>
+          )}
+
+        </div>
 
       </section>
 

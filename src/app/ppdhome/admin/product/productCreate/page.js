@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CreateProductPage() {
   const router = useRouter();
@@ -55,7 +56,7 @@ export default function CreateProductPage() {
 
     if (res.ok) {
       alert("บันทึกสินค้าสำเร็จ");
-      router.push("/ppdhome/admin/product"); 
+      router.push("/ppdhome/admin/product");
       return;
     }
 
@@ -65,7 +66,8 @@ export default function CreateProductPage() {
 
   /* ===== render ===== */
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 mb-8">
+
       <form onSubmit={handleSubmit}>
         {/* ===== แถวบน ===== */}
         <div className="flex grid md:grid-cols-2 grid-cols-1 lg:gap-20 md:gap-10">
@@ -174,25 +176,35 @@ export default function CreateProductPage() {
         </div>
 
         <label className="flex items-center gap-2 mt-6 md:text-lg text-base">
-  <input
-    type="checkbox"
-    checked={form.is_featured}
-    onChange={(e) =>
-      setForm({ ...form, is_featured: e.target.checked })
-    }
-  />
-  ตั้งเป็นสินค้าแนะนำ
-</label>
+          <input
+            type="checkbox"
+            checked={form.is_featured}
+            onChange={(e) =>
+              setForm({ ...form, is_featured: e.target.checked })
+            }
+          />
+          ตั้งเป็นสินค้าแนะนำ
+        </label>
 
 
         {/* ปุ่มบันทึก */}
-        <div className="flex justify-end md:mt-12 mt-4">
+        <div className="flex justify-end md:mt-12 mt-4 gap-4">
+          <div>
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
+            >
+              Back
+            </button>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
-            className="bg-pink-700 text-white lg:text-xl md:text-lg text-sm px-8 py-2 rounded-xl hover:bg-pink-800 transition"
+            className="bg-pink-700 text-white px-8 py-2 rounded-xl hover:bg-pink-800 transition"
           >
-            {loading ? "saving..." : "save"}
+            {loading ? "saving..." : "Save"}
           </button>
         </div>
       </form>

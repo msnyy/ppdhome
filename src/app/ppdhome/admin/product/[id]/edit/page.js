@@ -107,7 +107,7 @@ export default function EditProductPage() {
   };
 
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 text-black">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 text-black mb-8">
 
       {/* 🔥 แจ้งเตือน */}
       {isDirty && (
@@ -251,22 +251,21 @@ export default function EditProductPage() {
 
         {/* ===== save ===== */}
         <div className="flex justify-end mt-8 gap-4">
-            <Link
-              href="/ppdhome/admin/product"
-            >
-              <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6">
-                back
-              </button>
-            </Link>
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
+          >
+            Back
+          </button>
 
           <button
             type="submit"
             disabled={!isDirty}
-            className={`px-6 py-2 rounded ${
-              isDirty ? "bg-green-600 text-white" : "bg-gray-300"
-            }`}
+            className={`px-6 py-2 rounded-xl ${isDirty ? "bg-green-600 text-white" : "bg-gray-400 hover:bg-gray-500 text-white"
+              }`}
           >
-            บันทึกการแก้ไข
+            Save changes
           </button>
         </div>
 

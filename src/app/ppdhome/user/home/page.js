@@ -198,7 +198,7 @@ export default function HomePage() {
                     โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น
                   </p>
 
-                  <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
+                  <Link href={`/ppdhome/user/aboutAll/about`}>
                     <h1 className="mb-8 border-b mt-10 w-20 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                       Read More
                     </h1>

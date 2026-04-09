@@ -197,6 +197,7 @@ export default function NewsAndPublic() {
                 detail, // 👈 เผื่อมีรายละเอียด
               } = it;
 
+              const firstImage = image?.[0]?.trim();
               const newsNew = isNew(content_date, now);
 
               const href = pdf_file
@@ -211,51 +212,51 @@ export default function NewsAndPublic() {
                   className="group bg-white rounded-xl overflow-hidden shadow-lg transition"
                 >
                   <MotionWrapper>
-                  {/* 🔥 รูป */}
-                  <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
-                    {image ? (
-                      <Image
-                        src={image}
-                        alt={title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-gray-400">
-                        ไม่มีรูป
-                      </div>
-                    )}
-                  </div>
-
-                  {/* 🔥 content */}
-                  <div className="p-4">
-                    {/* title */}
-                    <p className="md:text-base text-sm font-semibold line-clamp-2 group-hover:text-pink-600">
-                      {title} {subtitle}
-                    </p>
-
-                    {/* detail */}
-                    {detail && (
-                      <p className="md:text-sm text-xs text-gray-500 mt-2 line-clamp-2">
-                        {detail}
-                      </p>
-                    )}
-
-                    {/* date + NEW */}
-                    <div className="flex items-center justify-between mt-3">
-                      <p className="text-xs text-gray-500">
-                        {formatThaiDate(content_date)}
-                      </p>
-
-                      {newsNew && (
-                        <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
-                          NEW
-                        </span>
+                    {/* 🔥 รูป */}
+                    <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
+                      {firstImage ? (
+                        <Image
+                          src={firstImage}
+                          alt={title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-gray-400">
+                          ไม่มีรูป
+                        </div>
                       )}
                     </div>
 
-                    <p className="text-blue-600 md:text-sm text-xs text-light mt-2">Read More</p>
-                  </div>
+                    {/* 🔥 content */}
+                    <div className="p-4">
+                      {/* title */}
+                      <p className="md:text-base text-sm font-semibold line-clamp-2 group-hover:text-pink-600">
+                        {title} {subtitle}
+                      </p>
+
+                      {/* detail */}
+                      {detail && (
+                        <p className="md:text-sm text-xs text-gray-500 mt-2 line-clamp-2">
+                          {detail}
+                        </p>
+                      )}
+
+                      {/* date + NEW */}
+                      <div className="flex items-center justify-between mt-3">
+                        <p className="text-xs text-gray-500">
+                          {formatThaiDate(content_date)}
+                        </p>
+
+                        {newsNew && (
+                          <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
+                            NEW
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-blue-600 md:text-sm text-xs text-light mt-2">Read More</p>
+                    </div>
                   </MotionWrapper>
                 </Link>
               );

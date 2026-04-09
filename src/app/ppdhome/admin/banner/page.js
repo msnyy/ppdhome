@@ -3,21 +3,15 @@
 export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function BannerAdmin() {
   const [banners, setBanners] = useState([]);
   const [hasNew, setHasNew] = useState(false);
   const [hasEdit, setHasEdit] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState(null);
 
-  const confirmDelete = async () => {
-    if (!deleteTarget) return;
-
-    await deleteBanner(deleteTarget.id, deleteTarget.index);
-    setDeleteTarget(null);
-  };
+  const router = useRouter();
 
   /* ================= fetch ================= */
   const fetchBanner = async () => {
@@ -100,24 +94,28 @@ export default function BannerAdmin() {
       formData.append("link", banner.link || "");
       formData.append("image", banner.file);
 
-      await fetch("/ppdhome/api/banner", {
+      const res = await fetch("/ppdhome/api/banner", {
         method: "POST",
         body: formData,
       });
+
+      if (!res.ok) {
+        let message = "เพิ่มไม่สำเร็จ";
+        try {
+          const text = await res.text();
+          if (text) {
+            const json = JSON.parse(text);
+            message = json.error || message;
+          }
+        } catch { }
+        alert(message);
+        return;
+      }
     }
 
     alert("เพิ่มสำเร็จ");
-
-
-    setBanners(
-      banners.map((b) => ({
-        ...b,
-        file: null,
-        originalLink: b.link,
-        originalImage: b.image_url,
-      }))
-    )
-      ; setHasNew(false);
+    setHasNew(false);
+    setIsDirty(false);
   };
 
   /* ================= save EDIT ================= */
@@ -127,7 +125,7 @@ export default function BannerAdmin() {
       const isChanged =
         banner.file || banner.link !== banner.originalLink;
 
-      if (!isChanged) continue; // 🔥 ไม่แก้ = ไม่ยิง PUT
+      if (!isChanged) continue;
 
       const formData = new FormData();
       formData.append("id", banner.id);
@@ -137,26 +135,54 @@ export default function BannerAdmin() {
         formData.append("image", banner.file);
       }
 
-      await fetch("/ppdhome/api/banner", {
+      const res = await fetch("/ppdhome/api/banner", {
         method: "PUT",
         body: formData,
       });
+
+      if (!res.ok) {
+        let message = "แก้ไขไม่สำเร็จ";
+        try {
+          const text = await res.text();
+          if (text) {
+            const json = JSON.parse(text);
+            message = json.error || message;
+          }
+        } catch { }
+        alert(message);
+        return;
+      }
     }
 
     alert("แก้ไขสำเร็จ");
     setHasEdit(false);
+    setIsDirty(false);
   };
 
   /* ================= delete ================= */
   const deleteBanner = async (id, index) => {
     if (id) {
-      await fetch("/ppdhome/api/banner", {
+      const res = await fetch("/ppdhome/api/banner", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      setBanners(banners.filter((b) => b.id !== id));
 
+      if (!res.ok) {
+        let message = "ลบไม่สำเร็จ";
+        try {
+          const text = await res.text();
+          if (text) {
+            const json = JSON.parse(text);
+            message = json.error || message;
+          }
+        } catch { }
+        alert(message);
+        return;
+      }
+
+      alert("ลบสำเร็จ");
+      setBanners(banners.filter((b) => b.id !== id));
     } else {
       setBanners(banners.filter((_, i) => i !== index));
     }
@@ -164,11 +190,13 @@ export default function BannerAdmin() {
 
   return (
     <section className="lg:mx-40 md:mx-20 mx-8 mb-8 text-black">
-      <Link href="/ppdhome/admin/allCreate">
-        <button className="bg-pink-400 text-white text-xl rounded-xl py-2 px-6 mt-4">
-          back
-        </button>
-      </Link>
+      <button
+        type="button"
+        onClick={() => router.back()}
+        className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 mt-4"
+      >
+        Back
+      </button>
 
       <div className="p-6 border mt-4">
         {banners.map((banner, index) => (
@@ -198,10 +226,15 @@ export default function BannerAdmin() {
             />
 
             <button
-              onClick={() => setDeleteTarget({ id: banner.id, index })}
-              className="text-red-500 mt-2 text-xl"
+              onClick={async () => {
+                const ok = confirm("คุณต้องการลบแบนเนอร์นี้ใช่หรือไม่?");
+                if (!ok) return;
+
+                await deleteBanner(banner.id, index);
+              }}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl my-4"
             >
-              ลบ
+              Delete
             </button>
           </div>
         ))}
@@ -209,7 +242,7 @@ export default function BannerAdmin() {
         {/* add */}
         <div className="flex justify-center">
           <button onClick={addBanner} className="bg-pink-300 px-4 py-2">
-            เพิ่มแบนเนอร์
+            Add banner
           </button>
         </div>
 
@@ -218,52 +251,23 @@ export default function BannerAdmin() {
         {/* save buttons */}
         <div className="flex justify-end gap-3 mt-4">
           {isDirty && (
-            <div className="mb-4 text-red-500 font-semibold">
-              ยังไม่ได้บันทึก
+            <div className="mb-4 text-red-500">
+              Unsaved
             </div>
           )}
           {hasNew && (
             <button onClick={saveNew} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">
-              บันทึก
+              Save
             </button>
           )}
 
           {hasEdit && (
             <button onClick={saveEdit} className="bg-blue-500 px-4 py-2 rounded">
-              บันทึกการแก้ไข
+              Save changes
             </button>
           )}
         </div>
       </div>
-
-      {deleteTarget && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-xl shadow-lg w-[300px] text-center">
-
-            <p className="text-lg mb-4">ยืนยันการลบ</p>
-            <p className="text-sm text-gray-500 mb-6">
-              คุณแน่ใจหรือไม่ว่าต้องการลบแบนเนอร์นี้?
-            </p>
-
-            <div className="flex justify-center gap-3">
-              <button
-                onClick={() => setDeleteTarget(null)}
-                className="px-4 py-2 bg-gray-300 rounded"
-              >
-                ยกเลิก
-              </button>
-
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-              >
-                ลบ
-              </button>
-            </div>
-
-          </div>
-        </div>
-      )}
     </section>
 
   );

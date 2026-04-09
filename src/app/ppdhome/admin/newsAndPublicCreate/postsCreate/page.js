@@ -122,7 +122,7 @@ export default function CreatePostPage() {
   /* ===== render ===== */
 
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 text-black">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 text-black mb-8">
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
@@ -253,7 +253,7 @@ export default function CreatePostPage() {
                 onClick={() => setPdfFile(null)}
                 className="bg-red-500 text-white px-3 py-1 rounded text-sm"
               >
-                ลบ
+                Delete
               </button>
 
             </div>
@@ -335,21 +335,20 @@ export default function CreatePostPage() {
         {/* submit */}
 
         <div className="flex items-end justify-end gap-4">
-
-          <Link
-              href="/ppdhome/admin/newsAndPublicCreate"
-            >
-              <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6">
-                back
-              </button>
-            </Link>
+          <button
+            type="button"
+            onClick={() => router.back()}
+            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
+          >
+            Back
+          </button>
 
           <button
             type="submit"
             disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white lg:text-xl md:text-lg text-sm px-8 py-2 rounded-xl"
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-2 rounded-xl"
           >
-            {loading ? "Saving..." : "save"}
+            {loading ? "Saving..." : "Save"}
           </button>
 
         </div>

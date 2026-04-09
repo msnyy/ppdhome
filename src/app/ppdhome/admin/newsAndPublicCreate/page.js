@@ -9,6 +9,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 
 
 /* ---------- utils ---------- */
@@ -32,6 +33,8 @@ export default function PostsAdmin() {
 
   const [category, setCategory] = useState(1);
   const [page, setPage] = useState(1);
+
+  const router = useRouter();
 
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
@@ -173,13 +176,13 @@ export default function PostsAdmin() {
   return (
     <section className="lg:mx-20 md:mx-10 mx-4 mb-18">
       <div>
-        <Link
-          href="/ppdhome/admin/allCreate"
-        >
-          <button className="bg-pink-400 text-white text-xl hover:bg-pink-500 rounded-xl py-2 px-6 mt-4 mb-4">
-            back
+        <button
+            type="button"
+            onClick={() => router.back()}
+            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-4"
+          >
+            Back
           </button>
-        </Link>
       </div>
 
       {/* ---------- Tabs ---------- */}
@@ -219,6 +222,7 @@ export default function PostsAdmin() {
                 detail, // 👈 เผื่อมีรายละเอียด
               } = it;
 
+              const firstImage = image?.[0]?.trim();
               const newsNew = isNew(content_date, now);
 
               const href = pdf_file
@@ -234,9 +238,9 @@ export default function PostsAdmin() {
                 >
                   {/* 🔥 รูป */}
                   <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
-                    {image ? (
+                    {firstImage ? (
                       <Image
-                        src={image}
+                        src={firstImage}
                         alt={title}
                         fill
                         className="object-cover group-hover:scale-105 transition"
@@ -283,14 +287,14 @@ export default function PostsAdmin() {
                           e.preventDefault();
                           handleDelete(id);
                         }}
-                        className="bg-red-500 rounded-xl p-1 px-3 text-white hover:bg-red-700 text-sm"
+                        className="bg-red-500 rounded-lg p-1 px-3 text-white hover:bg-red-700 text-sm"
                       >
-                        ลบ
+                        Delete
                       </button>
                     </div>
 
                   </div>
-                  
+
                 </Link>
               );
             })}
