@@ -72,56 +72,60 @@ export default function HomeLatestNews() {
 
                 {items.map((it) => {
 
-                    const firstImage = it.image
-                        ? it.image.split(",")[0]
-                        : null;
+                    const firstImage = Array.isArray(it.image)
+                        ? it.image[0]?.trim()
+                        : typeof it.image === "string"
+                            ? it.image.split(",")[0]?.trim()
+                            : null;
 
                     const newsNew = isNew(it.content_date);
 
                     return (
-                            <Link
-                                key={it.id}
-                                href={`/ppdhome/user/newsAndPublic/${it.id}`}
-                                className="group"
-                            >
-                                {/* image */}
-                                <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-200">
+                        <Link
+                            key={it.id}
+                            href={`/ppdhome/user/newsAndPublic/${it.id}`}
+                            className="group"
+                        >
+                            {/* image */}
+                            <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-200">
 
-                                    {firstImage && (
+                                {firstImage ? (
+                                    <Image
+                                        src={firstImage}
+                                        alt={it.title}
+                                        fill
+                                        className="object-cover group-hover:scale-105 transition"
+                                    />
+                                ) : (
+                                    <div className="flex items-center justify-center h-full text-gray-400">
+                                        ไม่มีรูป
+                                    </div>
+                                )}
 
-                                        <Image
-                                            src={firstImage}
-                                            alt={it.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition"
-                                        />
+                            </div>
 
-                                    )}
+                            {/* title */}
+                            <p className="mt-4 lg:text-lg text-sm font-medium line-clamp-2 group-hover:text-pink-700 transition">
 
-                                </div>
+                                {it.title} {it.subtitle}
 
-                                {/* title */}
-                                <p className="mt-4 lg:text-lg text-sm font-medium line-clamp-2 group-hover:text-pink-700 transition">
+                            </p>
 
-                                    {it.title} {it.subtitle}
+                            {/* date */}
+                            <p className="lg:text-sm text-xs text-gray-500 mt-1">
 
-                                </p>
+                                {formatThaiDate(it.content_date)}
 
-                                {/* date */}
-                                <p className="lg:text-sm text-xs text-gray-500 mt-1">
+                                {newsNew && (
+                                    <span className="text-xs bg-orange-600 text-white px-2 py-1 ms-4 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
+                                        NEW
+                                    </span>
+                                )}
 
-                                    {formatThaiDate(it.content_date)}
+                            </p>
 
-                                    {newsNew && (
-                                        <span className="text-xs bg-orange-600 text-white px-2 py-1 ms-4 rounded animate-pulse shadow-[0_0_10px_rgba(255,115,0,0.8)]">
-                                            NEW
-                                        </span>
-                                    )}
-
-                                </p>
-
-                                <p className="text-blue-600 text-light lg:text-base text-sm mt-2">Read More</p>
-                            </Link>
+                            <p className="text-blue-600 text-light lg:text-base text-sm mt-2">Read More</p>
+                        </Link>
 
                     );
 
