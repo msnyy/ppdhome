@@ -29,13 +29,7 @@ export default function AboutBoard() {
                             <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">สุภาพร ประทุมสังข์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร</p>
-                            </MotionWrapper>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
-                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">สุภาพร ประทุมสังข์</p>
-                            <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
+                            <p className="text-center lg:text-base text-sm">และ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
                             </MotionWrapper>
                         </div>
@@ -65,15 +59,7 @@ export default function AboutBoard() {
                             <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto"></Image>
                             <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">สุภาพร ประทุมสังข์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
-                            <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร</p>
-                            </MotionWrapper>
-                        </div>
-                        <div className="flex flex-col items-center mt-4 text-center">
-                            <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto"></Image>
-                            <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">สุภาพร ประทุมสังข์</p>
-                            <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
-                            <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
+                            <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร และ ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
                             </MotionWrapper>
                         </div>
                         <div className="flex flex-col items-center mt-4 text-center">
