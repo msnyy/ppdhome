@@ -25,7 +25,7 @@ export default function AboutBoard() {
                     <div className="flex justify-between lg:gap-14 md:gap-6 lg:mt-10 md:mt-6 mt-4 lg:mx-0 mx-4">
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl"></Image>
+                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
                             <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">สุภาพร ประทุมสังข์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร</p>
@@ -33,15 +33,15 @@ export default function AboutBoard() {
                         </div>
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/watcharapan.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl"></Image>
-                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">วัชรพัฒน์ หน่อเพ็ชร</p>
-                            <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
+                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
+                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">สุภาพร ประทุมสังข์</p>
+                            <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
                             </MotionWrapper>
                         </div>
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/tanakorn.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl"></Image>
+                            <Image src={getSupabaseImage("pic/tanakorn.jpg")} alt="รูปพยาบาลวิชาชีพชำนาญการ" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
                             <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">ธนกร สุขรมย์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">พยาบาลวิชาชีพชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มพัฒนาคนพิการ</p>
@@ -49,9 +49,9 @@ export default function AboutBoard() {
                         </div>
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/watcharapan.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl"></Image>
-                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">วัชรพัฒน์ หน่อเพ็ชร์</p>
-                            <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
+                            <Image src={getSupabaseImage("pic/angkana.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
+                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">อังคณา ศรีโต</p>
+                            <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มมาตรการและกลไก</p>
                             </MotionWrapper>
                         </div>
@@ -70,8 +70,8 @@ export default function AboutBoard() {
                         </div>
                         <div className="flex flex-col items-center mt-4 text-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/watcharapan.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto"></Image>
-                            <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">วัชรพัฒน์ หน่อเพ็ชร</p>
+                            <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto"></Image>
+                            <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">สุภาพร ประทุมสังข์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
                             </MotionWrapper>
@@ -86,8 +86,8 @@ export default function AboutBoard() {
                         </div>
                         <div className="flex flex-col items-center mt-4 text-center">
                             <MotionWrapper>
-                            <Image src={getSupabaseImage("pic/watcharapan.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto"></Image>
-                            <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">วัชรพัฒน์ หน่อเพ็ชร์</p>
+                            <Image src={getSupabaseImage("pic/angkana.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto object-cover"></Image>
+                            <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">อังคณา ศรีโต</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มมาตรการและกลไก</p>
                             </MotionWrapper>

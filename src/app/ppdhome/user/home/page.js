@@ -246,7 +246,7 @@ export default function HomePage() {
                     โดยมุ่งเน้นการเสริมสร้างศักยภาพและคุณภาพชีวิตให้ดียิ่งขึ้น
                   </p>
 
-                  <Link href={`/ppdhome/user/aboutAll/about/page.js`}>
+                  <Link href={`/ppdhome/user/aboutAll/about`}>
                     <h1 className="border-b mt-4 w-18 hover:text-pink-700 md:text-sm text-xs">
                       Read More
                     </h1>
