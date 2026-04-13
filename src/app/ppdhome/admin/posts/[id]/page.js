@@ -126,7 +126,7 @@ export default function AdminPostDetail() {
         </p>
 
         {data.subtitle && (
-          <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg">
+          <p className="lg:mt-5 mt-2 lg:text-4xl md:text-3xl text-xl text-shadow-lg indent-8">
             {data.subtitle}
           </p>
         )}
@@ -176,10 +176,11 @@ export default function AdminPostDetail() {
         <div className="flex justify-end mt-8 gap-4">
           <button
             type="button"
-            onClick={() => router.back()}
             className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
           >
-            Back
+            <a href={`/ppdhome/admin/newsAndPublicCreate`}>
+              Back
+            </a>
           </button>
 
           <Link href={`/ppdhome/admin/posts/${data.id}/edit`}>

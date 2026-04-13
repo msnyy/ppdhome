@@ -58,7 +58,7 @@ export default function AboutInto() {
           </div>
         </section>
 
-        <section className="relative flex flex-col w-full mb-18">
+        <section className="relative flex flex-col w-full mb-18 text-black">
           <div className="lg:mx-20 md:mx-9 mx-4 bg-white md:py-10 py-6 rounded-xl shadow-lg">
 
             <MotionWrapper>

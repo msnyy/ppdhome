@@ -15,7 +15,7 @@ export default function AboutBoard() {
                 <div className="flex flex-col items-center text-center lg:mt-10 mt-4">
                     <MotionWrapper>
                     <Image src={getSupabaseImage("pic/parent.jpeg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl mx-auto lg:w-[250px] lg:h-[310px] md:w-[150px] md:h-[200px] w-[100px] h-[130px]"></Image>
-                    <p className="md:text-2xl text-lg md:mt-4 mt-2 text-shadow-lg">ว่าที่ร้อยตรีณัทกร ธงสอาด</p>
+                    <p className="md:text-2xl text-lg md:mt-4 mt-2 text-shadow-lg font-medium">ว่าที่ร้อยตรีณัทกร ธงสอาด</p>
                     <p className="lg:mt-2 mt-1 md:text-base text-xs">ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ</p>
                     <p className="lg:mt-2 mt-1 md:text-base text-xs">พระประแดง จังหวัดสมุทรปราการ</p>
                     </MotionWrapper>
@@ -26,17 +26,16 @@ export default function AboutBoard() {
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
                             <Image src={getSupabaseImage("pic/supaporn.jpg")} alt="รูปผู้ปกครอง" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
-                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">สุภาพร ประทุมสังข์</p>
+                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center font-medium">สุภาพร ประทุมสังข์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
-                            <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร</p>
-                            <p className="text-center lg:text-base text-sm">และ</p>
+                            <p className="text-center lg:text-base text-sm">หัวหน้าฝ่ายบริหาร และ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มคุ้มครองคนพิการ</p>
                             </MotionWrapper>
                         </div>
                         <div className="flex flex-col items-center">
                             <MotionWrapper>
                             <Image src={getSupabaseImage("pic/tanakorn.jpg")} alt="รูปพยาบาลวิชาชีพชำนาญการ" width={250} height={100} className="rounded-xl w-[250px] h-[300px]"></Image>
-                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center">ธนกร สุขรมย์</p>
+                            <p className="xl:text-xl md:text-lg text-xl mt-4 text-shadow-lg text-center font-medium">ธนกร สุขรมย์</p>
                             <p className="mt-2 lg:text-base text-sm text-center">พยาบาลวิชาชีพชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มพัฒนาคนพิการ</p>
                             </MotionWrapper>

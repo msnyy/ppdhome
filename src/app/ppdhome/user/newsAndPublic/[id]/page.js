@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import MotionWrapper from "@components/MotionWrapper";
+import { useRouter } from "next/navigation";
 
 function formatThaiDate(input) {
     if (!input) return "";
@@ -20,6 +21,8 @@ function formatThaiDate(input) {
 
 export default function PostDetail() {
     const { id } = useParams();
+
+    const router = useRouter();
 
     const [data, setData] = useState(null);
     const [openImage, setOpenImage] = useState(null);
@@ -98,7 +101,7 @@ export default function PostDetail() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="mt-5 whitespace-pre-line">
+                <p className="mt-5 whitespace-pre-line indent-8">
                     {data.detail}
                 </p>
             </MotionWrapper>

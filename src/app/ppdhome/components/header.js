@@ -69,7 +69,23 @@ export default function Header() {
     const pathname = usePathname();
     if (pathname === "/ppdhome/admin/login") return null;
     if (pathname === "/ppdhome/admin/allCreate") return null;
+    if (pathname === "/ppdhome/admin/newCreate") return null;
+    if (pathname === "/ppdhome/admin/publicCreate") return null;
+    if (pathname === "/ppdhome/admin/product") return null;
+    if (pathname === "/ppdhome/admin/newsAndPublicCreate") return null;
+    if (pathname === "/ppdhome/admin/banner") return null;
 
+    const isActive = (path) =>
+        pathname === path || pathname.startsWith(path + "/");
+
+    const isAboutAll = (path) =>
+        pathname === path || pathname.startsWith(path + "/");
+
+    const isService = (path) =>
+        pathname === path || pathname.startsWith(path + "/");
+
+    const isKnowledge = (path) =>
+        pathname === path || pathname.startsWith(path + "/");
 
     return (
         <header className="inset-x-0 top-0 xl:w-full text-black bg-white">
@@ -131,7 +147,12 @@ export default function Header() {
                 <nav className="flex-1 flex">
                     <div className="flex justify-center items-center gap-6 lg:gap-12 w-full rounded-xl py-4">
                         <div className="relative">
-                            <a href="/ppdhome/user/home" className="inline-flex font-light text-black flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
+                            <a
+                                href="/ppdhome/user/home"
+                                className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                    ${isActive("/ppdhome/user/home")
+                                        ? "text-pink-700 border-b border-pink-700 cursor-default"
+                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                 หน้าหลัก
                             </a>
                         </div>
@@ -170,35 +191,45 @@ export default function Header() {
                                     <div>
                                         <Link
                                             href="/ppdhome/user/aboutAll/about"
-                                            className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                        >
+                                            className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                    ${isAboutAll("/ppdhome/user/aboutAll/about")
+                                                    ? "text-pink-700 cursor-default"
+                                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                             ประวัติสถานคุ้มครอง
                                         </Link>
                                         <Link
                                             href="/ppdhome/user/aboutAll/aboutBoard"
-                                            className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                        >
+                                            className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                    ${isAboutAll("/ppdhome/user/aboutAll/aboutBoard")
+                                                    ? "text-pink-700 cursor-default"
+                                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                             โครงสร้างผู้บริหาร
                                         </Link>
 
 
                                         <Link
                                             href="/ppdhome/user/aboutAll/aboutOrganiz"
-                                            className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                        >
+                                            className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                    ${isAboutAll("/ppdhome/user/aboutAll/aboutOrganiz")
+                                                    ? "text-pink-700 cursor-default"
+                                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                             โครงสร้างหน่วยงาน
                                         </Link>
                                         <Link
                                             href="/ppdhome/user/aboutAll/aboutMission"
-                                            className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                        >
+                                            className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                    ${isAboutAll("/ppdhome/user/aboutAll/aboutMission")
+                                                    ? "text-pink-700 cursor-default"
+                                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                             ภารกิจหลักองค์กร
                                         </Link>
 
                                         <Link
                                             href="/ppdhome/user/aboutAll/privatePolicy"
-                                            className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                        >
+                                            className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                    ${isAboutAll("/ppdhome/user/aboutAll/privatePolicy")
+                                                    ? "text-pink-700 cursor-default"
+                                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                             พรบ. คุ้มครองข้อมูลส่วนบุคคล
                                         </Link>
                                     </div>
@@ -209,10 +240,11 @@ export default function Header() {
 
 
                         <div className="relative">
-                            <Link href="/ppdhome/user/newsAndPublic" className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
-                                <button className="inline-flex items-center gap-2 font-light text-black hover:text-pink-700">
-                                    ข่าวประชาสัมพันธ์
-                                </button>
+                            <Link href="/ppdhome/user/newsAndPublic" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                    ${isActive("/ppdhome/user/newsAndPublic")
+                                    ? "text-pink-700 border-b border-pink-700 cursor-default"
+                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
+                                ข่าวประชาสัมพันธ์
                             </Link>
                         </div>
 
@@ -266,14 +298,18 @@ export default function Header() {
                                             >
                                                 <Link
                                                     href="/ppdhome/user/services/activityPrint"
-                                                    className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                                >
+                                                    className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                            ${isService("/ppdhome/user/services/activityPrint")
+                                                            ? "text-pink-700 cursor-default"
+                                                            : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     โครงการพิมพ์ฝัน ปั้นอาชีพ
                                                 </Link>
                                                 <Link
                                                     href="/ppdhome/user/services/activityBasket"
-                                                    className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                                >
+                                                    className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                            ${isService("/ppdhome/user/services/activityBasket")
+                                                            ? "text-pink-700 cursor-default"
+                                                            : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     กิจกรรมสานตะกร้า
                                                 </Link>
                                             </div>
@@ -300,10 +336,16 @@ export default function Header() {
                                         {serviceRehabOpen && (
                                             <div className="absolute left-full top-0 w-60 font-light bg-white shadow-lg z-100"
                                                 onClick={(e) => e.stopPropagation()}>
-                                                <Link href="/ppdhome/user/services/sport" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/sport" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/sport")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     การฟื้นฟูสมรรถภาพทางกีฬา
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/activityPhysical" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/activityPhysical" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/activityPhysical")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     กายภาพบำบัด
                                                 </Link>
                                             </div>
@@ -312,8 +354,10 @@ export default function Header() {
 
                                     <Link
                                         href="/ppdhome/user/services/study"
-                                        className="flex items-center gap-2 px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                    >
+                                        className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/study")
+                                                ? "text-pink-700 cursor-default"
+                                                : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                         การศึกษา
                                     </Link>
 
@@ -336,22 +380,40 @@ export default function Header() {
                                         {serviceMedicalOpen && (
                                             <div className="absolute left-full top-0 w-60 font-light bg-white shadow-lg z-100"
                                                 onClick={(e) => e.stopPropagation()}>
-                                                <Link href="/ppdhome/user/services/medical31" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical31" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical31")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     กิจกรรมพบแพทย์ในบ้าน
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical58" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical58" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical58")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     ฟันสวยกับสภากาชาดไทย
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical146" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical146" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical146")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     ฉีดวัคซีนป้องกันไข้หวัดใหญ่
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical158" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical158" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical158")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     ตรวจสุขภาพประจำปี 2568
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical179" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical179" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical179")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     คัดกรองวัณโรคในกลุ่มเสี่ยง
                                                 </Link>
-                                                <Link href="/ppdhome/user/services/medical204" className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                                                <Link href="/ppdhome/user/services/medical204" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                        ${isService("/ppdhome/user/services/medical204")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                                     วางแผนจัดการและควบคุมโรคติดต่อ
                                                 </Link>
                                             </div>
@@ -363,14 +425,12 @@ export default function Header() {
 
 
                         <div className="relative">
-                            <button className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
-                                <Link
-                                    href="/ppdhome/user/product"
-                                    className="block"
-                                >
-                                    ผลิตภัณฑ์
-                                </Link>
-                            </button>
+                            <a href="/ppdhome/user/product" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                    ${isActive("/ppdhome/user/product")
+                                    ? "text-pink-700 border-b border-pink-700 cursor-default"
+                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
+                                ผลิตภัณฑ์
+                            </a>
                         </div>
 
                         <div className="relative" onMouseEnter={() => setDesktopKnowledgeOpen(true)} onMouseLeave={() => setDesktopKnowledgeOpen(false)}>
@@ -398,30 +458,38 @@ export default function Header() {
                             </button>
 
                             {desktopKnowledgeOpen && (
-                                <div className="absolute left-0 w-60 font-light bg-white shadow-lg z-100"
+                                <div className="absolute flex flex-col left-0 w-60 font-light bg-white shadow-lg z-100"
                                     onClick={(e) => e.stopPropagation()}>
                                     <Link
                                         href="/ppdhome/user/knowledge/manual"
-                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                    >
+                                        className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                ${isKnowledge("/ppdhome/user/knowledge/manual")
+                                                ? "text-pink-700 cursor-default"
+                                                : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                         คู่มือคนพิการ
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/goldCard"
-                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                    >
+                                        className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                ${isKnowledge("/ppdhome/user/knowledge/goldCard")
+                                                ? "text-pink-700 cursor-default"
+                                                : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                         สิทธิบัตรทอง
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/home-for-disabled-person"
-                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                    >
+                                        className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                ${isKnowledge("/ppdhome/user/knowledge/home-for-disabled-person")
+                                                ? "text-pink-700 cursor-default"
+                                                : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                         การรับคนพิการเข้าสถานคุ้มครอง
                                     </Link>
                                     <Link
                                         href="/ppdhome/user/knowledge/disabled-person-id-card"
-                                        className="block px-4 py-2 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]"
-                                    >
+                                        className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                                ${isKnowledge("/ppdhome/user/knowledge/disabled-person-id-card")
+                                                ? "text-pink-700 cursor-default"
+                                                : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
                                         บัตรประจำตัวคนพิการ
                                     </Link>
                                 </div>
@@ -429,14 +497,12 @@ export default function Header() {
                         </div>
 
                         <div className="relative">
-                            <button className="inline-flex items-center gap-2 font-light text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
-                                <Link
-                                    href="/ppdhome/user/contact"
-                                    className="block"
-                                >
-                                    ติดต่อเรา
-                                </Link>
-                            </button>
+                            <a href="/ppdhome/user/contact" className={`inline-flex font-light flex items-center gap-2 px-4 py-2 transition-all duration-200
+                                    ${isActive("/ppdhome/user/contact")
+                                    ? "text-pink-700 border-b border-pink-700 cursor-default"
+                                    : "text-black hover:text-pink-700 hover:-translate-y-1 hover:scale-[1.02]"} `} >
+                                ติดต่อเรา
+                            </a>
                         </div>
                     </div>
                 </nav>
@@ -450,6 +516,17 @@ export default function Header() {
                 >
                     {/* ===== เกี่ยวกับเรา (mobile dropdown) ===== */}
                     <div>
+                        <div className="relative">
+                            <a
+                                href="/ppdhome/user/home"
+                                className={`block
+                                    ${isActive("/ppdhome/user/home")
+                                        ? "text-pink-700"
+                                        : "text-black"} `} >
+                                หน้าหลัก
+                            </a>
+                        </div>
+
                         <button
                             onClick={() => setMobileAboutOpen((v) => !v)}
                             className="flex w-full items-center justify-between py-2 text-left"
@@ -460,42 +537,47 @@ export default function Header() {
                         {mobileAboutOpen && (
                             <div className="ml-4 mt-2 space-y-2 text-sm">
                                 <Link
-                                    href="/ppdhome/user/aboutAll/about"
-                                    className="block hover:text-pink-700"
-                                    onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/aboutAll/about" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isAboutAll("/ppdhome/user/aboutAll/about")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     ประวัติสถานคุ้มครอง
                                 </Link>
 
                                 <Link
-                                    href="/ppdhome/user/aboutAll/aboutBoard"
-                                    className="block hover:text-pink-700"
-                                    onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/aboutAll/aboutBoard" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isAboutAll("/ppdhome/user/aboutAll/aboutBoard")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     โครงสร้างผู้บริหาร
                                 </Link>
 
                                 <Link
-                                    href="/ppdhome/user/aboutAll/aboutOrganiz"
-                                    className="block hover:text-pink-700"
-                                    onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/aboutAll/aboutOrganiz" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isAboutAll("/ppdhome/user/aboutAll/aboutOrganiz")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     โครงสร้างหน่วยงาน
                                 </Link>
 
                                 <Link
-                                    href="/ppdhome/user/aboutAll/aboutMission"
-                                    className="block hover:text-pink-700"
-                                    onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/aboutAll/aboutMission" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isAboutAll("/ppdhome/user/aboutAll/aboutMission")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     ภารกิจหลักองค์กร
                                 </Link>
 
                                 <Link
-                                    href="/ppdhome/user/aboutAll/privatePolicy"
-                                    className="block hover:text-pink-700"
-                                    onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/aboutAll/privatePolicy" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isAboutAll("/ppdhome/user/aboutAll/privatePolicy")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     พรบ. คุ้มครองข้อมูลส่วนบุคคล
                                 </Link>
                             </div>
@@ -503,7 +585,11 @@ export default function Header() {
                     </div>
 
                     <button className="block w-full text-left py-2">
-                        <Link href="/ppdhome/user/newsAndPublic" className="block" onClick={handleCloseMenu}>
+                        <Link href="/ppdhome/user/newsAndPublic" onClick={handleCloseMenu}
+                            className={`block
+                                    ${isActive("/ppdhome/user/newsAndPublic")
+                                    ? "text-pink-700 cursor-default"
+                                    : "text-black"} `} >
                             ข่าวประชาสัมพันธ์
                         </Link>
                     </button>
@@ -532,10 +618,18 @@ export default function Header() {
 
                                     {mobileServiceJobOpen && (
                                         <div className="ml-4 mt-1 space-y-1">
-                                            <Link href="/ppdhome/user/services/activityPrint" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/activityPrint" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/activityPrint")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 โครงการพิมพ์ฝัน ปั้นอาชีพ
                                             </Link>
-                                            <Link href="/ppdhome/user/services/activityBasket" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/activityBasket" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/activityBasket")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 กิจกรรมสานตะกร้า
                                             </Link>
                                         </div>
@@ -553,10 +647,18 @@ export default function Header() {
 
                                     {mobileServiceRehabOpen && (
                                         <div className="ml-4 mt-1 space-y-1">
-                                            <Link href="/ppdhome/user/services/sport" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/sport" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/sport")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 การฟื้นฟูสมรรถภาพทางกีฬา
                                             </Link>
-                                            <Link href="/ppdhome/user/services/activityPhysical" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/activityPhysical" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/activityPhysical")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 กายภาพบำบัด
                                             </Link>
                                         </div>
@@ -565,9 +667,11 @@ export default function Header() {
 
                                 {/* การศึกษา */}
                                 <Link
-                                    href="/ppdhome/user/services/study"
-                                    className="block hover:text-pink-700" onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/services/study" onClick={handleCloseMenu}
+                                    className={`block
+                                    ${isService("/ppdhome/user/services/study")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     การศึกษา
                                 </Link>
 
@@ -582,22 +686,46 @@ export default function Header() {
 
                                     {mobileServiceMedicalOpen && (
                                         <div className="ml-4 mt-1 space-y-1">
-                                            <Link href="/ppdhome/user/services/medical31" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical31" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical31")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 กิจกรรมพบแพทย์ในบ้าน
                                             </Link>
-                                            <Link href="/ppdhome/user/services/medical58" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical58" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical58")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 ฟันสวยกับสภากาชาดไทย
                                             </Link>
-                                            <Link href="/ppdhome/user/services/medical146" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical146" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical146")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 ฉีดวัคซีนป้องกันไข้หวัดใหญ่
                                             </Link>
-                                            <Link href="/ppdhome/user/services/medical158" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical158" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical158")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 ตรวจสุขภาพประจำปี 2568
                                             </Link>
-                                            <Link href="/ppdhome/user/services/medical179" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical179" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical179")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 คัดกรองวัณโรคในกลุ่มเสี่ยง
                                             </Link>
-                                            <Link href="/ppdhome/user/services/medical204" className="block hover:text-pink-700" onClick={handleCloseMenu}>
+                                            <Link href="/ppdhome/user/services/medical204" onClick={handleCloseMenu}
+                                                className={`block
+                                                        ${isService("/ppdhome/user/services/medical204")
+                                                        ? "text-pink-700 cursor-default"
+                                                        : "text-black"} `} >
                                                 วางแผนจัดการและควบคุมโรคติดต่อ
                                             </Link>
                                         </div>
@@ -611,9 +739,11 @@ export default function Header() {
 
                     <button className="block w-full text-left py-2">
                         <Link
-                            href="/ppdhome/user/product"
-                            className="block" onClick={handleCloseMenu}
-                        >
+                            href="/ppdhome/user/product" onClick={handleCloseMenu}
+                            className={`block
+                                    ${isActive("/ppdhome/user/product")
+                                    ? "text-pink-700 cursor-default"
+                                    : "text-black"} `} >
                             ผลิตภัณฑ์
                         </Link></button>
 
@@ -630,29 +760,38 @@ export default function Header() {
                             <div className="ml-4 mt-2 space-y-2 text-sm">
                                 <Link
                                     href="/ppdhome/user/knowledge/manual"
-                                    className="block hover:text-pink-700"
                                     onClick={handleCloseMenu}
-                                >
+                                    className={`block
+                                            ${isKnowledge("/ppdhome/user/knowledge/manual")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `}>
                                     คู่มือคนพิการ
                                 </Link>
 
                                 <Link
                                     href="/ppdhome/user/knowledge/goldCard"
-                                    className="block hover:text-pink-700"
                                     onClick={handleCloseMenu}
-                                >
+                                    className={`block
+                                            ${isKnowledge("/ppdhome/user/knowledge/goldCard")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `}>
                                     สิทธิบัตรทอง
                                 </Link>
                                 <Link
                                     href="/ppdhome/user/knowledge/home-for-disabled-person"
-                                    className="block hover:text-pink-700" onClick={handleCloseMenu}
-                                >
+                                    onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isKnowledge("/ppdhome/user/knowledge/home-for-disabled-person")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `}>
                                     การรับคนพิการเข้าสถานคุ้มครอง
                                 </Link>
                                 <Link
-                                    href="/ppdhome/user/knowledge/disabled-person-id-card"
-                                    className="block hover:text-pink-700" onClick={handleCloseMenu}
-                                >
+                                    href="/ppdhome/user/knowledge/disabled-person-id-card" onClick={handleCloseMenu}
+                                    className={`block
+                                            ${isKnowledge("/ppdhome/user/knowledge/disabled-person-id-card")
+                                            ? "text-pink-700 cursor-default"
+                                            : "text-black"} `} >
                                     บัตรประจำตัวคนพิการ
                                 </Link>
                             </div>
@@ -662,9 +801,11 @@ export default function Header() {
 
                     <button className="block w-full text-left py-2">
                         <Link
-                            href="/ppdhome/user/contact"
-                            className="block" onClick={handleCloseMenu}
-                        >
+                            href="/ppdhome/user/contact" onClick={handleCloseMenu}
+                            className={`block
+                                    ${isActive("/ppdhome/user/contact")
+                                    ? "text-pink-700 cursor-default"
+                                    : "text-black"} `} >
                             ติดต่อเรา
                         </Link>
                     </button>

@@ -135,11 +135,9 @@ export default function HomePage() {
             >
               {banners.map((banner) => (
                 <SwiperSlide key={banner.id}>
-
-                  <Link href={banner.link}>
+                  <Link href={banner.link} target="_blank" rel="noopener noreferrer">
                     <img src={banner.image_url} />
                   </Link>
-
                 </SwiperSlide>
               ))}
             </Swiper>

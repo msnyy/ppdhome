@@ -66,6 +66,7 @@ export default function NewsAndPublic() {
   const pageSize = 12;
 
   const categories = [
+    { id: 0, name: "ทั้งหมด" },
     { id: 1, name: "ทั่วไป" },
     { id: 2, name: "ประกาศจัดซื้อจัดจ้าง" },
     { id: 3, name: "ประกาศราคากลาง" },
@@ -97,10 +98,12 @@ export default function NewsAndPublic() {
         setLoading(true);
         setError("");
 
-        const res = await fetch(
-          `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}&category=${category}`,
-          { signal: controller.signal }
-        );
+        const query =
+          category === 0
+            ? `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}`
+            : `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}&category=${category}`;
+
+        const res = await fetch(query, { signal: controller.signal });
 
         if (!res.ok) throw new Error(`Fetch failed (${res.status})`);
 
@@ -272,18 +275,19 @@ export default function NewsAndPublic() {
             แสดง {start} ถึง {end} จากทั้งหมด {total} รายการ
           </p>
 
-          <nav className="inline-flex shadow-sm">
+          <nav className="inline-flex overflow-hidden rounded-lg border border-gray-300">
+
             <button
               disabled={page <= 1}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
+              className="px-3 py-2 bg-white text-black disabled:text-gray-300 hover:bg-pink-100"
             >
               <ChevronLeftIcon className="w-5 h-5" />
             </button>
 
             {pages.map((p, i) =>
               p === "..." ? (
-                <span key={i} className="px-4 py-2 border text-gray-400">
+                <span key={i} className="px-4 py-2 bg-white text-gray-400">
                   ...
                 </span>
               ) : (
@@ -291,8 +295,10 @@ export default function NewsAndPublic() {
                   key={p}
                   onClick={() => setPage(p)}
                   className={cx(
-                    "px-4 py-2 border",
-                    p === page && "bg-pink-400 text-white"
+                    "px-4 py-2  transition",
+                    p === page
+                      ? "bg-pink-400 border-l border-gray-300 text-white"
+                      : "bg-white text-black hover:bg-pink-100"
                   )}
                 >
                   {p}
@@ -302,10 +308,8 @@ export default function NewsAndPublic() {
 
             <button
               disabled={page >= totalPages}
-              onClick={() =>
-                setPage((p) => Math.min(totalPages, p + 1))
-              }
-              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              className="px-3 py-2 bg-white text-black disabled:text-gray-300 hover:bg-pink-100"
             >
               <ChevronRightIcon className="w-5 h-5" />
             </button>

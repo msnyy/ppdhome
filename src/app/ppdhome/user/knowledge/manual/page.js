@@ -5,7 +5,7 @@ import MotionWrapper from "@components/MotionWrapper";
 export const dynamic = "force-dynamic";
 export default function Manual(){
     return(
-        <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4 text-black mb-8">
+        <section className="lg:mx-40 md:mx-10 mx-6 md:mt-10 mt-4 text-black mb-8 flex flex-col items-center justify-center">
             <MotionWrapper>
             <p className="lg:text-4xl md:text-4xl text-xl text-center md:mb-10 mb-4 text-shadow-lg">
                 คู่มือคนพิการ

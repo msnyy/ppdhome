@@ -116,19 +116,82 @@ export default function Product() {
     return (
         <div className="text-black">
             <section className="w-full pb-10 relative z-[10001] text-black">
-
                 <div className="xl:mx-20 md:mx-9 mx-4">
                     <div>
                         <button
                             type="button"
-                            onClick={() => router.back()}
                             className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-8"
                         >
-                            Back
+                            <a href={`/ppdhome/admin/allCreate`}>
+                                Back
+                            </a>
                         </button>
                     </div>
 
-                    <h2 className="xl:text-5xl md:text-3xl text-xl font-bold mb-6 text-shadow-lg text-black">สินค้าแนะนำ</h2>
+                    <div className="md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4 items-end">
+                        <div className="relative">
+                            <label className="block md:text-lg text-base mb-1">
+                                ประเภทสินค้า
+                            </label>
+
+                            <select
+                                value={inputCategory}
+                                onChange={(e) => setInputCategory(e.target.value)}
+                                className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[140px]"
+                            >
+                                <option value="all">ทั้งหมด</option>
+                                {allCategories.map((c) => (
+                                    <option key={c} value={c}>
+                                        {c}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* เรียงราคา */}
+                        <div className="relative">
+                            <label className="block md:text-lg text-base mb-1">
+                                เรียงราคา
+                            </label>
+
+                            <select
+                                value={priceSort}
+                                onChange={(e) => setPriceSort(e.target.value)}
+                                className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[160px]"
+                            >
+                                <option value="">ไม่เรียง</option>
+                                <option value="asc">ราคาต่ำ → สูง</option>
+                                <option value="desc">ราคาสูง → ต่ำ</option>
+                            </select>
+                        </div>
+
+
+
+                        {/* ปุ่มค้นหา */}
+                        <button
+                            onClick={() => {
+                                setFilterCategory(inputCategory);
+                            }}
+                            className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-lg text-base"
+                        >
+                            ค้นหา
+                        </button>
+
+                        {/* ล้างค่า */}
+                        <button
+                            onClick={() => {
+                                setInputCategory("all");
+                                setFilterCategory("all");
+                                setPriceSort("");
+                            }}
+                            className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-lg text-base"
+                        >
+                            ล้าง
+                        </button>
+                    </div>
+
+
+                    <h2 className="xl:text-5xl md:text-3xl text-xl mb-6 text-shadow-lg text-black">สินค้าแนะนำ</h2>
 
                     <Swiper
                         modules={[Autoplay, Navigation]}
@@ -154,17 +217,18 @@ export default function Product() {
                                 >
                                     <div className="relative md:mx-0 mx-auto lg:w-[210px] md:w-[150px] w-[200px] md:h-full h-[200px]">
                                         <Image
-                                            src={p.image?.split(",")[0]}
+                                            src={p.image?.split(",")[0] || "/no-image.png"}
                                             alt={p.name}
-                                            fill
-                                            className="object-contain"
+                                            width={250}
+                                            height={250}
+                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-contain flex items-center justify-center"
                                         />
 
                                     </div>
 
                                     <div className="flex-1 py-4 pe-4 flex flex-col justify-between">
                                         <div>
-                                            <h3 className="text-lg font-semibold text-gray-800">
+                                            <h3 className="text-lg text-gray-800">
                                                 {p.name}
                                             </h3>
                                             <p className="text-sm text-gray-600 line-clamp-2">
@@ -193,150 +257,20 @@ export default function Product() {
                         ))}
                     </Swiper>
                 </div>
-            </section>
+            </section >
 
             <section className="relative z-[10001]">
-                <div className="flex min-h-screen font-sans">
+                <div className="flex min-h-screen">
                     <main className="relative flex min-h-screen w-full flex-col bg-cover">
                         <section className="relative flex flex-col xl:mx-20 md:mx-9 mx-4 lg:mt-10 md:mt-6 mt-4 mb-16">
-                            <h2 className="xl:text-5xl md:text-3xl text-xl font-bold text-center mb-6">
+                            <h2 className="xl:text-5xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
                                 ผลิตภัณฑ์โดยคนพิการ
                             </h2>
-                            {/*  FILTER BAR  */}
-                            <div className="md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4 items-end">
-                                <div className="relative">
-                                    <label className="block md:text-sm text-xs mb-1">
-                                        ประเภทสินค้า
-                                    </label>
-
-                                    <button
-                                        onClick={() => setOpenCategory(!openCategory)}
-                                        className="flex justify-between border border-gray-400 rounded-lg md:px-3 md:py-2 ps-3 py-2 px-2 md:text-sm text-xs bg-white w-[100px] text-left"
-                                    >
-                                        {inputCategory === "all" ? "ทั้งหมด" : inputCategory}
-                                        <svg className="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" />
-                                        </svg>
-                                    </button>
-
-                                    {openCategory && (
-                                        <div className="absolute mt-1 w-[100px] bg-white border border-gray-100 rounded-lg shadow-lg z-50 max-h-60 overflow-auto">
-                                            <div
-                                                onClick={() => {
-                                                    setInputCategory("all");
-                                                    setOpenCategory(false);
-                                                }}
-                                                className="px-3 py-2 md:text-sm text-xs hover:bg-pink-700 cursor-pointer"
-                                            >
-                                                ทั้งหมด
-                                            </div>
-
-                                            {allCategories.map((c) => (
-                                                <div
-                                                    key={c}
-                                                    onClick={() => {
-                                                        setInputCategory(c);
-                                                        setOpenCategory(false);
-                                                    }}
-                                                    className="px-3 py-2 md:text-sm text-xs hover:bg-pink-700 cursor-pointer"
-                                                >
-                                                    {c}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* เรียงราคา */}
-                                <div className="relative">
-                                    <label className="block md:text-sm text-xs mb-1">
-                                        เรียงราคา
-                                    </label>
-
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            setOpenPrice(!openPrice);
-                                        }}
-                                        className="flex justify-between border border-gray-400 rounded-lg md:px-3 md:py-2 ps-3 py-2 px-2 md:text-sm text-xs bg-white w-[120px] text-left"
-                                    >
-                                        {priceSort === ""
-                                            ? "ไม่เรียง"
-                                            : priceSort === "asc"
-                                                ? "ราคาต่ำ → สูง"
-                                                : "ราคาสูง → ต่ำ"}
-                                        <svg className="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 9-7 7-7-7" />
-                                        </svg>
-
-                                    </button>
-
-                                    {openPrice && (
-                                        <div
-                                            onClick={(e) => e.stopPropagation()}
-                                            className="absolute mt-1 w-[100px] bg-white border border-gray-100 rounded-lg shadow-lg z-50 md:text-sm text-xs"
-                                        >
-                                            <div
-                                                onClick={() => {
-                                                    setPriceSort("");
-                                                    setOpenPrice(false);
-                                                }}
-                                                className="px-3 py-2 hover:bg-pink-700 cursor-pointer md:text-sm text-xs"
-                                            >
-                                                ไม่เรียง
-                                            </div>
-
-                                            <div
-                                                onClick={() => {
-                                                    setPriceSort("asc");
-                                                    setOpenPrice(false);
-                                                }}
-                                                className="px-3 py-1 hover:bg-pink-700 cursor-pointer md:text-sm text-xs"
-                                            >
-                                                ราคาต่ำ → สูง
-                                            </div>
-
-                                            <div
-                                                onClick={() => {
-                                                    setPriceSort("desc");
-                                                    setOpenPrice(false);
-                                                }}
-                                                className="px-3 py-1 hover:bg-pink-700 cursor-pointer md:text-sm text-xs"
-                                            >
-                                                ราคาสูง → ต่ำ
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-
-                                {/* ปุ่มค้นหา */}
-                                <button
-                                    onClick={() => {
-                                        setFilterCategory(inputCategory);
-                                    }}
-                                    className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-base text-xs"
-                                >
-                                    ค้นหา
-                                </button>
-
-                                {/* ล้างค่า */}
-                                <button
-                                    onClick={() => {
-                                        setInputCategory("all");
-                                        setFilterCategory("all");
-                                        setPriceSort("");
-                                    }}
-                                    className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-base text-xs"
-                                >
-                                    ล้าง
-                                </button>
-                            </div>
 
                             <div className="flex flex-col lg:gap-12 flex-wrap">
                                 {categories.map((cat) => (
                                     <div key={cat.title} className="mt-6">
-                                        <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg font-semibold mb-4">
+                                        <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg mb-4">
                                             {cat.title}
                                         </p>
 
@@ -352,32 +286,35 @@ export default function Product() {
                                                 >
                                                     <div className="px-6 lg:py-4 md:py-8 py-4">
                                                         <Image
-                                                            src={item.image?.split(",")[0]}
+                                                            src={item.image?.split(",")[0] || "/no-image.png"}
                                                             alt={item.name}
                                                             width={250}
                                                             height={250}
-                                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-contain"
+                                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] flex items-center justify-center object-contain"
                                                         />
 
 
                                                         <div className="mt-4">
-                                                            <p className="md:text-2xl text-xl text-center font-semibold">
+                                                            <p className="md:text-2xl text-xl text-center">
                                                                 {item.name}
                                                             </p>
                                                         </div>
 
                                                         <div className="flex justify-between mt-2 md:text-sm text-xs">
-                                                            <p>ราคา</p>
-                                                            <p className="text-pink-700">
-                                                                {item.price} ฿
-                                                            </p>
+                                                            <p>ขนาด</p>
+                                                            {item.size && (
+                                                                <div className="text-right">
+                                                                    ขนาด {item.size}
+                                                                </div>
+                                                            )}
                                                         </div>
 
-                                                        {item.size && (
-                                                            <div className="mt-2 md:text-sm text-xs text-right">
-                                                                ขนาด {item.size}
-                                                            </div>
-                                                        )}
+                                                        <div className="flex justify-between mt-2 md:text-sm text-xs">
+                                                            <p>ราคา</p>
+                                                            <p className="text-pink-700 font-bold">
+                                                                {item.price} บาท
+                                                            </p>
+                                                        </div>
 
                                                         <div className="md:mt-4 mt-2 flex justify-center">
                                                             <button className="md:text-sm text-xs px-4 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
@@ -446,7 +383,7 @@ export default function Product() {
 
                             {/* ===== รายละเอียด ===== */}
                             <div className="p-6">
-                                <h2 className="text-xl font-semibold text-center">
+                                <h2 className="text-xl text-center">
                                     {selected.name}
                                 </h2>
 
@@ -457,6 +394,13 @@ export default function Product() {
                                 )}
 
                                 <div className="mt-4 space-y-2 text-sm text-gray-700">
+                                    {selected.size && (
+                                            <div className="flex justify-between">
+                                                <span>ขนาด</span>
+                                                <span>{selected.size}</span>
+                                            </div>
+                                        )}
+
                                     <div className="flex justify-between">
                                         <span>ราคา</span>
                                         <span className="font-semibold text-pink-700">
@@ -464,12 +408,7 @@ export default function Product() {
                                         </span>
                                     </div>
 
-                                    {selected.size && (
-                                        <div className="flex justify-between">
-                                            <span>ขนาด</span>
-                                            <span>{selected.size}</span>
-                                        </div>
-                                    )}
+
                                 </div>
 
                                 <div className="mt-6 flex justify-between gap-8">
@@ -504,35 +443,37 @@ export default function Product() {
                 </Link>
             </section >
 
-            {openImage && (
-                <div className="fixed inset-0 z-[999]">
-                    {/* พื้นหลัง (กดปิดได้) */}
-                    <div
-                        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-                        onClick={() => setOpenImage(null)}
-                    />
+            {
+                openImage && (
+                    <div className="fixed inset-0 z-[999]">
+                        {/* พื้นหลัง (กดปิดได้) */}
+                        <div
+                            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                            onClick={() => setOpenImage(null)}
+                        />
 
-                    <div className="relative flex items-center justify-center h-full pointer-events-none">
-                        <div className="relative w-[90vw] h-[90vh] pointer-events-auto">
-                            <button
-                                onClick={() => setOpenImage(null)}
-                                className="absolute -top-12 right-0 text-white text-4xl z-10"
-                            >
-                                ✕
-                            </button>
+                        <div className="relative flex items-center justify-center h-full pointer-events-none">
+                            <div className="relative w-[90vw] h-[90vh] pointer-events-auto">
+                                <button
+                                    onClick={() => setOpenImage(null)}
+                                    className="absolute -top-12 right-0 text-white text-4xl z-10"
+                                >
+                                    ✕
+                                </button>
 
-                            <Image
-                                src={openImage}
-                                alt="ภาพขยาย"
-                                fill
-                                sizes="90vw"
-                                className="object-contain"
-                                priority
-                            />
+                                <Image
+                                    src={openImage}
+                                    alt="ภาพขยาย"
+                                    fill
+                                    sizes="90vw"
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </div >
     );
 }

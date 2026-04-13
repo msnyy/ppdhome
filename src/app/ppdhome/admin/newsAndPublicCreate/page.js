@@ -81,6 +81,7 @@ export default function PostsAdmin() {
   const pageSize = 12;
 
   const categories = [
+    { id: 0, name: "ทั้งหมด" },
     { id: 1, name: "ทั่วไป" },
     { id: 2, name: "ประกาศจัดซื้อจัดจ้าง" },
     { id: 3, name: "ประกาศราคากลาง" },
@@ -112,10 +113,12 @@ export default function PostsAdmin() {
         setLoading(true);
         setError("");
 
-        const res = await fetch(
-          `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}&category=${category}`,
-          { signal: controller.signal }
-        );
+        const query =
+          category === 0
+            ? `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}`
+            : `/ppdhome/api/posts?page=${page}&pageSize=${pageSize}&category=${category}`;
+
+        const res = await fetch(query); // ✅ ต้องมีบรรทัดนี้
 
         if (!res.ok) throw new Error(`Fetch failed (${res.status})`);
 
@@ -123,6 +126,7 @@ export default function PostsAdmin() {
 
         setItems(Array.isArray(data.items) ? data.items : []);
         setTotal(Number.isFinite(data.total) ? data.total : 0);
+
       } catch (err) {
         if (err.name !== "AbortError") {
           console.error(err);
@@ -177,12 +181,13 @@ export default function PostsAdmin() {
     <section className="lg:mx-20 md:mx-10 mx-4 mb-18 text-black">
       <div>
         <button
-            type="button"
-            onClick={() => router.back()}
-            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-4"
-          >
-            Back
-          </button>
+          type="button"
+          className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-4"
+        >
+          <a href={`/ppdhome/admin/allCreate`}>
+              Back
+            </a>
+        </button>
       </div>
 
       {/* ---------- Tabs ---------- */}
@@ -309,18 +314,21 @@ export default function PostsAdmin() {
             แสดง {start} ถึง {end} จากทั้งหมด {total} รายการ
           </p>
 
-          <nav className="inline-flex shadow-sm">
+          <nav className="inline-flex overflow-hidden rounded-lg border border-gray-300">
+
+            {/* ปุ่มซ้าย */}
             <button
               disabled={page <= 1}
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
+              className="px-3 py-2 bg-white text-black disabled:text-gray-300 hover:bg-pink-100"
             >
               <ChevronLeftIcon className="w-5 h-5" />
             </button>
 
+            {/* เลขหน้า */}
             {pages.map((p, i) =>
               p === "..." ? (
-                <span key={i} className="px-4 py-2 border text-gray-400">
+                <span key={i} className="px-4 py-2 bg-white text-gray-400">
                   ...
                 </span>
               ) : (
@@ -328,8 +336,10 @@ export default function PostsAdmin() {
                   key={p}
                   onClick={() => setPage(p)}
                   className={cx(
-                    "px-4 py-2 border",
-                    p === page && "bg-pink-400 text-white"
+                    "px-4 py-2  transition",
+                    p === page
+                      ? "bg-pink-400 border-l border-gray-300 text-white"
+                      : "bg-white text-black hover:bg-pink-100"
                   )}
                 >
                   {p}
@@ -337,12 +347,11 @@ export default function PostsAdmin() {
               )
             )}
 
+            {/* ปุ่มขวา */}
             <button
               disabled={page >= totalPages}
-              onClick={() =>
-                setPage((p) => Math.min(totalPages, p + 1))
-              }
-              className="px-2 py-2 border rounded-l disabled:text-gray-300 bg-white"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              className="px-3 py-2 bg-white text-black disabled:text-gray-300 hover:bg-pink-100"
             >
               <ChevronRightIcon className="w-5 h-5" />
             </button>
