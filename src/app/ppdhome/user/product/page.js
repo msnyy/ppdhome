@@ -353,14 +353,14 @@ export default function Product() {
                                                         className="bg-white shadow-xl rounded-xl overflow-hidden cursor-pointer"
                                                     >
                                                         <div className="px-6 lg:py-4 md:py-8 py-4 ">
-                                                            <div>
+                                                            <div className="flex items-center justify-center">
                                                                 {item.image && item.image.split(",")[0] ? (
                                                                     <Image
                                                                         src={item.image.split(",")[0]}
                                                                         alt={item.name}
                                                                         width={250}
                                                                         height={200}
-                                                                        className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-contain flex items-center justify-center"
+                                                                        className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] object-contain"
                                                                     />
                                                                 ) : (
                                                                     <div className="w-[250px] h-[200px] bg-gray-200 flex items-center justify-center">

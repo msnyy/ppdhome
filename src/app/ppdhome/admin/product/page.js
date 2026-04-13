@@ -285,13 +285,15 @@ export default function Product() {
                                                     className="bg-white shadow-xl rounded-xl overflow-hidden cursor-pointer"
                                                 >
                                                     <div className="px-6 lg:py-4 md:py-8 py-4">
-                                                        <Image
-                                                            src={item.image?.split(",")[0] || "/no-image.png"}
-                                                            alt={item.name}
-                                                            width={250}
-                                                            height={250}
-                                                            className="lg:mx-0 mx-auto lg:w-[200px] lg:h-[200px] md:w-[150px] w-[200px] md:h-full h-[100px] flex items-center justify-center object-contain"
-                                                        />
+                                                        <div className="flex items-center justify-center w-full h-[150px]">
+                                                            <Image
+                                                                src={item.image?.split(",")[0] || "/no-image.png"}
+                                                                alt={item.name}
+                                                                width={200}
+                                                                height={200}
+                                                                className="object-contain"
+                                                            />
+                                                        </div>
 
 
                                                         <div className="mt-4">
@@ -395,11 +397,11 @@ export default function Product() {
 
                                 <div className="mt-4 space-y-2 text-sm text-gray-700">
                                     {selected.size && (
-                                            <div className="flex justify-between">
-                                                <span>ขนาด</span>
-                                                <span>{selected.size}</span>
-                                            </div>
-                                        )}
+                                        <div className="flex justify-between">
+                                            <span>ขนาด</span>
+                                            <span>{selected.size}</span>
+                                        </div>
+                                    )}
 
                                     <div className="flex justify-between">
                                         <span>ราคา</span>
