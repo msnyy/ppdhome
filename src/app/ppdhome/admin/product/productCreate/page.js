@@ -66,7 +66,7 @@ export default function CreateProductPage() {
 
   /* ===== render ===== */
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 mb-8 text-black">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 lg:py-10 md:py-6 py-4 lg:px-15 md:px-10 px-4 mb-8 bg-white text-black">
 
       <form onSubmit={handleSubmit}>
         {/* ===== แถวบน ===== */}
@@ -78,10 +78,13 @@ export default function CreateProductPage() {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="ชื่อสินค้า"
+              placeholder="ชื่อสินค้า*"
               className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
               required
             />
+            {!form.name && (
+              <p className="text-red-500 text-sm mt-1">กรุณากรอกชื่อสินค้า*</p>
+            )}
           </div>
 
           {/* ประเภทสินค้า */}
@@ -91,10 +94,13 @@ export default function CreateProductPage() {
               name="category"
               value={form.category}
               onChange={handleChange}
-              placeholder="เช่น กระเป๋า / ที่ใส่แก้วเยติ"
+              placeholder="เช่น กระเป๋า / ที่ใส่แก้วเยติ*"
               className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
               required
             />
+            {!form.category && (
+              <p className="text-red-500 text-sm mt-1">กรุณากรอกประเภทสินค้า*</p>
+            )}
           </div>
         </div>
 
@@ -104,10 +110,15 @@ export default function CreateProductPage() {
             <input
               name="price"
               type="number"
+              required
+              placeholder="ราคา*"
               value={form.price}
               onChange={handleChange}
               className="w-full border rounded-lg px-4 py-2 md:text-lg text-sm"
             />
+            {!form.price && (
+              <p className="text-red-500 text-sm mt-1">กรุณากรอกราคา*</p>
+            )}
           </div>
 
           <div>
@@ -127,6 +138,7 @@ export default function CreateProductPage() {
           <h2 className="lg:text-2xl md:text-xl text-lg font-bold mb-3">รายละเอียด</h2>
           <textarea
             name="description"
+            placeholder="รายละเอียดสินค้า"
             value={form.description}
             onChange={handleChange}
             rows={4}
@@ -158,6 +170,7 @@ export default function CreateProductPage() {
                 >
                   ✕
                 </button>
+
               </div>
             ))}
 
@@ -172,6 +185,9 @@ export default function CreateProductPage() {
               />
               <span className="text-5xl font-light">+</span>
             </label>
+            {files.length === 0 && (
+              <p className="text-red-500 text-sm mt-1">กรุณาเพิ่มรูป*</p>
+            )}
           </div>
         </div>
 

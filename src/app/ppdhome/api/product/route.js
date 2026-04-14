@@ -38,6 +38,16 @@ export async function GET(request) {
       .order("updated_at", { ascending: false })
       .limit(6);
 
+    const normalizedAll = (allProducts || []).map((p) => ({
+      ...p,
+      featured: p.is_featured, // ⭐ แปลงตรงนี้
+    }));
+
+    const normalizedFeatured = (featured || []).map((p) => ({
+      ...p,
+      featured: p.is_featured,
+    }));
+
     // 📦 group by category
     const map = {};
     allProducts.forEach((item) => {
@@ -58,7 +68,8 @@ export async function GET(request) {
     const allCategories = [...new Set(categoryData.map(c => c.category))];
 
     return Response.json({
-      featured,
+      products: normalizedAll,
+      featured: normalizedFeatured,
       categories,
       allCategories,
     });
@@ -130,7 +141,9 @@ export async function POST(request) {
 /* ===================== PATCH (toggle featured) ===================== */
 export async function PATCH(request) {
   try {
-    const { id, is_featured } = await request.json();
+    const body = await request.json();
+
+    const { id, is_featured } = body;
 
     const { error } = await supabase
       .from("products")
@@ -142,10 +155,9 @@ export async function PATCH(request) {
 
     if (error) throw error;
 
-    return Response.json({ message: "อัปเดตสินค้าแนะนำแล้ว" });
+    return Response.json({ message: "success" });
 
   } catch (error) {
-    console.error("PATCH PRODUCT ERROR 👉", error);
     return Response.json({ error: error.message }, { status: 500 });
   }
 }

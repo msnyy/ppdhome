@@ -67,13 +67,21 @@ export default function Header() {
 
 
     const pathname = usePathname();
-    if (pathname === "/ppdhome/admin/login") return null;
-    if (pathname === "/ppdhome/admin/allCreate") return null;
-    if (pathname === "/ppdhome/admin/newCreate") return null;
-    if (pathname === "/ppdhome/admin/publicCreate") return null;
-    if (pathname === "/ppdhome/admin/product") return null;
-    if (pathname === "/ppdhome/admin/newsAndPublicCreate") return null;
-    if (pathname === "/ppdhome/admin/banner") return null;
+if (
+    pathname === "/ppdhome/admin/login" ||
+    pathname === "/ppdhome/admin/allCreate" ||
+    pathname === "/ppdhome/admin/newCreate" ||
+    pathname === "/ppdhome/admin/publicCreate" ||
+    pathname === "/ppdhome/admin/product" ||
+    pathname === "/ppdhome/admin/newsAndPublicCreate" ||
+    pathname === "/ppdhome/admin/banner" ||
+    pathname === "/ppdhome/admin/newsAndPublicCreate/postsCreate" ||
+    pathname.startsWith("/ppdhome/admin/posts/") ||
+    pathname.startsWith("/ppdhome/admin/product/")
+) {
+    return null;
+}
+
 
     const isActive = (path) =>
         pathname === path || pathname.startsWith(path + "/");

@@ -107,7 +107,7 @@ export default function EditProductPage() {
   };
 
   return (
-    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 text-black mb-8">
+    <div className="lg:mx-20 md:mx-10 mx-4 p-6 border lg:mt-14 md:mt-6 mt-4 text-black mb-8 bg-white">
 
       {/* 🔥 แจ้งเตือน */}
       {isDirty && (

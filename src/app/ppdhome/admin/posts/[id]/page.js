@@ -36,21 +36,28 @@ export default function AdminPostDetail() {
 
     if (!id) return;
 
-    async function load() {
+    async function load() {   // ✅ ต้องมี async
 
       try {
-
-        const res = await fetch(
-          `/ppdhome/api/posts/${id}`,
-          { cache: "no-store" }
-        );
+        const res = await fetch(`/ppdhome/api/posts/${id}`, {
+          cache: "no-store",
+        });
 
         if (!res.ok) {
           setData(null);
           return;
         }
 
-        const json = await res.json();
+        let json;
+
+        try {
+          json = await res.json(); // ✅ ใช้ได้แล้ว
+        } catch {
+          console.error("JSON parse error");
+          setData(null);
+          return;
+        }
+
         setData(json);
 
       } catch (err) {
@@ -68,34 +75,29 @@ export default function AdminPostDetail() {
 
   /* ---------- delete ---------- */
 
-  const handleDelete = async () => {
+  const [deleting, setDeleting] = useState(false);
 
+  const handleDelete = async () => {
     const ok = confirm("คุณต้องการลบข้อมูลนี้ใช่หรือไม่?");
     if (!ok) return;
 
-    const res = await fetch(
-      `/ppdhome/api/posts/${id}`,
-      { method: "DELETE" }
-    );
+    try {
+      setDeleting(true);
 
-    if (res.ok) {
+      const res = await fetch(`/ppdhome/api/posts/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("ลบไม่สำเร็จ");
+
       alert("ลบข้อมูลเรียบร้อยแล้ว");
       router.push("/ppdhome/admin/newsAndPublicCreate");
-      return;
+
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setDeleting(false);
     }
-
-    let message = "เกิดข้อผิดพลาด";
-
-    try {
-      const text = await res.text();
-      if (text) {
-        const json = JSON.parse(text);
-        message = json.error || message;
-      }
-    } catch (e) { }
-
-    alert(message);
-
   };
 
   if (loading) {
@@ -174,14 +176,9 @@ export default function AdminPostDetail() {
         )}
 
         <div className="flex justify-end mt-8 gap-4">
-          <button
-            type="button"
-            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6"
-          >
-            <a href={`/ppdhome/admin/newsAndPublicCreate`}>
-              Back
-            </a>
-          </button>
+          <a href={`/ppdhome/admin/newsAndPublicCreate`} className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6">
+            Back
+          </a>
 
           <Link href={`/ppdhome/admin/posts/${data.id}/edit`}>
             <button className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-xl">Edit</button>
@@ -259,6 +256,12 @@ export default function AdminPostDetail() {
 
         </div>
 
+      )}
+
+      {deleting && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 text-white">
+          กำลังลบ...
+        </div>
       )}
 
     </div>

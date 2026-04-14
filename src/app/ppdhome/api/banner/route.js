@@ -1,6 +1,6 @@
-export const dynamic = "force-dynamic";
-
 import { supabase } from "@lib/supabase";
+
+export const dynamic = "force-dynamic";
 
 /* ================= GET : ดึงทั้งหมด ================= */
 export async function GET() {
@@ -8,7 +8,7 @@ export async function GET() {
     const { data, error } = await supabase
       .from("banners")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("order", { ascending: true }); // ✅ เรียงตาม order
 
     if (error) throw error;
 
@@ -33,8 +33,18 @@ export async function POST(request) {
       return Response.json({ error: "กรุณาใส่รูปภาพ" }, { status: 400 });
     }
 
-   const fileExt = file.name.split(".").pop();
-const fileName = `${Date.now()}.${fileExt}`;
+    // 🔥 หา order ล่าสุด → เอาไปต่อท้าย
+    const { data: lastBanner } = await supabase
+      .from("banners")
+      .select("order")
+      .order("order", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    const order = lastBanner ? lastBanner.order + 1 : 0;
+
+    const fileExt = file.name.split(".").pop();
+    const fileName = `${Date.now()}.${fileExt}`;
     const buffer = Buffer.from(await file.arrayBuffer());
 
     // 👉 upload
@@ -51,7 +61,7 @@ const fileName = `${Date.now()}.${fileExt}`;
     // 👉 insert
     const { data, error: insertError } = await supabase
       .from("banners")
-      .insert([{ image_url: imageUrl, link }])
+      .insert([{ image_url: imageUrl, link, order }]) // ✅ ใช้ order ใหม่
       .select()
       .single();
 
@@ -77,6 +87,7 @@ export async function PUT(request) {
 
     const id = formData.get("id");
     const link = formData.get("link") || "";
+    const order = Number(formData.get("order")) || 0;
     const file = formData.get("image");
 
     if (!id) {
@@ -98,7 +109,9 @@ export async function PUT(request) {
     if (file && file.size > 0) {
       // ลบรูปเก่า
       if (imageUrl) {
-        const oldPath = imageUrl.split("/storage/v1/object/public/ppdhome-pic/")[1];
+        const oldPath = imageUrl.split(
+          "/storage/v1/object/public/ppdhome-pic/"
+        )[1];
 
         if (oldPath) {
           await supabase.storage.from("ppdhome-pic").remove([oldPath]);
@@ -120,12 +133,13 @@ export async function PUT(request) {
       imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/ppdhome-pic/banner/${fileName}`;
     }
 
-    // 👉 update
+    // 👉 update (🔥 เพิ่ม order)
     const { data, error: updateError } = await supabase
       .from("banners")
       .update({
         image_url: imageUrl,
         link,
+        order, // ✅ สำคัญ
       })
       .eq("id", id)
       .select()

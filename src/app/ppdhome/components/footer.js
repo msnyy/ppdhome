@@ -26,8 +26,6 @@ export default function Footer() {
             .then(data => setVisitor(data));
 
     }, []);
-
-    const pathname = usePathname();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -35,6 +33,8 @@ export default function Footer() {
     }, []);
 
 
+
+    const pathname = usePathname();
 
     const hiddenPaths = [
         "/ppdhome/admin/login",
@@ -44,7 +44,18 @@ export default function Footer() {
         "/ppdhome/admin/product",
         "/ppdhome/admin/newsAndPublicCreate",
         "/ppdhome/admin/banner",
+        "/ppdhome/admin/newsAndPublicCreate/postsCreate",
     ];
+
+    if (!mounted) return null;
+
+    if (
+        hiddenPaths.includes(pathname) ||
+        pathname.startsWith("/ppdhome/admin/posts/") ||
+        pathname.startsWith("/ppdhome/admin/product/")
+    ) {
+        return null;
+    }
 
     if (!mounted) return null;
     if (hiddenPaths.includes(pathname)) return null;
@@ -134,8 +145,8 @@ export default function Footer() {
                     <p className="lg:text-2xl text-xl">Website Menu</p>
                     <div className="mt-3 lg:text-base md:text-sm text-xs flex flex-col">
                         <a href="/ppdhome/user/home" className="text-black transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]" >
-                                หน้าหลัก
-                            </a>
+                            หน้าหลัก
+                        </a>
                         <a href="/ppdhome/user/aboutAll/about" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">เกี่ยวกับเรา</a>
                         <a href="/ppdhome/user/newsAndPublic" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">ข่าวประชาสัมพันธ์</a>
                         <a href="/ppdhome/user/services/activityPrint" className="mt-1 transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">บริการ</a>

@@ -180,14 +180,14 @@ export default function PostsAdmin() {
   return (
     <section className="lg:mx-20 md:mx-10 mx-4 mb-18 text-black">
       <div>
-        <button
-          type="button"
-          className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-4"
-        >
-          <a href={`/ppdhome/admin/allCreate`}>
-              Back
-            </a>
-        </button>
+        <a href={`/ppdhome/admin/allCreate`}>
+          <button
+            type="button"
+            className="bg-pink-400 text-white hover:bg-pink-500 rounded-xl py-2 px-6 my-4 mt-14"
+          >
+            Back
+          </button>
+        </a>
       </div>
 
       {/* ---------- Tabs ---------- */}
@@ -235,72 +235,77 @@ export default function PostsAdmin() {
                 : `/ppdhome/admin/posts/${id}`;
 
               return (
-                <Link
-                  key={id}
-                  href={href}
-                  target={pdf_file ? "_blank" : undefined}
-                  className="group bg-white rounded-xl overflow-hidden shadow-lg transition"
-                >
-                  {/* 🔥 รูป */}
-                  <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
-                    {firstImage ? (
-                      <Image
-                        src={firstImage}
-                        alt={title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-gray-400">
-                        ไม่มีรูป
-                      </div>
-                    )}
-                  </div>
+                <div key={id} className="group bg-white rounded-xl overflow-hidden shadow-lg transition">
 
-                  {/* 🔥 content */}
-                  <div className="p-4">
-                    {/* title */}
-                    <p className="text-base font-semibold line-clamp-2 group-hover:text-pink-600">
-                      {title} {subtitle}
-                    </p>
-
-                    {/* detail */}
-                    {detail && (
-                      <p className="text-sm text-gray-500 mt-2 line-clamp-2">
-                        {detail}
-                      </p>
-                    )}
-
-                    {/* date + NEW */}
-                    <div className="flex items-center justify-between mt-3">
-                      <p className="text-xs text-gray-500">
-                        {formatThaiDate(content_date)}
-                      </p>
-
-                      {newsNew && (
-                        <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
-                          NEW
-                        </span>
+                  {/* ✅ ส่วนคลิกทั้งการ์ด */}
+                  <Link
+                    href={href}
+                    target={pdf_file ? "_blank" : undefined}
+                    className="block"
+                  >
+                    {/* 🔥 รูป */}
+                    <div className="relative w-full aspect-[14/9] bg-gray-200 overflow-hidden">
+                      {firstImage ? (
+                        <Image
+                          src={firstImage}
+                          alt={title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-gray-400">
+                          ไม่มีรูป
+                        </div>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between mt-3">
-                      <p className="text-blue-600 text-sm text-light mt-2">Read More</p>
+                    {/* 🔥 content */}
+                    <div className="p-4">
+                      <p className="text-base font-semibold line-clamp-2 group-hover:text-pink-600">
+                        {title} {subtitle}
+                      </p>
+
+                      {detail && (
+                        <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                          {detail}
+                        </p>
+                      )}
+
+                      <div className="flex items-center justify-between mt-3">
+                        <p className="text-xs text-gray-500">
+                          {formatThaiDate(content_date)}
+                        </p>
+
+                        {newsNew && (
+                          <span className="text-xs bg-orange-500 text-white px-2 py-1 rounded animate-pulse">
+                            NEW
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* ✅ ปุ่ม action (อยู่นอก Link) */}
+                  <div className="px-4 pb-4 flex items-center justify-between mt-2">
+                    <p className="text-blue-600 text-sm">Read More</p>
+
+                    <div className="flex gap-2">
+                      <Link href={`/ppdhome/admin/posts/${id}/edit`}>
+                        <button className="bg-gray-400 hover:bg-gray-500 rounded-lg px-3 py-1 text-white text-sm">
+                          Edit
+                        </button>
+                      </Link>
 
                       <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleDelete(id);
-                        }}
-                        className="bg-red-500 rounded-lg p-1 px-3 text-white hover:bg-red-700 text-sm"
+                        onClick={() => handleDelete(id)}
+                        className="bg-red-500 rounded-lg px-3 py-1 text-white hover:bg-red-700 text-sm"
                       >
                         Delete
                       </button>
                     </div>
-
                   </div>
 
-                </Link>
+                </div>
               );
             })}
           </div>
