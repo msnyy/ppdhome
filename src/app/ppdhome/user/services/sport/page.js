@@ -36,7 +36,7 @@ export default function ActivityPrint() {
                     </MotionWrapper>
                 </div>
                 <MotionWrapper>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                <div className="lg:mt-10 md:mt-6 mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
                     
                     <Image src={getSupabaseImage("pic/sport/sport1.jpg")} alt="การฟื้นฟูสมรรถภาพ ด้านกีฬา"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"

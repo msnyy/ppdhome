@@ -43,7 +43,7 @@ export default function Medical() {
                 </div>
 
                 <MotionWrapper>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:mt-10 md:mt-6 mt-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4 lg:mt-10 md:mt-6 mt-4">
 
                         {[1, 2, 3, 4, 5].map((num) => (
                             <div key={num} className="relative w-full aspect-[4/3] overflow-hidden">

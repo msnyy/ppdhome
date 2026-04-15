@@ -125,61 +125,67 @@ export default function PostForm({ mode = "create", initialData = null, postId }
 
     /* ===== submit ===== */
     async function handleSubmit(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        // ✅ VALIDATION
-        if (!form.title.trim()) {
-            alert("กรุณากรอกชื่อหัวข้อ");
-            return;
-        }
-
-        if (!form.content_date) {
-            alert("กรุณาเลือกวันที่");
-            return;
-        }
-
-        try {
-            setLoading(true);
-            setLoadingText("กำลังอัปโหลด...");
-
-            const formData = new FormData();
-
-            Object.entries(form).forEach(([k, v]) => {
-                formData.append(k, v);
-            });
-
-            files.forEach((file) => formData.append("images", file));
-
-            if (pdfFile) formData.append("pdf", pdfFile);
-
-            if (mode === "edit") {
-                formData.append("deleteImages", JSON.stringify(deleteImages));
-                formData.append("deletePdf", deletePdf);
-            }
-
-            const url =
-                mode === "create"
-                    ? "/ppdhome/api/posts"
-                    : `/ppdhome/api/posts/${postId}`;
-
-            const method = mode === "create" ? "POST" : "PUT";
-
-            const res = await fetch(url, {
-                method,
-                body: formData,
-            });
-
-            if (!res.ok) throw new Error();
-
-            alert(mode === "create" ? "เพิ่มสำเร็จ" : "อัปเดตสำเร็จ");
-
-            router.push(`/ppdhome/admin/posts/${postId}`);
-        } catch (err) {
-            alert("เกิดข้อผิดพลาด");
-        } finally {
-            setLoading(false);
-        }
+    if (!form.title.trim()) {
+        alert("กรุณากรอกชื่อหัวข้อ");
+        return;
     }
+
+    if (!form.content_date) {
+        alert("กรุณาเลือกวันที่");
+        return;
+    }
+
+    try {
+        setLoading(true);
+        setLoadingText("กำลังอัปโหลด...");
+
+        const formData = new FormData();
+
+        Object.entries(form).forEach(([k, v]) => {
+            formData.append(k, v);
+        });
+
+        files.forEach((file) => formData.append("images", file));
+
+        if (pdfFile) formData.append("pdf", pdfFile);
+
+        if (mode === "edit") {
+            formData.append("deleteImages", JSON.stringify(deleteImages));
+            formData.append("deletePdf", deletePdf);
+        }
+
+        const url =
+            mode === "create"
+                ? "/ppdhome/api/posts"
+                : `/ppdhome/api/posts/${postId}`; // ✅ แก้ตรงนี้
+
+        const method = mode === "create" ? "POST" : "PUT";
+
+        const res = await fetch(url, {
+            method,
+            body: formData,
+        });
+
+        const result = await res.json();
+
+        if (!res.ok) throw new Error();
+
+        alert(mode === "create" ? "เพิ่มสำเร็จ" : "อัปเดตสำเร็จ");
+
+        // ✅ ดึง id ให้ถูก
+        const newId =
+            mode === "create" ? result.data.id : postId;
+
+        router.push(`/ppdhome/admin/posts/${newId}`);
+
+    } catch (err) {
+        alert("เกิดข้อผิดพลาด");
+    } finally {
+        setLoading(false);
+    }
+}
 
     /* ===== UI (COPY จาก Create 100%) ===== */
     return (
@@ -221,19 +227,19 @@ export default function PostForm({ mode = "create", initialData = null, postId }
 
                     <div>
                         <input
-                        name="title"
-                        value={form.title}
-                        required
-                        onChange={handleChange}
-                        placeholder="ชื่อหัวข้อ*"
-                        className="lg:w-120 w-70 border p-2 rounded"
-                    />
-                    {!form.title && (
-                        <p className="text-red-500 text-sm mt-1">กรุณากรอกชื่อหัวข้อ*</p>
-                    )}
+                            name="title"
+                            value={form.title}
+                            required
+                            onChange={handleChange}
+                            placeholder="ชื่อหัวข้อ*"
+                            className="lg:w-120 w-70 border p-2 rounded"
+                        />
+                        {!form.title && (
+                            <p className="text-red-500 text-sm mt-1">กรุณากรอกชื่อหัวข้อ*</p>
+                        )}
                     </div>
 
-                    
+
 
                     <input
                         name="subtitle"
@@ -259,19 +265,19 @@ export default function PostForm({ mode = "create", initialData = null, postId }
 
                     <div>
                         <input
-                        type="datetime-local"
-                        name="content_date"
-                        required
-                        value={form.content_date}
-                        max={maxDate}
-                        onChange={handleChange}
-                        className="lg:w-120 w-70 border p-2 rounded"
-                    />
-                    {!form.content_date && (
-                        <p className="text-red-500 text-sm mt-1">กรุณาเลือกวันที่*</p>
-                    )}
+                            type="datetime-local"
+                            name="content_date"
+                            required
+                            value={form.content_date}
+                            max={maxDate}
+                            onChange={handleChange}
+                            className="lg:w-120 w-70 border p-2 rounded"
+                        />
+                        {!form.content_date && (
+                            <p className="text-red-500 text-sm mt-1">กรุณาเลือกวันที่*</p>
+                        )}
                     </div>
-                    
+
 
                 </div>
 

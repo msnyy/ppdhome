@@ -39,7 +39,7 @@ export default function ActivityPrint() {
 
                 </div>
                 <MotionWrapper>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                <div className="lg:mt-10 md:mt-6 mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
                     <Image src={getSupabaseImage("pic/ActPrint/print1.jpg")} alt="รูปโครงการพิมพ์ฝัน ปั้นอาชีพให้คนพิการ"
                         className="transition delay-50 duration-300 ease-in-out hover:scale-105"
                         width={250} height={100}

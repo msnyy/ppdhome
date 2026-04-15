@@ -44,7 +44,7 @@ export default function Medical() {
                 </div>
                 
                 <MotionWrapper>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
+                <div className="lg:mt-10 md:mt-6 mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
                     
                         <Image src={getSupabaseImage("pic/medical146/medical146_1.jpg")} alt="รูปฉีดวัคซีนป้องกันโรคไข้หวัดใหญ่"
                             className="transition delay-50 duration-300 ease-in-out hover:scale-105"

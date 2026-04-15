@@ -43,7 +43,7 @@ export default function Medical() {
                     </MotionWrapper>
                 </div>
                 <MotionWrapper>
-                <div className="lg:mt-10 md:mt-6 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between object-cover">
+                <div className="lg:mt-10 md:mt-6 mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between object-cover">
                     
                         <Image src={getSupabaseImage("pic/medical158/medical158_1.jpg")} alt="รูปตรวจสุขภาพประจำปี 2568"
                             className="transition delay-50 duration-300 ease-in-out hover:scale-105"

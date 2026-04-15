@@ -133,28 +133,55 @@ export default function Product() {
             </section>
             <section className="w-full py-10 relative z-[10000] text-black">
                 <div className="relative xl:mx-20 md:mx-9 mx-4">
-                    <div className="md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4 items-end">
-                        <div className="relative">
-                            <label className="block md:text-lg text-base mb-1">
-                                ประเภทสินค้า
-                            </label>
-
-                            <select
-                                value={inputCategory}
-                                onChange={(e) => setInputCategory(e.target.value)}
-                                className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[140px]"
+                    {/* ===== Category Tabs ===== */}
+                    <div className="flex flex-col md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4">
+                        <div>
+                            <button
+                                onClick={() => setFilterCategory("all")}
+                                className={`px-4 py-2 rounded-full whitespace-nowrap transition me-4 ${filterCategory === "all"
+                                    ? "bg-pink-600 text-white"
+                                    : "bg-gray-100 hover:bg-gray-200"
+                                    }`}
                             >
-                                <option value="all">ทั้งหมด</option>
-                                {allCategories.map((c) => (
-                                    <option key={c} value={c}>
-                                        {c}
-                                    </option>
-                                ))}
-                            </select>
+                                ทั้งหมด
+                            </button>
+
+                            {allCategories.map((c) => (
+                                <button
+                                    key={c}
+                                    onClick={() => setFilterCategory(c)}
+                                    className={`px-4 py-2 rounded-full whitespace-nowrap transition me-4 ${filterCategory === c
+                                        ? "bg-pink-600 text-white"
+                                        : "bg-gray-100 hover:bg-gray-200"
+                                        }`}
+                                >
+                                    {c}
+                                </button>
+                            ))}
                         </div>
 
-                        {/* เรียงราคา */}
-                        <div className="relative">
+                        <div className="flex flex-row gap-6 items-end">
+                            <div className="relative">
+                                <label className="block md:text-lg text-base mb-1">
+                                    ประเภทสินค้า
+                                </label>
+
+                                <select
+                                    value={inputCategory}
+                                    onChange={(e) => setInputCategory(e.target.value)}
+                                    className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[140px]"
+                                >
+                                    <option value="all">ทั้งหมด</option>
+                                    {allCategories.map((c) => (
+                                        <option key={c} value={c}>
+                                            {c}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {/* เรียงราคา */}
+                            <div className="relative">
                                 <label className="block md:text-lg text-base mb-1">
                                     เรียงราคา
                                 </label>
@@ -168,30 +195,32 @@ export default function Product() {
                                     <option value="asc">ราคาต่ำ → สูง</option>
                                     <option value="desc">ราคาสูง → ต่ำ</option>
                                 </select>
+                            </div>
+
+
+
+                            {/* ปุ่มค้นหา */}
+                            <button
+                                onClick={() => {
+                                    setFilterCategory(inputCategory);
+                                }}
+                                className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-lg text-base"
+                            >
+                                ค้นหา
+                            </button>
+
+                            {/* ล้างค่า */}
+                            <button
+                                onClick={() => {
+                                    setInputCategory("all");
+                                    setFilterCategory("all");
+                                    setPriceSort("");
+                                }}
+                                className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-lg text-base"
+                            >
+                                ล้าง
+                            </button>
                         </div>
-
-
-                        {/* ปุ่มค้นหา */}
-                        <button
-                            onClick={() => {
-                                setFilterCategory(inputCategory);
-                            }}
-                            className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-lg text-base"
-                        >
-                            ค้นหา
-                        </button>
-
-                        {/* ล้างค่า */}
-                        <button
-                            onClick={() => {
-                                setInputCategory("all");
-                                setFilterCategory("all");
-                                setPriceSort("");
-                            }}
-                            className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-lg text-base"
-                        >
-                            ล้าง
-                        </button>
                     </div>
 
                     <MotionWrapper>
@@ -199,7 +228,7 @@ export default function Product() {
                     </MotionWrapper>
                     <button
                         ref={prevRef}
-                        className="absolute left-0 top-1/2 xl:-left-16 xl:top-46 xl:-translate-y-1/2 z-10 
+                        className="absolute left-0 top-1/2 xl:-left-16 xl:top-96 xl:-translate-y-1/2 z-10 
                         w-12 h-12 rounded-full bg-pink-100
                         flex items-center justify-center 
                         shadow-md hover:bg-pink-200 transition"
@@ -223,7 +252,7 @@ export default function Product() {
                     {/* ปุ่มขวา */}
                     <button
                         ref={nextRef}
-                        className="absolute right-0 top-1/2 xl:-right-16 xl:top-46 xl:-translate-y-1/2 z-10 
+                        className="absolute right-0 top-1/2 xl:-right-16 xl:top-96 xl:-translate-y-1/2 z-10 
                         w-12 h-12 rounded-full bg-pink-100 
                         flex items-center justify-center 
                         shadow-md hover:bg-pink-200 transition"

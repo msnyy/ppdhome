@@ -20,7 +20,7 @@ export default function ActivityBasket() {
                 </MotionWrapper>
 
                 <MotionWrapper>
-                    <div className="md:mt-10 mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 md:gap-4 gap-4 flex justify-between">
+                    <div className="md:mt-10 mt-4 grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4 flex justify-between">
                         <div className="relative aspect-[4/3] w-full overflow-hidden">
                             <Image
                                 src={getSupabaseImage("pic/Basket/basket1.jpg")}

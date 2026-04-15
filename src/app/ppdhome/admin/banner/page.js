@@ -243,7 +243,7 @@ export default function BannerAdmin() {
   };
 
   return (
-    <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-10 md:mt-6 mt-4">
+    <section className="lg:mx-20 md:mx-10 mx-4 lg:mt-10 md:mt-6 mt-4 text-black">
       <div>
         <a href={`/ppdhome/admin/allCreate`}>
           <button
