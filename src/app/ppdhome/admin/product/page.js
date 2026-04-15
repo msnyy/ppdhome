@@ -221,7 +221,7 @@ export default function Product() {
                 <div className="flex min-h-screen">
                     <main className="relative flex min-h-screen w-full flex-col bg-cover">
                         <section className="relative flex flex-col xl:mx-20 md:mx-9 mx-4 lg:mt-10 md:mt-6 mt-4 mb-16">
-                            <h2 className="xl:text-5xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
+                            <h2 className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
                                 ผลิตภัณฑ์โดยคนพิการ
                             </h2>
 
