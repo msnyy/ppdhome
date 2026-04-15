@@ -3,9 +3,10 @@ import MotionWrapper from "@components/MotionWrapper";
 
 export default function Header() {
     return (
-        <div className="flex flex-col min-h-screen font-sansn lg:mx-20 md:mx-10 mx-4 text-black mb-18">
+        <div className="flex flex-col min-h-screen font-sansn text-black bg-pink-100">
+            <div className="lg:mx-20 md:mx-10 mx-4 pb-18">
             <MotionWrapper>
-                <p className="xl:text-4xl md:text-3xl text-lg text-shadow-lg text-center lg:mt-10 mt-4">
+                <p className="xl:text-4xl md:text-3xl text-lg text-shadow-lg text-center font-medium lg:mt-10 mt-4">
                     พรบ. คุ้มครองข้อมูลส่วนบุคคล
                 </p>
             </MotionWrapper>
@@ -21,7 +22,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     1. วัตถุประสงค์
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -34,7 +35,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     2. เงื่อนไขและข้อกําหนดการใช้งานเว็บไซต์
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -62,7 +63,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-x font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-x font-semibold">
                     3. สิทธิหน้าที่ และความรับผิดชอบของผู้ใช้บริการ
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -85,7 +86,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     4. การเชื่อมโยงกับเว็บไซต์อื่นๆ
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -101,7 +102,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     5. การปฏิเสธความรับผิด
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -116,7 +117,7 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     6. กรรมสิทธิ์และสิทธิในทรัพย์สินทางปัญญา
                 </p>
                 <p className="md:text-base text-xs mt-2">
@@ -130,14 +131,14 @@ export default function Header() {
             </MotionWrapper>
 
             <MotionWrapper>
-                <p className="lg:mt-10 mt-4 md:text-base text-xs font-medium text-shadow-lg">
+                <p className="lg:mt-10 mt-4 md:text-base text-xs font-semibold">
                     7. กฎหมายที่ใช้บังคับ
                 </p>
                 <p className="md:text-base text-xs mt-2">
                     7.1 การตีความ และการบังคับตามเงื่อนไขการให้บริการฉบับนี้ให้เป็นไปตามกฎหมายไทย
                 </p>
             </MotionWrapper>
-
+</div>
         </div>
     );
 }

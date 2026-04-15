@@ -31,9 +31,6 @@ export default function Product() {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
 
-    const [openCategory, setOpenCategory] = useState(false);
-    const [openPrice, setOpenPrice] = useState(false);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -128,66 +125,94 @@ export default function Product() {
                         </a>
                     </div>
 
-                    <div className="md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4 items-end">
-                        <div className="relative">
-                            <label className="block md:text-lg text-base mb-1">
-                                ประเภทสินค้า
-                            </label>
-
-                            <select
-                                value={inputCategory}
-                                onChange={(e) => setInputCategory(e.target.value)}
-                                className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[140px]"
+                    {/* ===== Category Tabs ===== */}
+                    <div className="flex flex-col md:mb-8 mb-4 p-4 bg-white rounded-xl shadow-md flex flex-wrap gap-4">
+                        <div>
+                            <button
+                                onClick={() => setFilterCategory("all")}
+                                className={`px-4 py-2 rounded-full whitespace-nowrap transition me-4 ${filterCategory === "all"
+                                    ? "bg-pink-600 text-white"
+                                    : "bg-gray-100 hover:bg-gray-200"
+                                    }`}
                             >
-                                <option value="all">ทั้งหมด</option>
-                                {allCategories.map((c) => (
-                                    <option key={c} value={c}>
-                                        {c}
-                                    </option>
-                                ))}
-                            </select>
+                                ทั้งหมด
+                            </button>
+
+                            {allCategories.map((c) => (
+                                <button
+                                    key={c}
+                                    onClick={() => setFilterCategory(c)}
+                                    className={`px-4 py-2 rounded-full whitespace-nowrap transition me-4 ${filterCategory === c
+                                        ? "bg-pink-600 text-white"
+                                        : "bg-gray-100 hover:bg-gray-200"
+                                        }`}
+                                >
+                                    {c}
+                                </button>
+                            ))}
                         </div>
 
-                        {/* เรียงราคา */}
-                        <div className="relative">
-                            <label className="block md:text-lg text-base mb-1">
-                                เรียงราคา
-                            </label>
+                        <div className="flex flex-row gap-6 items-end">
+                            <div className="relative">
+                                <label className="block md:text-lg text-base mb-1">
+                                    ประเภทสินค้า
+                                </label>
 
-                            <select
-                                value={priceSort}
-                                onChange={(e) => setPriceSort(e.target.value)}
-                                className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[160px]"
+                                <select
+                                    value={inputCategory}
+                                    onChange={(e) => setInputCategory(e.target.value)}
+                                    className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[140px]"
+                                >
+                                    <option value="all">ทั้งหมด</option>
+                                    {allCategories.map((c) => (
+                                        <option key={c} value={c}>
+                                            {c}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            {/* เรียงราคา */}
+                            <div className="relative">
+                                <label className="block md:text-lg text-base mb-1">
+                                    เรียงราคา
+                                </label>
+
+                                <select
+                                    value={priceSort}
+                                    onChange={(e) => setPriceSort(e.target.value)}
+                                    className="border border-gray-400 rounded-lg md:px-3 md:py-2 px-2 py-2 md:text-lg text-base bg-white w-[160px]"
+                                >
+                                    <option value="">ไม่เรียง</option>
+                                    <option value="asc">ราคาต่ำ → สูง</option>
+                                    <option value="desc">ราคาสูง → ต่ำ</option>
+                                </select>
+                            </div>
+
+
+
+                            {/* ปุ่มค้นหา */}
+                            <button
+                                onClick={() => {
+                                    setFilterCategory(inputCategory);
+                                }}
+                                className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-lg text-base"
                             >
-                                <option value="">ไม่เรียง</option>
-                                <option value="asc">ราคาต่ำ → สูง</option>
-                                <option value="desc">ราคาสูง → ต่ำ</option>
-                            </select>
+                                ค้นหา
+                            </button>
+
+                            {/* ล้างค่า */}
+                            <button
+                                onClick={() => {
+                                    setInputCategory("all");
+                                    setFilterCategory("all");
+                                    setPriceSort("");
+                                }}
+                                className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-lg text-base"
+                            >
+                                ล้าง
+                            </button>
                         </div>
-
-
-
-                        {/* ปุ่มค้นหา */}
-                        <button
-                            onClick={() => {
-                                setFilterCategory(inputCategory);
-                            }}
-                            className="md:h-10 h-8 md:px-6 px-3 rounded-lg bg-pink-600 text-white hover:bg-pink-700 transition md:text-lg text-base"
-                        >
-                            ค้นหา
-                        </button>
-
-                        {/* ล้างค่า */}
-                        <button
-                            onClick={() => {
-                                setInputCategory("all");
-                                setFilterCategory("all");
-                                setPriceSort("");
-                            }}
-                            className="md:h-10 h-8 md:px-6 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 md:text-lg text-base"
-                        >
-                            ล้าง
-                        </button>
                     </div>
                 </div>
             </section >
@@ -256,9 +281,21 @@ export default function Product() {
                                                             </p>
                                                         </div>
 
-                                                        <div className="md:mt-4 mt-2 flex justify-center">
-                                                            <button className="md:text-sm text-xs px-4 py-1 rounded-full text-pink-700 border border-pink-700 hover:text-white shadow-sm shadow-pink-700/25 hover:bg-pink-700">
-                                                                ดูสินค้า
+                                                        <div className="mt-6 flex justify-between gap-4">
+
+                                                            <Link href={`/ppdhome/admin/product/${item.id}/edit`}>
+                                                                <button className="bg-gray-400 text-sm hover:bg-gray-500 text-white hover:text-white px-3 py-2 rounded-xl w-full">Edit</button>
+                                                            </Link>
+
+                                                            <button
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation(); // ⭐ หยุดไม่ให้ trigger parent
+                                                                    setSelected(item);   // ⭐ ต้อง set ก่อน เพราะ handleDelete ใช้ selected
+                                                                    handleDelete();
+                                                                }}
+                                                                className="rounded-xl bg-red-600 text-sm text-white px-3 py-2 hover:bg-red-700 hover:text-white transition"
+                                                            >
+                                                                Delete product
                                                             </button>
                                                         </div>
                                                     </div>
@@ -307,12 +344,10 @@ export default function Product() {
                                                     <div className="relative w-full h-64 flex items-center justify-center">
                                                         <div className="relative w-64 h-full">
                                                             <Image
-                                                                src={img}
+                                                                src={img || "/no-image.png"}
                                                                 alt={`${selected.name}-${index}`}
                                                                 fill
                                                                 className="object-contain"
-                                                                priority={index === 0}
-                                                                onClick={() => setOpenImage(img)}
                                                             />
                                                         </div>
                                                     </div>
@@ -353,74 +388,60 @@ export default function Product() {
                                     </div>
 
                                     <div className="flex items-center justify-between mt-4 border-t pt-3">
-    <span className="text-sm">สินค้าแนะนำ</span>
+                                        <span className="text-sm">สินค้าแนะนำ</span>
 
-    <input
-        type="checkbox"
-        checked={selected.is_featured || false}
-        onChange={async (e) => {
-            const checked = e.target.checked;
+                                        <input
+                                            type="checkbox"
+                                            checked={selected.is_featured || false}
+                                            onChange={async (e) => {
+                                                const checked = e.target.checked;
 
-            try {
-                const res = await fetch(`/ppdhome/api/product`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        id: selected.id,
-                        is_featured: checked,
-                    }),
-                });
+                                                try {
+                                                    const res = await fetch(`/ppdhome/api/product`, {
+                                                        method: "PATCH",
+                                                        headers: {
+                                                            "Content-Type": "application/json",
+                                                        },
+                                                        body: JSON.stringify({
+                                                            id: selected.id,
+                                                            is_featured: checked,
+                                                        }),
+                                                    });
 
-                if (!res.ok) throw new Error("update failed");
+                                                    if (!res.ok) throw new Error("update failed");
 
-                // ⭐ update selected ทันที
-                setSelected((prev) => ({
-                    ...prev,
-                    is_featured: checked,
-                }));
+                                                    // ⭐ update selected ทันที
+                                                    setSelected((prev) => ({
+                                                        ...prev,
+                                                        is_featured: checked,
+                                                    }));
 
-                // ⭐ update list (categories)
-                setCategories((prev) =>
-                    prev.map((cat) => ({
-                        ...cat,
-                        items: cat.items.map((item) =>
-                            item.id === selected.id
-                                ? { ...item, is_featured: checked }
-                                : item
-                        ),
-                    }))
-                );
+                                                    // ⭐ update list (categories)
+                                                    setCategories((prev) =>
+                                                        prev.map((cat) => ({
+                                                            ...cat,
+                                                            items: cat.items.map((item) =>
+                                                                item.id === selected.id
+                                                                    ? { ...item, is_featured: checked }
+                                                                    : item
+                                                            ),
+                                                        }))
+                                                    );
 
-                // ⭐ update products list
-                setProducts((prev) =>
-                    prev.map((p) =>
-                        p.id === selected.id
-                            ? { ...p, is_featured: checked }
-                            : p
-                    )
-                );
+                                                    // ⭐ update products list
+                                                    setProducts((prev) =>
+                                                        prev.map((p) =>
+                                                            p.id === selected.id
+                                                                ? { ...p, is_featured: checked }
+                                                                : p
+                                                        )
+                                                    );
 
-            } catch (err) {
-                alert("อัปเดตสินค้าแนะนำไม่สำเร็จ");
-            }
-        }}
-    />
-</div>
-
-                                    <div className="mt-6 flex justify-between gap-8">
-
-                                        <Link href={`/ppdhome/admin/product/${selected.id}/edit`}>
-                                            <button className="bg-gray-400 hover:bg-gray-500 text-white hover:text-white px-6 py-2 rounded-xl w-full">Edit</button>
-                                        </Link>
-
-                                        <button
-                                            onClick={handleDelete}
-                                            className="rounded-xl bg-red-600 text-white w-1/2 px-6 py-2 hover:bg-red-700 hover:text-white transition"
-                                        >
-                                            Delete product
-                                        </button>
+                                                } catch (err) {
+                                                    alert("อัปเดตสินค้าแนะนำไม่สำเร็จ");
+                                                }
+                                            }}
+                                        />
                                     </div>
 
                                 </div>

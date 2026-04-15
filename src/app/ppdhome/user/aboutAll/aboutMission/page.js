@@ -3,7 +3,8 @@ import MotionWrapper from "@components/MotionWrapper";
 export const dynamic = "force-dynamic";
 export default function AboutMission() {
     return (
-        <div className="lg:mx-20 md:mx-12 mx-5 lg:my-16 md:my-10 my-4 text-black lg:py-10 md:py-6 py-4 px-8 rounded-xl">
+        <div className="text-black bg-pink-100">
+            <div className="lg:mx-20 md:mx-10 mx-4 lg:pt-10 md:pt-6 pt-4 px-8 pb-18">
             <div>
                 <p className="text-center lg:text-4xl md:text-3xl text-xl font-medium text-shadow-lg">ภารกิจและหน้าที่รับผิดชอบ</p>
             </div>
@@ -113,6 +114,7 @@ export default function AboutMission() {
                         </ul>
                     </div>
                     </MotionWrapper>
+                </div>
                 </div>
             </div>
         </div>
