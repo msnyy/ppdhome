@@ -224,7 +224,7 @@ export default function Product() {
                     </div>
 
                     <MotionWrapper>
-                        <h2 className="xl:text-4xl md:text-3xl text-xl mb-6 text-shadow-lg">สินค้าแนะนำ</h2>
+                        <h2 className="xl:text-4xl md:text-3xl text-xl mb-6 font-medium text-shadow-lg">สินค้าแนะนำ</h2>
                     </MotionWrapper>
                     <button
                         ref={prevRef}
@@ -358,7 +358,7 @@ export default function Product() {
                     <main className="relative flex min-h-screen w-full flex-col bg-cover">
                         <section className="relative flex flex-col z-10 xl:mx-20 md:mx-9 mx-4 lg:mt-10 md:mt-6 mt-4 mb-16">
                             <MotionWrapper>
-                                <h2 className="xl:text-4xl md:text-3xl text-xl text-shadow-lg text-center mb-6">
+                                <h2 className="xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg text-center mb-6">
                                     ผลิตภัณฑ์โดยคนพิการ
                                 </h2>
                             </MotionWrapper>
@@ -367,7 +367,7 @@ export default function Product() {
                                 {categories.map((cat) => (
                                     <div key={cat.title} className="mt-6">
                                         <MotionWrapper>
-                                            <p className="xl:text-5xl md:text-3xl text-xl text-shadow-lg mb-4">
+                                            <p className="xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg mb-4">
                                                 {cat.title}
                                             </p>
 

@@ -24,7 +24,7 @@ export default function Contact() {
                 <div className="flex flex-col lg:mx-15 md:mx-10 md:mx-6 mx-2 w-1/4">
                     <div>
                         <MotionWrapper>
-                            <p className="xl:text-4xl md:text-2xl text-lg text-shadow-lg lg:mt-0 mt-6">
+                            <p className="xl:text-4xl md:text-2xl text-lg font-medium text-shadow-lg lg:mt-0 mt-6">
                                 Contact Us
                             </p>
                         </MotionWrapper>

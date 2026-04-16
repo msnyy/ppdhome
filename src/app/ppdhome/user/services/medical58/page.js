@@ -26,7 +26,7 @@ export default function Medical() {
 
                 <div className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
                     <MotionWrapper>
-                        <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs">
+                        <p className="lg:mt-10 md:mt-6 mt-4 md:text-base text-xs indent-8">
                             สถานคุ้มครองและพัฒนาคนพิการพระประแดงจังหวัดสมุทรปราการ นำโดยว่าที่ร้อยตรีณัทกร ธงสอาด ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการพระประแดง จังหวัดสมุทรปราการ
 
                         </p>

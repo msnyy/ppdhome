@@ -57,12 +57,12 @@ export default function HomeLatestNews() {
         <section className="lg:mx-20 md:mx-10 mx-4 lg:mb-18 mb-8 text-black">
 
             <div className="flex justify-between">
-                <h2 className="lg:text-3xl md:text-xl text-lg mb-8 text-shadow-lg">
+                <h2 className="lg:text-3xl md:text-xl text-lg mb-8 font-medium text-shadow-lg">
                     Latest News
                 </h2>
 
                 <Link href={`/ppdhome/user/newsAndPublic`}>
-                    <h1 className="mb-8 text-shadow-lg lg:text-base text-sm border-b transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
+                    <h1 className="mb-8 font-medium text-shadow-lg lg:text-base text-sm border-b transition-all hover:text-pink-700 duration-200 hover:-translate-y-1 hover:scale-[1.02]">
                         View All News
                     </h1>
                 </Link>

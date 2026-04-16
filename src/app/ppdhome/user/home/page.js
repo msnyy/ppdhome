@@ -180,13 +180,13 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative hidden lg:block z-10 flex flex-col justify-center mx-10 py-20">
-                  <p className="lg:text-2xl text-shadow-lg">
+                  <p className="lg:text-2xl font-medium text-shadow-lg">
                     สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
                   </p>
-                  <p className="lg:text-xl text-sm text-shadow-lg mt-4">
+                  <p className="lg:text-xl text-sm font-medium text-shadow-lg mt-4">
                     PHRAPRADAENG HOME FOR PERSONS WITH
                   </p>
-                  <p className="lg:text-xl text-sm text-shadow-lg mt-4">
+                  <p className="lg:text-xl text-sm font-medium text-shadow-lg mt-4">
                     DISABILITIES PROTECTION AND DEVELOPMENT
                   </p>
                   <p className="mt-4 text-sm">
@@ -227,13 +227,13 @@ export default function HomePage() {
               <div className="absolute inset-0 flex items-end md:pb-8 pb-6">
                 <div className="max-w-xl md:ml-10 ml-2 text-white z-10">
 
-                  <p className="md:text-xl text-sm text-shadow-lg">
+                  <p className="md:text-xl text-sm font-medium text-shadow-lg">
                     สถานคุ้มครองและพัฒนาคนพิการ พระประแดง จ.สมุทรปราการ
                   </p>
-                  <p className="md:text-xl text-sm text-shadow-lg">
+                  <p className="md:text-xl text-sm font-medium text-shadow-lg">
                     PHRAPRADAENG HOME FOR PERSONS WITH
                   </p>
-                  <p className="md:text-xl text-sm text-shadow-lg">
+                  <p className="md:text-xl text-sm font-medium text-shadow-lg">
                     DISABILITIES PROTECTION AND DEVELOPMENT
                   </p>
 
@@ -264,7 +264,7 @@ export default function HomePage() {
             <div className="flex justify-between lg:mx-20 md:mx-10 mx-4 lg:gap-18 gap-8">
               <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-10 xl:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
                 <div className="flex justify-center text-center">
-                  <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg">
+                  <p className="xl:text-2xl md:text-xl text-lg font-medium text-shadow-lg">
                     รายงานข้อมูลสถานการณ์ด้านคนพิการในประเทศไทย
                   </p>
                 </div>
@@ -327,10 +327,10 @@ export default function HomePage() {
               </div>
 
               <div className="relative flex flex-col shadow-md rounded-xl md:pt-8 pt-4 pb-4 lg:px-6 px-4 z-10 w-1/2 justify-center bg-[radial-gradient(circle_at_center,_white_25%,_#FDF0F5_35%,_#ffdeee_70%,_#ffddf0_80%)] shadow-lg">
-                <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg text-center">
+                <p className="xl:text-2xl md:text-xl text-lg font-medium text-shadow-lg text-center">
                   ผู้ปกครองสถานคุ้มครองและพัฒนาคนพิการ
                 </p>
-                <p className="xl:text-2xl md:text-xl text-lg text-shadow-lg text-center">
+                <p className="xl:text-2xl md:text-xl text-lg font-medium text-shadow-lg text-center">
                   พระประแดง จ.สมุทรปราการ
                 </p>
 

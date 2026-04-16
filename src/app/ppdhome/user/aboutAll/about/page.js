@@ -23,7 +23,7 @@ export default function AboutInto() {
           <div className="xl:mx-20 md:mx-9 mx-4 mt-4">
             <MotionWrapper>
               <div className="flex flex-col lg:my-7 md:my-6 my-4">
-                <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">ประวัติความเป็นมา</p>
+                <p className="xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg">ประวัติความเป็นมา</p>
               </div>
             </MotionWrapper>
 
@@ -63,7 +63,7 @@ export default function AboutInto() {
 
             <MotionWrapper>
               <div className="flex items-center flex-col lg:my-7">
-                <p className="xl:text-4xl md:text-3xl text-xl text-shadow-lg">วิสัยทัศน์ พันธกิจ ค่านิยม</p>
+                <p className="xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg">วิสัยทัศน์ พันธกิจ ค่านิยม</p>
               </div>
             </MotionWrapper>
 
@@ -72,7 +72,7 @@ export default function AboutInto() {
 
                 <div className="text-center w-full">
                   <MotionWrapper >
-                    <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">วิสัยทัศน์</p>
+                    <p className="md:text-3xl text-lg md:mt-8 mt-4 font-medium text-shadow-lg">วิสัยทัศน์</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">“เป็นองค์กรคุณธรรม พลังสร้างสุข 3 ส สุขใจ สุขดี สุขจัง"</p>
                   </MotionWrapper>
                 </div>
@@ -83,7 +83,7 @@ export default function AboutInto() {
 
                 <div className="w-full">
                   <MotionWrapper>
-                    <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg text-center">พันธกิจขององค์กร</p>
+                    <p className="md:text-3xl text-lg md:mt-8 mt-4 font-medium text-shadow-lg text-center">พันธกิจขององค์กร</p>
                     <ul className="list-disc ms-4">
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริมให้คนพิการเข้าถึงสิทธิประโยชน์สวัสดิการ</li>
                       <li className="lg:text-xl md:text-base text-xs mt-2 text-black">ส่งเสริมอํานวยความสะดวกได้อย่างเท่าเทียม</li>
@@ -100,7 +100,7 @@ export default function AboutInto() {
 
                 <div className="text-center w-full">
                   <MotionWrapper>
-                    <p className="md:text-3xl text-lg md:mt-8 mt-4 text-shadow-lg">ค่านิยม</p>
+                    <p className="md:text-3xl text-lg md:mt-8 mt-4 font-medium text-shadow-lg">ค่านิยม</p>
                     <p className="lg:text-xl md:text-base text-xs mt-2 text-black">"เรามาอาศัยโลกนี้ เพื่อทำความดีทุกวันสำหรับความช่วยเหลือ ความเมตตา ความห่วงใย เพื่อมอบความรัก แด่คนพิการทุกท่าน"</p>
                   </MotionWrapper>
                 </div>

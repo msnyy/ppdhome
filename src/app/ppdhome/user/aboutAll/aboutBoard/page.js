@@ -9,7 +9,7 @@ export default function AboutBoard() {
         <div className="flex bg-white justify-center lg:mx-20 md:mx-9 mx-4 lg:my-10 my-4 md:py-10 py-4 rounded-xl text-black shadow-lg">
             <div className="flex flex-col">
                 <MotionWrapper>
-                <p className="text-center xl:text-4xl md:text-3xl text-xl text-shadow-lg">โครงสร้างผู้บริหาร</p>
+                <p className="text-center xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg">โครงสร้างผู้บริหาร</p>
                 </MotionWrapper>
 
                 <div className="flex flex-col items-center text-center lg:mt-10 mt-4">
@@ -73,7 +73,7 @@ export default function AboutBoard() {
                             <MotionWrapper>
                             <Image src={getSupabaseImage("pic/angkana.jpg")} alt="รูปนักสังคมสงเคาระห์ชำนาญการ" width={250} height={100} className="rounded-xl w-[100px] h-[110px] mx-auto object-cover"></Image>
                             <p className="xl:text-2xl md:text-lg text-xl mt-4 text-shadow-lg">อังคณา ศรีโต</p>
-                            <p className="mt-2 lg:text-base text-sm text-center">นักพัฒนาสังคมปฎิบัติการ</p>
+                            <p className="mt-2 lg:text-base text-sm text-center">นักสังคมสงเคาระห์ชำนาญการ</p>
                             <p className="text-center lg:text-base text-sm">ผู้อำนวยการกลุ่มมาตรการและกลไก</p>
                             </MotionWrapper>
                         </div>

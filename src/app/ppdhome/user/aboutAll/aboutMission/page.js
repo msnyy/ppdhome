@@ -62,7 +62,7 @@ export default function AboutMission() {
                 </div>
 
                 <MotionWrapper>
-                <div className="border border-l hidden lg:block h-190"></div>
+                <div className="border border-l hidden lg:block h-240"></div>
                 </MotionWrapper>
 
                 <div className="w-full">
