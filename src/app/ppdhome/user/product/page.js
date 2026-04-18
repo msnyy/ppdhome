@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { getSupabaseImage } from "@lib/image";
 import MotionWrapper from "@components/MotionWrapper";
+import { useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -40,10 +41,7 @@ export default function Product() {
             try {
                 setLoading(true);
 
-                const params = new URLSearchParams();
-                if (filterCategory !== "all") params.append("category", filterCategory);
-
-                const res = await fetch(`/ppdhome/api/product?${params.toString()}`);
+                const res = await fetch(`/ppdhome/api/product`);
                 const data = await res.json();
 
                 setProducts(data.featured || []);
@@ -57,14 +55,27 @@ export default function Product() {
             }
         };
 
-
         fetchData();
-    }, [filterCategory]);
+    }, []); // 🔥 ไม่มี dependency แล้ว
 
-    useEffect(() => {
-        if (!priceSort) return;
+    const filteredCategories = useMemo(() => {
+    let result = categories;
 
-        const sorted = categories.map((cat) => ({
+    // 🔹 filter
+    if (filterCategory !== "all") {
+        result = result
+            .map((cat) => ({
+                ...cat,
+                items: cat.items.filter(
+                    (item) => item.category === filterCategory
+                ),
+            }))
+            .filter((cat) => cat.items.length > 0);
+    }
+
+    // 🔹 sort
+    if (priceSort) {
+        result = result.map((cat) => ({
             ...cat,
             items: [...cat.items].sort((a, b) => {
                 if (priceSort === "asc") {
@@ -76,9 +87,10 @@ export default function Product() {
                 return 0;
             }),
         }));
+    }
 
-        setCategories(sorted);
-    }, [priceSort]);
+    return result;
+}, [categories, filterCategory, priceSort]);
 
 
     const closeModal = () => {
@@ -364,7 +376,7 @@ export default function Product() {
                             </MotionWrapper>
 
                             <div className="flex flex-col lg:gap-12 flex-wrap ">
-                                {categories.map((cat) => (
+                                {filteredCategories.map((cat) => (
                                     <div key={cat.title} className="mt-6">
                                         <MotionWrapper>
                                             <p className="xl:text-4xl md:text-3xl text-xl font-medium text-shadow-lg mb-4">
@@ -409,10 +421,10 @@ export default function Product() {
                                                             <div className="flex justify-between mt-2 md:text-sm text-xs">
                                                                 <p>ขนาด</p>
                                                                 {item.size && (
-                                                                <div className="md:text-sm text-xs text-right">
-                                                                    ขนาด {item.size}
-                                                                </div>
-                                                            )}
+                                                                    <div className="md:text-sm text-xs text-right">
+                                                                        ขนาด {item.size}
+                                                                    </div>
+                                                                )}
                                                             </div>
 
                                                             <div className="flex justify-between mt-2 md:text-sm text-xs">
@@ -501,11 +513,11 @@ export default function Product() {
                                 )}
 
                                 {selected.size && (
-                                        <div className="flex justify-between">
-                                            <span>ขนาด</span>
-                                            <span>{selected.size}</span>
-                                        </div>
-                                    )}
+                                    <div className="flex justify-between">
+                                        <span>ขนาด</span>
+                                        <span>{selected.size}</span>
+                                    </div>
+                                )}
 
                                 <div className="mt-4 space-y-2 text-sm">
                                     <div className="flex justify-between">

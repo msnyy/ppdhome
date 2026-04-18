@@ -368,7 +368,11 @@ export default function PostForm({ mode = "create", initialData = null, postId }
 
 
                 {/* images */}
+                <span className="block mb-2 font-medium lg:text-2xl md:text-xl text-lg">
+                        เพิ่มรูปภาพ
+                    </span>
                 <div className="flex gap-3 flex-wrap">
+
 
                     {oldImages.map((img) => (
                         <div key={img.id} className="w-[220px] h-[140px] relative">
@@ -411,6 +415,7 @@ export default function PostForm({ mode = "create", initialData = null, postId }
                             onChange={handleFileChange}
                         />
                         <span className="text-4xl font-light">+</span>
+                        <span className="text-sm mt-1">เพิ่มรูปภาพ</span>
                     </label>
 
                 </div>

@@ -256,6 +256,9 @@ export default function BannerAdmin() {
       </div>
 
       <div className="p-6 border mb-14">
+        <span className="text-base text-gray-600">
+              *ขนาด banner ที่ใช้ Size 1920 x 700px*
+            </span>
         {/* delete */}
         {selected.length > 0 && (
           <div className="mb-4 flex items-center gap-3 justify-end">
